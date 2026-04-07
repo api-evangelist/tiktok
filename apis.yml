@@ -6,9 +6,9 @@ position: Consumer
 access: 3rd-Party
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
+  - Content
   - Social Media
   - Video
-  - Content
 created: '2025-08-14'
 modified: '2026-03-16'
 url: >-
@@ -22,9 +22,9 @@ apis:
       platform.
     humanURL: https://developers.tiktok.com/
     tags:
+      - Content
       - Social Media
       - Video
-      - Content
     properties:
       - type: Documentation
         url: https://developers.tiktok.com/
