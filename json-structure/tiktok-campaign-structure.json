@@ -1,0 +1,15 @@
+{
+  "name": "TikTok Campaign",
+  "description": "Structure of a TikTok advertising campaign",
+  "fields": [
+    {"name": "campaign_id", "type": "string", "required": true, "description": "Unique campaign ID"},
+    {"name": "campaign_name", "type": "string", "required": true, "description": "Campaign name"},
+    {"name": "advertiser_id", "type": "string", "required": true, "description": "Advertiser ID"},
+    {"name": "objective_type", "type": "string", "required": true, "description": "Advertising objective"},
+    {"name": "status", "type": "string", "required": false, "description": "Campaign status"},
+    {"name": "budget", "type": "number", "required": false, "description": "Budget amount"},
+    {"name": "budget_mode", "type": "string", "required": false, "description": "Daily or total budget"},
+    {"name": "create_time", "type": "string", "required": false, "description": "Creation time"},
+    {"name": "modify_time", "type": "string", "required": false, "description": "Last modified time"}
+  ]
+}

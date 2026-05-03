@@ -1,0 +1,37 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://open-api.tiktokglobalshop.com/order/202309/orders?page_size=10&order_status=AWAITING_SHIPMENT",
+    "headers": {
+      "x-tts-access-token": "{{TIKTOK_SHOP_ACCESS_TOKEN}}",
+      "Content-Type": "application/json"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "code": 0,
+      "message": "Success",
+      "data": {
+        "orders": [
+          {
+            "order_id": "576932018345678901",
+            "order_status": "AWAITING_SHIPMENT",
+            "create_time": 1746230400,
+            "paid_time": 1746230800,
+            "line_items": [
+              {
+                "item_id": "item_123456",
+                "product_name": "Wireless Earbuds",
+                "sku_id": "sku_789012",
+                "quantity": 2
+              }
+            ]
+          }
+        ],
+        "next_page_token": "eyJwYWdlIjoyf",
+        "total_count": 45
+      }
+    }
+  }
+}

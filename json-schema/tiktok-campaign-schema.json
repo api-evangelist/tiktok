@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/tiktok/main/json-schema/tiktok-campaign-schema.json",
+  "title": "TikTok Campaign",
+  "description": "Schema for a TikTok advertising campaign",
+  "type": "object",
+  "properties": {
+    "campaign_id": {"type": "string", "description": "Unique campaign identifier"},
+    "campaign_name": {"type": "string", "description": "Campaign display name"},
+    "advertiser_id": {"type": "string", "description": "Advertiser account ID"},
+    "objective_type": {
+      "type": "string",
+      "enum": ["REACH", "TRAFFIC", "APP_PROMOTION", "LEAD_GENERATION", "ENGAGEMENT", "VIDEO_VIEWS", "CONVERSIONS", "CATALOG_SALES"],
+      "description": "Campaign advertising objective"
+    },
+    "status": {"type": "string", "enum": ["ENABLE", "DISABLE", "DELETE"]},
+    "budget": {"type": "number", "minimum": 0, "description": "Campaign budget amount"},
+    "budget_mode": {"type": "string", "enum": ["BUDGET_MODE_DAY", "BUDGET_MODE_TOTAL"]},
+    "create_time": {"type": "string", "description": "Creation timestamp"},
+    "modify_time": {"type": "string", "description": "Last modification timestamp"}
+  },
+  "required": ["campaign_id", "campaign_name", "advertiser_id"]
+}

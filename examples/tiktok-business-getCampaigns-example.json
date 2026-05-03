@@ -1,0 +1,38 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://business-api.tiktok.com/open_api/v1.3/campaign/get/?advertiser_id=7123456789&page=1&page_size=10",
+    "headers": {
+      "Access-Token": "{{TIKTOK_BUSINESS_ACCESS_TOKEN}}",
+      "Content-Type": "application/json"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "code": 0,
+      "message": "OK",
+      "data": {
+        "list": [
+          {
+            "campaign_id": "1234567890123456789",
+            "campaign_name": "Spring Sale 2026",
+            "advertiser_id": "7123456789",
+            "objective_type": "CONVERSIONS",
+            "status": "ENABLE",
+            "budget": 500.00,
+            "budget_mode": "BUDGET_MODE_DAY",
+            "create_time": "2026-04-01 00:00:00",
+            "modify_time": "2026-04-15 10:30:00"
+          }
+        ],
+        "page_info": {
+          "page": 1,
+          "page_size": 10,
+          "total_number": 1,
+          "total_page": 1
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,150 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "TikTok Shop Operations"
+  description: >-
+    Workflow capability for TikTok Shop e-commerce operations. Uses the TikTok
+    Shop API to manage product catalogs, fulfill orders, track logistics, and
+    monitor financial settlements. Designed for sellers, marketplace integrators,
+    and e-commerce platforms.
+  tags:
+    - TikTok
+    - Commerce
+    - E-Commerce
+    - Products
+    - Orders
+    - Fulfillment
+  created: "2026-05-03"
+  modified: "2026-05-03"
+
+binds:
+  - namespace: env
+    keys:
+      TIKTOK_SHOP_ACCESS_TOKEN: TIKTOK_SHOP_ACCESS_TOKEN
+
+capability:
+  consumes:
+    - import: tiktok-shop
+      location: ./shared/shop-api.yaml
+
+  exposes:
+    - type: rest
+      port: 8081
+      namespace: tiktok-shop-operations-api
+      description: "Unified REST API for TikTok Shop operations."
+      resources:
+        - path: /v1/products
+          name: products
+          description: "Product catalog management"
+          operations:
+            - method: GET
+              name: list-products
+              description: "List products in the shop catalog"
+              call: "tiktok-shop.list-products"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/products/{product_id}
+          name: product-detail
+          description: "Individual product management"
+          operations:
+            - method: GET
+              name: get-product
+              description: "Get product details"
+              call: "tiktok-shop.get-product"
+              with:
+                product_id: "rest.product_id"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/orders
+          name: orders
+          description: "Order management"
+          operations:
+            - method: GET
+              name: list-orders
+              description: "List all shop orders"
+              call: "tiktok-shop.list-orders"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/orders/{order_id}
+          name: order-detail
+          description: "Individual order management"
+          operations:
+            - method: GET
+              name: get-order
+              description: "Get order details"
+              call: "tiktok-shop.get-order"
+              with:
+                order_id: "rest.order_id"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/payments
+          name: payments
+          description: "Financial settlement records"
+          operations:
+            - method: GET
+              name: list-payments
+              description: "List payment settlements"
+              call: "tiktok-shop.list-payments"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9091
+      namespace: tiktok-shop-operations-mcp
+      transport: http
+      description: "MCP server for AI-assisted TikTok Shop operations."
+      tools:
+        - name: list-products
+          description: "List products in TikTok Shop catalog"
+          hints:
+            readOnly: true
+            idempotent: true
+          call: "tiktok-shop.list-products"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-product
+          description: "Get TikTok Shop product details"
+          hints:
+            readOnly: true
+            idempotent: true
+          call: "tiktok-shop.get-product"
+          with:
+            product_id: "tools.product_id"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-orders
+          description: "List TikTok Shop orders with status filtering"
+          hints:
+            readOnly: true
+            idempotent: true
+          call: "tiktok-shop.list-orders"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-order
+          description: "Get detailed TikTok Shop order information"
+          hints:
+            readOnly: true
+            idempotent: true
+          call: "tiktok-shop.get-order"
+          with:
+            order_id: "tools.order_id"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-payments
+          description: "List TikTok Shop payment settlement records"
+          hints:
+            readOnly: true
+            idempotent: true
+          call: "tiktok-shop.list-payments"
+          outputParameters:
+            - type: object
+              mapping: "$."

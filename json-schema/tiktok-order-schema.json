@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/tiktok/main/json-schema/tiktok-order-schema.json",
+  "title": "TikTok Shop Order",
+  "description": "Schema for a TikTok Shop order",
+  "type": "object",
+  "properties": {
+    "order_id": {"type": "string", "description": "Unique order identifier"},
+    "order_status": {
+      "type": "string",
+      "enum": ["UNPAID", "ON_HOLD", "AWAITING_SHIPMENT", "AWAITING_COLLECTION", "IN_TRANSIT", "DELIVERED", "COMPLETED", "CANCELLED"]
+    },
+    "create_time": {"type": "integer", "description": "Order creation Unix timestamp"},
+    "paid_time": {"type": "integer", "description": "Payment Unix timestamp"},
+    "buyer_email": {"type": "string", "format": "email"},
+    "recipient_address": {
+      "type": "object",
+      "properties": {
+        "name": {"type": "string"},
+        "phone_number": {"type": "string"},
+        "address_line1": {"type": "string"},
+        "city": {"type": "string"},
+        "postal_code": {"type": "string"},
+        "region_code": {"type": "string"}
+      }
+    },
+    "line_items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "item_id": {"type": "string"},
+          "product_name": {"type": "string"},
+          "sku_id": {"type": "string"},
+          "quantity": {"type": "integer", "minimum": 1}
+        }
+      }
+    }
+  },
+  "required": ["order_id"]
+}

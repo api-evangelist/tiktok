@@ -1,0 +1,62 @@
+extends: spectral:oas
+rules:
+  tiktok-operation-id-camel-case:
+    description: Operation IDs must use camelCase
+    message: "Operation ID '{{value}}' must use camelCase"
+    severity: warn
+    given: "$.paths[*][*].operationId"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[a-z][a-zA-Z0-9]*$"
+
+  tiktok-versioned-paths:
+    description: All paths must include an API version prefix
+    message: "Path '{{value}}' must start with a version prefix"
+    severity: error
+    given: "$.paths"
+    then:
+      field: "@key"
+      function: pattern
+      functionOptions:
+        match: "^/(v[0-9]+|open_api/v[0-9]+)"
+
+  tiktok-operation-summary:
+    description: All operations must have a summary
+    message: "Operation must have a summary"
+    severity: error
+    given: "$.paths[*][*]"
+    then:
+      field: summary
+      function: truthy
+
+  tiktok-operation-tags:
+    description: All operations must have tags
+    message: "Operation must have at least one tag"
+    severity: warn
+    given: "$.paths[*][*]"
+    then:
+      field: tags
+      function: truthy
+
+  tiktok-business-api-code-field:
+    description: Business API responses should include a code field
+    message: "Business API response schema should have a 'code' field"
+    severity: info
+    given: "$.paths[*][*].responses.200.content.application/json.schema.properties"
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          type: object
+
+  tiktok-advertiser-id-required:
+    description: Business API operations should document advertiser_id parameter
+    message: "Endpoint should document advertiser_id parameter"
+    severity: info
+    given: "$.paths[*][get].parameters[*]"
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          type: object

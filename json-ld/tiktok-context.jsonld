@@ -1,0 +1,20 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "tiktok": "https://www.tiktok.com/vocab/",
+    "campaign_id": "tiktok:campaignId",
+    "campaign_name": "name",
+    "advertiser_id": "tiktok:advertiserId",
+    "objective_type": "tiktok:objectiveType",
+    "budget": "tiktok:budget",
+    "order_id": "tiktok:orderId",
+    "order_status": "tiktok:orderStatus",
+    "product_id": "tiktok:productId",
+    "product_name": "name",
+    "sku_id": "tiktok:skuId",
+    "line_items": "itemListElement",
+    "TikTokCampaign": "tiktok:AdCampaign",
+    "TikTokOrder": "Order",
+    "TikTokProduct": "Product"
+  }
+}

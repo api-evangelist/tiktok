@@ -1,0 +1,90 @@
+vocabulary:
+  name: TikTok Vocabulary
+  description: >-
+    Taxonomy and vocabulary for TikTok's advertising, commerce, and platform APIs.
+  version: "2026-05-03"
+  terms:
+    - term: Advertiser
+      definition: A business entity that creates and manages ads on TikTok's platform.
+      category: Advertising
+      tags: [Advertising, Business]
+    - term: Campaign
+      definition: >-
+        A top-level advertising construct containing ad groups and ads, defined
+        by an objective type and budget.
+      category: Advertising
+      tags: [Advertising, Campaign]
+    - term: Ad Group
+      definition: >-
+        A mid-level advertising construct within a campaign that controls targeting,
+        placements, bidding, and scheduling.
+      category: Advertising
+      tags: [Advertising, Targeting]
+    - term: Creative
+      definition: The visual and textual content of a TikTok advertisement.
+      category: Advertising
+      tags: [Advertising, Creative]
+    - term: Objective Type
+      definition: >-
+        The advertising goal for a campaign, such as REACH, TRAFFIC, CONVERSIONS,
+        or APP_PROMOTION.
+      category: Advertising
+      tags: [Advertising, Goals]
+    - term: Custom Audience
+      definition: >-
+        A targeting audience built from customer data, website visitors, app users,
+        or engagement data for ad targeting.
+      category: Advertising
+      tags: [Advertising, Targeting]
+    - term: TikTok Shop
+      definition: >-
+        TikTok's integrated e-commerce platform allowing sellers to list products
+        and process orders directly within TikTok.
+      category: Commerce
+      tags: [Commerce, E-Commerce]
+    - term: SKU
+      definition: >-
+        Stock Keeping Unit - a specific variant of a product defined by attributes
+        like size, color, and price.
+      category: Commerce
+      tags: [Commerce, Products]
+    - term: Seller Center
+      definition: >-
+        The TikTok merchant dashboard for managing shops, products, orders, and
+        analytics.
+      category: Commerce
+      tags: [Commerce, Management]
+    - term: Data Level
+      definition: >-
+        The aggregation level for advertising reports: ADVERTISER, CAMPAIGN,
+        ADGROUP, or AD.
+      category: Reporting
+      tags: [Reporting, Analytics]
+    - term: Access Token
+      definition: >-
+        Authorization credential used to authenticate TikTok API requests on
+        behalf of an advertiser or seller.
+      category: Authentication
+      tags: [Authentication, Security]
+    - term: Data Portability
+      definition: >-
+        The right and mechanism for users to export their TikTok personal data
+        to authorized third-party services.
+      category: Privacy
+      tags: [Privacy, Data Rights]
+    - term: ROAS
+      definition: >-
+        Return On Ad Spend - a key performance metric measuring revenue generated
+        per dollar of advertising spend.
+      category: Reporting
+      tags: [Reporting, Performance]
+    - term: Impression
+      definition: A single display of an advertisement to a TikTok user.
+      category: Reporting
+      tags: [Reporting, Metrics]
+    - term: Click-Through Rate
+      definition: >-
+        The ratio of users who click an ad to the number of total impressions,
+        expressed as a percentage.
+      category: Reporting
+      tags: [Reporting, Metrics]

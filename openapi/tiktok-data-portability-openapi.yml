@@ -1,0 +1,138 @@
+openapi: 3.1.0
+info:
+  title: TikTok Data Portability API
+  description: >-
+    The TikTok Data Portability API allows users to export their TikTok data
+    including activity, videos, and profile information to authorized
+    third-party services, supporting data portability rights.
+  version: v2
+  contact:
+    name: TikTok for Developers
+    url: https://developers.tiktok.com/doc/data-portability-api-get-started
+  termsOfService: https://developers.tiktok.com/doc/tiktok-api-terms-of-service
+servers:
+  - url: https://open.tiktokapis.com
+    description: TikTok Open API Production
+security:
+  - BearerAuth: []
+tags:
+  - name: Data Portability
+    description: User data export operations
+paths:
+  /v2/data_portability/task/create/:
+    post:
+      operationId: createDataPortabilityTask
+      summary: Create Data Portability Task
+      description: >-
+        Creates a data export task for a user, specifying the data categories
+        to include.
+      tags:
+        - Data Portability
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DataPortabilityTaskRequest'
+      responses:
+        '200':
+          description: Data portability task created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DataPortabilityTaskResponse'
+        '401':
+          description: Unauthorized
+  /v2/data_portability/task/status/:
+    post:
+      operationId: getDataPortabilityTaskStatus
+      summary: Get Data Portability Task Status
+      description: >-
+        Retrieves the status of a data portability export task.
+      tags:
+        - Data Portability
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - task_id
+              properties:
+                task_id:
+                  type: string
+                  description: Task ID from createDataPortabilityTask
+      responses:
+        '200':
+          description: Task status retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskStatusResponse'
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+  schemas:
+    DataPortabilityTaskRequest:
+      type: object
+      required:
+        - data_types
+      properties:
+        data_types:
+          type: array
+          items:
+            type: string
+            enum:
+              - ACTIVITY
+              - VIDEOS
+              - FAVORITES
+              - FOLLOWING
+              - FOLLOWERS
+              - PROFILE
+              - DIRECT_MESSAGES
+              - COMMENTS
+          description: Data categories to export
+    DataPortabilityTaskResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            task_id:
+              type: string
+        error:
+          $ref: '#/components/schemas/Error'
+    TaskStatusResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            task_id:
+              type: string
+            status:
+              type: string
+              enum:
+                - PROCESSING
+                - READY
+                - FAILED
+                - EXPIRED
+            download_urls:
+              type: array
+              items:
+                type: string
+              description: Download URLs when status is READY
+        error:
+          $ref: '#/components/schemas/Error'
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        log_id:
+          type: string

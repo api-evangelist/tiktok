@@ -1,0 +1,192 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "TikTok Advertising Management"
+  description: >-
+    Unified workflow capability for managing TikTok advertising campaigns.
+    Combines the Business API to enable full campaign lifecycle management
+    including campaign creation, ad group setup, creative publishing, and
+    performance reporting. Designed for marketing agencies, advertisers, and
+    ad tech platforms.
+  tags:
+    - TikTok
+    - Advertising
+    - Campaigns
+    - Marketing
+    - Performance
+  created: "2026-05-03"
+  modified: "2026-05-03"
+
+binds:
+  - namespace: env
+    keys:
+      TIKTOK_BUSINESS_ACCESS_TOKEN: TIKTOK_BUSINESS_ACCESS_TOKEN
+      TIKTOK_ADVERTISER_ID: TIKTOK_ADVERTISER_ID
+
+capability:
+  consumes:
+    - import: tiktok-business
+      location: ./shared/business-api.yaml
+
+  exposes:
+    - type: rest
+      port: 8080
+      namespace: tiktok-advertising-api
+      description: "Unified REST API for TikTok advertising management."
+      resources:
+        - path: /v1/campaigns
+          name: campaigns
+          description: "Campaign lifecycle management"
+          operations:
+            - method: GET
+              name: get-campaigns
+              description: "Retrieve advertising campaigns"
+              call: "tiktok-business.get-campaigns"
+              with:
+                advertiser_id: "rest.advertiser_id"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: POST
+              name: create-campaign
+              description: "Create a new advertising campaign"
+              call: "tiktok-business.create-campaign"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/ad-groups
+          name: ad-groups
+          description: "Ad group management"
+          operations:
+            - method: GET
+              name: get-ad-groups
+              description: "Get ad groups for a campaign"
+              call: "tiktok-business.get-ad-groups"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: POST
+              name: create-ad-group
+              description: "Create a new ad group"
+              call: "tiktok-business.create-ad-group"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/ads
+          name: ads
+          description: "Individual ad management"
+          operations:
+            - method: GET
+              name: get-ads
+              description: "Get individual ads"
+              call: "tiktok-business.get-ads"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: POST
+              name: create-ad
+              description: "Create a new ad"
+              call: "tiktok-business.create-ad"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/reports
+          name: reports
+          description: "Performance reporting"
+          operations:
+            - method: GET
+              name: get-report
+              description: "Get advertising performance report"
+              call: "tiktok-business.get-report"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/audiences
+          name: audiences
+          description: "Custom audience management"
+          operations:
+            - method: GET
+              name: list-custom-audiences
+              description: "List custom targeting audiences"
+              call: "tiktok-business.list-custom-audiences"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9090
+      namespace: tiktok-advertising-mcp
+      transport: http
+      description: "MCP server for AI-assisted TikTok advertising management."
+      tools:
+        - name: get-campaigns
+          description: "Retrieve TikTok advertising campaigns for an advertiser"
+          hints:
+            readOnly: true
+            idempotent: true
+          call: "tiktok-business.get-campaigns"
+          with:
+            advertiser_id: "tools.advertiser_id"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: create-campaign
+          description: "Create a new TikTok advertising campaign"
+          hints:
+            readOnly: false
+          call: "tiktok-business.create-campaign"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-ad-groups
+          description: "Retrieve ad groups for a TikTok campaign"
+          hints:
+            readOnly: true
+            idempotent: true
+          call: "tiktok-business.get-ad-groups"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: create-ad-group
+          description: "Create a new ad group within a TikTok campaign"
+          hints:
+            readOnly: false
+          call: "tiktok-business.create-ad-group"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-ads
+          description: "Retrieve individual TikTok ads"
+          hints:
+            readOnly: true
+            idempotent: true
+          call: "tiktok-business.get-ads"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: create-ad
+          description: "Create a new TikTok ad creative"
+          hints:
+            readOnly: false
+          call: "tiktok-business.create-ad"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-report
+          description: "Get TikTok advertising performance metrics and analytics"
+          hints:
+            readOnly: true
+            idempotent: true
+          call: "tiktok-business.get-report"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-custom-audiences
+          description: "List custom audiences available for ad targeting"
+          hints:
+            readOnly: true
+            idempotent: true
+          call: "tiktok-business.list-custom-audiences"
+          outputParameters:
+            - type: object
+              mapping: "$."

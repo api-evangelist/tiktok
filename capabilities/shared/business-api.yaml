@@ -1,0 +1,325 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "TikTok API for Business"
+  description: >-
+    TikTok's advertising API for managing campaigns, ad groups, ads,
+    reporting, and custom audiences.
+  tags:
+    - TikTok
+    - Advertising
+    - Campaigns
+    - Marketing
+  created: "2026-05-03"
+  modified: "2026-05-03"
+
+binds:
+  - namespace: env
+    keys:
+      TIKTOK_BUSINESS_ACCESS_TOKEN: TIKTOK_BUSINESS_ACCESS_TOKEN
+      TIKTOK_ADVERTISER_ID: TIKTOK_ADVERTISER_ID
+
+capability:
+  consumes:
+    - type: http
+      namespace: tiktok-business
+      baseUri: https://business-api.tiktok.com
+      description: "TikTok API for Business - advertising management"
+      authentication:
+        type: apikey
+        key: Access-Token
+        value: "{{TIKTOK_BUSINESS_ACCESS_TOKEN}}"
+        placement: header
+      resources:
+        - name: campaigns
+          path: /open_api/v1.3/campaign
+          description: "Campaign management operations"
+          operations:
+            - name: get-campaigns
+              method: GET
+              description: "Retrieve advertising campaigns"
+              inputParameters:
+                - name: advertiser_id
+                  in: query
+                  type: string
+                  required: true
+                - name: page
+                  in: query
+                  type: integer
+                  required: false
+                - name: page_size
+                  in: query
+                  type: integer
+                  required: false
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: create-campaign
+              method: POST
+              description: "Create a new advertising campaign"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+              body:
+                type: json
+                data:
+                  advertiser_id: "{{tools.advertiser_id}}"
+                  campaign_name: "{{tools.campaign_name}}"
+                  objective_type: "{{tools.objective_type}}"
+                  budget_mode: "{{tools.budget_mode}}"
+                  budget: "{{tools.budget}}"
+        - name: adgroups
+          path: /open_api/v1.3/adgroup
+          description: "Ad group management operations"
+          operations:
+            - name: get-ad-groups
+              method: GET
+              description: "Retrieve ad groups"
+              inputParameters:
+                - name: advertiser_id
+                  in: query
+                  type: string
+                  required: true
+                - name: campaign_id
+                  in: query
+                  type: string
+                  required: false
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: create-ad-group
+              method: POST
+              description: "Create a new ad group"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+              body:
+                type: json
+                data:
+                  advertiser_id: "{{tools.advertiser_id}}"
+                  campaign_id: "{{tools.campaign_id}}"
+                  adgroup_name: "{{tools.adgroup_name}}"
+                  placement_type: "{{tools.placement_type}}"
+        - name: ads
+          path: /open_api/v1.3/ad
+          description: "Individual ad management"
+          operations:
+            - name: get-ads
+              method: GET
+              description: "Retrieve individual ads"
+              inputParameters:
+                - name: advertiser_id
+                  in: query
+                  type: string
+                  required: true
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: create-ad
+              method: POST
+              description: "Create a new ad"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+              body:
+                type: json
+                data:
+                  advertiser_id: "{{tools.advertiser_id}}"
+                  adgroup_id: "{{tools.adgroup_id}}"
+                  ad_name: "{{tools.ad_name}}"
+        - name: reporting
+          path: /open_api/v1.3/report/integrated
+          description: "Campaign performance reporting"
+          operations:
+            - name: get-report
+              method: GET
+              description: "Retrieve integrated advertising performance report"
+              inputParameters:
+                - name: advertiser_id
+                  in: query
+                  type: string
+                  required: true
+                - name: report_type
+                  in: query
+                  type: string
+                  required: true
+                - name: data_level
+                  in: query
+                  type: string
+                  required: true
+                - name: dimensions
+                  in: query
+                  type: string
+                  required: true
+                - name: metrics
+                  in: query
+                  type: string
+                  required: true
+                - name: start_date
+                  in: query
+                  type: string
+                  required: true
+                - name: end_date
+                  in: query
+                  type: string
+                  required: true
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+        - name: audiences
+          path: /open_api/v1.3/dmp/custom_audience
+          description: "Custom audience management"
+          operations:
+            - name: list-custom-audiences
+              method: GET
+              description: "List custom audiences"
+              inputParameters:
+                - name: advertiser_id
+                  in: query
+                  type: string
+                  required: true
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+  exposes:
+    - type: rest
+      port: 8100
+      namespace: tiktok-business-rest
+      resources:
+        - path: /v1/campaigns
+          name: campaigns
+          operations:
+            - method: GET
+              name: get-campaigns
+              description: "Get advertising campaigns"
+              call: "tiktok-business.get-campaigns"
+              with:
+                advertiser_id: "rest.advertiser_id"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: POST
+              name: create-campaign
+              description: "Create advertising campaign"
+              call: "tiktok-business.create-campaign"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/ad-groups
+          name: ad-groups
+          operations:
+            - method: GET
+              name: get-ad-groups
+              description: "Get ad groups"
+              call: "tiktok-business.get-ad-groups"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/ads
+          name: ads
+          operations:
+            - method: GET
+              name: get-ads
+              description: "Get individual ads"
+              call: "tiktok-business.get-ads"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/reports
+          name: reports
+          operations:
+            - method: GET
+              name: get-report
+              description: "Get campaign performance report"
+              call: "tiktok-business.get-report"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/audiences
+          name: audiences
+          operations:
+            - method: GET
+              name: list-custom-audiences
+              description: "List custom audiences"
+              call: "tiktok-business.list-custom-audiences"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9100
+      namespace: tiktok-business-mcp
+      transport: http
+      tools:
+        - name: get-campaigns
+          description: "Retrieve TikTok advertising campaigns"
+          hints:
+            readOnly: true
+            idempotent: true
+          call: "tiktok-business.get-campaigns"
+          with:
+            advertiser_id: "tools.advertiser_id"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: create-campaign
+          description: "Create a new TikTok advertising campaign"
+          hints:
+            readOnly: false
+          call: "tiktok-business.create-campaign"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-ad-groups
+          description: "Retrieve TikTok ad groups"
+          hints:
+            readOnly: true
+            idempotent: true
+          call: "tiktok-business.get-ad-groups"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-ads
+          description: "Retrieve TikTok individual ads"
+          hints:
+            readOnly: true
+            idempotent: true
+          call: "tiktok-business.get-ads"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-report
+          description: "Get TikTok advertising performance report"
+          hints:
+            readOnly: true
+            idempotent: true
+          call: "tiktok-business.get-report"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-custom-audiences
+          description: "List TikTok custom audiences for targeting"
+          hints:
+            readOnly: true
+            idempotent: true
+          call: "tiktok-business.list-custom-audiences"
+          outputParameters:
+            - type: object
+              mapping: "$."
