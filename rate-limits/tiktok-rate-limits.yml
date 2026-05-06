@@ -4,97 +4,47 @@ schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main
 provider: TikTok
 providerId: tiktok
 created: '2026-05-04'
-modified: '2026-05-04'
+modified: '2026-05-05'
+reconciled: true
 tags:
-  - Advertising
-  - Commerce
-  - Content
-  - E-Commerce
-  - Social Media
+  - Social
   - Video
   - Rate Limiting
-  - Quotas
-  - Throttling
-description: Machine-readable rate limit definitions for the TikTok API surface. Captures per-tier quotas,
-  burst behavior, response signaling, and recovery semantics. Defaults are scaffold values to be replaced
-  with published provider limits.
-headers:
-  limit: X-RateLimit-Limit
-  remaining: X-RateLimit-Remaining
-  reset: X-RateLimit-Reset
-  retryAfter: Retry-After
-  policy: RateLimit-Policy
+description: TikTok publishes default rate limits for v2 server APIs at 600 requests per one-minute sliding
+  window per key endpoint (user info, video query, video list). Throttled requests return HTTP 429 with
+  error code rate_limit_exceeded. Higher limits are granted on review via the Support Page.
+sources:
+  - https://developers.tiktok.com/doc/tiktok-api-v2-rate-limit
 responseCodes:
   throttled: 429
-  quotaExceeded: 429
-  serviceUnavailable: 503
 limits:
-  - tier: free
-    name: Free Tier Default
-    scope: api-key
+  - name: /v2/user/info/
+    scope: client
     metric: requests_per_minute
-    limit: 10
-    burst: 20
+    limit: 600
     timeFrame: minute
-    applies:
-      - TikTok API for Business
-      - TikTok Shop API
-      - TikTok Data Portability API
-  - tier: free
-    name: Free Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 1000
-    timeFrame: month
-    applies:
-      - TikTok API for Business
-      - TikTok Shop API
-      - TikTok Data Portability API
-  - tier: professional
-    name: Professional Tier Default
-    scope: api-key
+    notes: One-minute sliding window.
+  - name: /v2/video/query/
+    scope: client
     metric: requests_per_minute
-    limit: 100
-    burst: 200
+    limit: 600
     timeFrame: minute
-    applies:
-      - TikTok API for Business
-      - TikTok Shop API
-      - TikTok Data Portability API
-  - tier: professional
-    name: Professional Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 100000
-    timeFrame: month
-    applies:
-      - TikTok API for Business
-      - TikTok Shop API
-      - TikTok Data Portability API
-  - tier: enterprise
-    name: Enterprise Negotiated Limit
-    scope: contract
+    notes: One-minute sliding window.
+  - name: /v2/video/list/
+    scope: client
     metric: requests_per_minute
-    limit: 1000
-    burst: 5000
+    limit: 600
     timeFrame: minute
-    applies:
-      - TikTok API for Business
-      - TikTok Shop API
-      - TikTok Data Portability API
+    notes: One-minute sliding window.
 policies:
-  - name: Backoff Strategy
-    description: Clients should implement exponential backoff with jitter, honoring the Retry-After header
-      when present.
-  - name: Burst Handling
-    description: Short bursts above the steady-state limit are tolerated up to the documented burst ceiling
-      before throttling engages.
-  - name: Quota Reset
-    description: Monthly quotas reset at the start of each calendar month in UTC. Per-minute and per-second
-      windows reset on a sliding-window basis.
-  - name: Fair Use
-    description: Even on uncapped enterprise tiers, sustained usage that materially impacts shared infrastructure
-      may be subject to fair-use throttling.
+  - name: Sliding Window
+    description: Rate-limit calculation uses a one-minute sliding window per documented endpoint.
+  - name: Quota Increase
+    description: Applications needing higher limits submit a request via the TikTok developer Support
+      Page; TikTok reviews and may approve a raised cap.
+  - name: Throttling Response
+    description: When the limit is exceeded the API returns HTTP 429 with error code rate_limit_exceeded;
+      clients should back off before retrying.
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
