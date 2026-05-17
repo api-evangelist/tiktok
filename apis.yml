@@ -85,7 +85,7 @@ common:
     url: https://developers.tiktok.com/
   - type: Documentation
     url: https://developers.tiktok.com/doc/overview
-  - type: Getting Started
+  - type: GettingStarted
     url: https://developers.tiktok.com/doc/overview
   - type: Business API Portal
     url: https://business-api.tiktok.com/portal
@@ -93,23 +93,23 @@ common:
     url: https://partner.tiktokshop.com/
   - type: Authentication
     url: https://developers.tiktok.com/doc/login-kit-manage-user-access-tokens
-  - type: GitHub Organization
+  - type: GitHubOrganization
     url: https://github.com/tiktok
   - type: SDK
     url: https://github.com/tiktok/tiktok-business-api-sdk
-  - type: Change Log
+  - type: ChangeLog
     url: https://developers.tiktok.com/doc/changelog
   - type: Blog
     url: https://developers.tiktok.com/blog
   - type: Forum
     url: https://developers.tiktok.com/community
-  - type: Status
+  - type: StatusPage
     url: https://status.tiktok.com/
-  - type: Terms of Service
+  - type: TermsOfService
     url: https://developers.tiktok.com/doc/tiktok-api-terms-of-service
-  - type: Privacy Policy
+  - type: PrivacyPolicy
     url: https://developers.tiktok.com/doc/tiktok-api-data-privacy
-  - type: Sign Up
+  - type: SignUp
     url: https://developers.tiktok.com/
   - type: Login
     url: https://developers.tiktok.com/login
