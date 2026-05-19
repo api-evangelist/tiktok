@@ -1,0 +1,133 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: TikTok API for Business — Reporting
+  description: 'TikTok API for Business — Reporting. 1 operations. Lead operation: Get Integrated Report. Self-contained Naftiko
+    capability covering one Tiktok business surface.'
+  tags:
+  - Tiktok
+  - Reporting
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    TIKTOK_API_KEY: TIKTOK_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: business-reporting
+    baseUri: https://business-api.tiktok.com
+    description: TikTok API for Business — Reporting business capability. Self-contained, no shared references.
+    resources:
+    - name: open_api-v1.3-report-integrated-get
+      path: /open_api/v1.3/report/integrated/get/
+      operations:
+      - name: getreport
+        method: GET
+        description: Get Integrated Report
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: advertiser_id
+          in: query
+          type: string
+          required: true
+        - name: report_type
+          in: query
+          type: string
+          description: Type of report to generate
+          required: true
+        - name: data_level
+          in: query
+          type: string
+          description: Data aggregation level
+          required: true
+        - name: dimensions
+          in: query
+          type: string
+          description: Comma-separated dimensions (e.g., campaign_id,stat_time_day)
+          required: true
+        - name: metrics
+          in: query
+          type: string
+          description: Comma-separated metrics (e.g., impressions,clicks,spend)
+          required: true
+        - name: start_date
+          in: query
+          type: string
+          description: Start date in YYYY-MM-DD format
+          required: true
+        - name: end_date
+          in: query
+          type: string
+          description: End date in YYYY-MM-DD format
+          required: true
+        - name: page
+          in: query
+          type: integer
+        - name: page_size
+          in: query
+          type: integer
+    authentication:
+      type: apikey
+      key: Access-Token
+      value: '{{env.TIKTOK_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: business-reporting-rest
+    port: 8080
+    description: REST adapter for TikTok API for Business — Reporting. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/open-api/v1-3/report/integrated/get
+      name: open-api-v1-3-report-integrated-get
+      description: REST surface for open_api-v1.3-report-integrated-get.
+      operations:
+      - method: GET
+        name: getreport
+        description: Get Integrated Report
+        call: business-reporting.getreport
+        with:
+          advertiser_id: rest.advertiser_id
+          report_type: rest.report_type
+          data_level: rest.data_level
+          dimensions: rest.dimensions
+          metrics: rest.metrics
+          start_date: rest.start_date
+          end_date: rest.end_date
+          page: rest.page
+          page_size: rest.page_size
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: business-reporting-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for TikTok API for Business — Reporting. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: get-integrated-report
+      description: Get Integrated Report
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: business-reporting.getreport
+      with:
+        advertiser_id: tools.advertiser_id
+        report_type: tools.report_type
+        data_level: tools.data_level
+        dimensions: tools.dimensions
+        metrics: tools.metrics
+        start_date: tools.start_date
+        end_date: tools.end_date
+        page: tools.page
+        page_size: tools.page_size
+      outputParameters:
+      - type: object
+        mapping: $.

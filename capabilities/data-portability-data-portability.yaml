@@ -1,0 +1,122 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: TikTok Data Portability API — Data Portability
+  description: 'TikTok Data Portability API — Data Portability. 2 operations. Lead operation: Create Data Portability Task.
+    Self-contained Naftiko capability covering one Tiktok business surface.'
+  tags:
+  - Tiktok
+  - Data Portability
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    TIKTOK_API_KEY: TIKTOK_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: data-portability-data-portability
+    baseUri: https://open.tiktokapis.com
+    description: TikTok Data Portability API — Data Portability business capability. Self-contained, no shared references.
+    resources:
+    - name: v2-data_portability-task-create
+      path: /v2/data_portability/task/create/
+      operations:
+      - name: createdataportabilitytask
+        method: POST
+        description: Create Data Portability Task
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: v2-data_portability-task-status
+      path: /v2/data_portability/task/status/
+      operations:
+      - name: getdataportabilitytaskstatus
+        method: POST
+        description: Get Data Portability Task Status
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.TIKTOK_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: data-portability-data-portability-rest
+    port: 8080
+    description: REST adapter for TikTok Data Portability API — Data Portability. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/v2/data-portability/task/create
+      name: v2-data-portability-task-create
+      description: REST surface for v2-data_portability-task-create.
+      operations:
+      - method: POST
+        name: createdataportabilitytask
+        description: Create Data Portability Task
+        call: data-portability-data-portability.createdataportabilitytask
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v2/data-portability/task/status
+      name: v2-data-portability-task-status
+      description: REST surface for v2-data_portability-task-status.
+      operations:
+      - method: POST
+        name: getdataportabilitytaskstatus
+        description: Get Data Portability Task Status
+        call: data-portability-data-portability.getdataportabilitytaskstatus
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: data-portability-data-portability-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for TikTok Data Portability API — Data Portability. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: create-data-portability-task
+      description: Create Data Portability Task
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: data-portability-data-portability.createdataportabilitytask
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-data-portability-task-status
+      description: Get Data Portability Task Status
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: data-portability-data-portability.getdataportabilitytaskstatus
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

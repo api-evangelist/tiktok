@@ -1,0 +1,138 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: TikTok API for Business — Ads
+  description: 'TikTok API for Business — Ads. 2 operations. Lead operation: Create Ad. Self-contained Naftiko capability
+    covering one Tiktok business surface.'
+  tags:
+  - Tiktok
+  - Ads
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    TIKTOK_API_KEY: TIKTOK_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: business-ads
+    baseUri: https://business-api.tiktok.com
+    description: TikTok API for Business — Ads business capability. Self-contained, no shared references.
+    resources:
+    - name: open_api-v1.3-ad-create
+      path: /open_api/v1.3/ad/create/
+      operations:
+      - name: createad
+        method: POST
+        description: Create Ad
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: open_api-v1.3-ad-get
+      path: /open_api/v1.3/ad/get/
+      operations:
+      - name: getads
+        method: GET
+        description: Get Ads
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: advertiser_id
+          in: query
+          type: string
+          required: true
+        - name: adgroup_id
+          in: query
+          type: string
+        - name: page
+          in: query
+          type: integer
+        - name: page_size
+          in: query
+          type: integer
+    authentication:
+      type: apikey
+      key: Access-Token
+      value: '{{env.TIKTOK_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: business-ads-rest
+    port: 8080
+    description: REST adapter for TikTok API for Business — Ads. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/open-api/v1-3/ad/create
+      name: open-api-v1-3-ad-create
+      description: REST surface for open_api-v1.3-ad-create.
+      operations:
+      - method: POST
+        name: createad
+        description: Create Ad
+        call: business-ads.createad
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/open-api/v1-3/ad/get
+      name: open-api-v1-3-ad-get
+      description: REST surface for open_api-v1.3-ad-get.
+      operations:
+      - method: GET
+        name: getads
+        description: Get Ads
+        call: business-ads.getads
+        with:
+          advertiser_id: rest.advertiser_id
+          adgroup_id: rest.adgroup_id
+          page: rest.page
+          page_size: rest.page_size
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: business-ads-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for TikTok API for Business — Ads. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: create-ad
+      description: Create Ad
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: business-ads.createad
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-ads
+      description: Get Ads
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: business-ads.getads
+      with:
+        advertiser_id: tools.advertiser_id
+        adgroup_id: tools.adgroup_id
+        page: tools.page
+        page_size: tools.page_size
+      outputParameters:
+      - type: object
+        mapping: $.

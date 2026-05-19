@@ -1,0 +1,184 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: TikTok API for Business — Campaigns
+  description: 'TikTok API for Business — Campaigns. 3 operations. Lead operation: Create Campaign. Self-contained Naftiko
+    capability covering one Tiktok business surface.'
+  tags:
+  - Tiktok
+  - Campaigns
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    TIKTOK_API_KEY: TIKTOK_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: business-campaigns
+    baseUri: https://business-api.tiktok.com
+    description: TikTok API for Business — Campaigns business capability. Self-contained, no shared references.
+    resources:
+    - name: open_api-v1.3-campaign-create
+      path: /open_api/v1.3/campaign/create/
+      operations:
+      - name: createcampaign
+        method: POST
+        description: Create Campaign
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: open_api-v1.3-campaign-get
+      path: /open_api/v1.3/campaign/get/
+      operations:
+      - name: getcampaigns
+        method: GET
+        description: Get Campaigns
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: advertiser_id
+          in: query
+          type: string
+          description: Advertiser account ID
+          required: true
+        - name: campaign_ids
+          in: query
+          type: string
+          description: Comma-separated list of campaign IDs to filter
+        - name: page
+          in: query
+          type: integer
+          description: Page number for pagination
+        - name: page_size
+          in: query
+          type: integer
+          description: Results per page
+    - name: open_api-v1.3-campaign-update
+      path: /open_api/v1.3/campaign/update/
+      operations:
+      - name: updatecampaign
+        method: POST
+        description: Update Campaign
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: apikey
+      key: Access-Token
+      value: '{{env.TIKTOK_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: business-campaigns-rest
+    port: 8080
+    description: REST adapter for TikTok API for Business — Campaigns. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/open-api/v1-3/campaign/create
+      name: open-api-v1-3-campaign-create
+      description: REST surface for open_api-v1.3-campaign-create.
+      operations:
+      - method: POST
+        name: createcampaign
+        description: Create Campaign
+        call: business-campaigns.createcampaign
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/open-api/v1-3/campaign/get
+      name: open-api-v1-3-campaign-get
+      description: REST surface for open_api-v1.3-campaign-get.
+      operations:
+      - method: GET
+        name: getcampaigns
+        description: Get Campaigns
+        call: business-campaigns.getcampaigns
+        with:
+          advertiser_id: rest.advertiser_id
+          campaign_ids: rest.campaign_ids
+          page: rest.page
+          page_size: rest.page_size
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/open-api/v1-3/campaign/update
+      name: open-api-v1-3-campaign-update
+      description: REST surface for open_api-v1.3-campaign-update.
+      operations:
+      - method: POST
+        name: updatecampaign
+        description: Update Campaign
+        call: business-campaigns.updatecampaign
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: business-campaigns-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for TikTok API for Business — Campaigns. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: create-campaign
+      description: Create Campaign
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: business-campaigns.createcampaign
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-campaigns
+      description: Get Campaigns
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: business-campaigns.getcampaigns
+      with:
+        advertiser_id: tools.advertiser_id
+        campaign_ids: tools.campaign_ids
+        page: tools.page
+        page_size: tools.page_size
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-campaign
+      description: Update Campaign
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: business-campaigns.updatecampaign
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
