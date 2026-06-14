@@ -1,0 +1,1187 @@
+"""
+TikTok GraphQL Schema
+Conceptual GraphQL schema derived from TikTok REST APIs:
+  - TikTok for Developers (https://developers.tiktok.com/)
+  - TikTok API for Business (https://business-api.tiktok.com/portal/docs)
+  - TikTok Shop API (https://partner.tiktokshop.com/)
+  - TikTok Data Portability API (https://developers.tiktok.com/doc/data-portability-api-get-started)
+"""
+
+# ---------------------------------------------------------------------------
+# Scalars
+# ---------------------------------------------------------------------------
+
+scalar DateTime
+scalar JSON
+scalar URL
+scalar Long
+
+# ---------------------------------------------------------------------------
+# Enums
+# ---------------------------------------------------------------------------
+
+enum VideoStatus {
+  PUBLIC
+  PRIVATE
+  FRIENDS_ONLY
+  DRAFT
+  DELETED
+}
+
+enum AdStatus {
+  ENABLE
+  DISABLE
+  DELETE
+  CAMPAIGN_DISABLE
+}
+
+enum CampaignObjective {
+  AWARENESS
+  REACH
+  VIDEO_VIEWS
+  APP_INSTALL
+  WEBSITE_CONVERSIONS
+  LEAD_GENERATION
+  SHOP_PURCHASES
+}
+
+enum AudienceGender {
+  MALE
+  FEMALE
+  ALL
+}
+
+enum OrderStatus {
+  UNPAID
+  AWAITING_SHIPMENT
+  AWAITING_COLLECTION
+  IN_TRANSIT
+  DELIVERED
+  COMPLETED
+  CANCELLED
+  IN_CANCEL
+  PARTIALLY_RETURNING
+  REVERSE_IN_PROGRESS
+  COMPLETED_RETURN
+}
+
+enum LiveStatus {
+  ACTIVE
+  ENDED
+  PAUSED
+}
+
+enum SharePlatform {
+  TIKTOK
+  INSTAGRAM
+  FACEBOOK
+  TWITTER
+  WHATSAPP
+  SMS
+  COPY_LINK
+}
+
+enum CreatorTier {
+  STANDARD
+  RISING
+  ESTABLISHED
+  TOP
+}
+
+enum AffiliateTaskStatus {
+  PENDING
+  IN_PROGRESS
+  COMPLETED
+  CANCELLED
+}
+
+# ---------------------------------------------------------------------------
+# User & Profile Types
+# ---------------------------------------------------------------------------
+
+"""A TikTok user account."""
+type User {
+  openId: ID!
+  unionId: ID
+  username: String!
+  displayName: String!
+  bio: String
+  avatarUrl: URL
+  avatarLargeUrl: URL
+  profileDeepLink: URL
+  isVerified: Boolean!
+  isPrivateAccount: Boolean!
+  createdAt: DateTime!
+  stats: UserStats
+  profile: UserProfile
+  followers(first: Int, after: String): FollowerConnection
+  following(first: Int, after: String): FollowRelationConnection
+  videos(first: Int, after: String): VideoConnection
+}
+
+"""Extended public-facing profile information for a TikTok user."""
+type UserProfile {
+  userId: ID!
+  nickname: String!
+  signature: String
+  region: String
+  language: String
+  commerceUserInfo: BusinessAccount
+  creatorInfo: CreatorProfile
+}
+
+"""Aggregated statistics for a TikTok user account."""
+type UserStats {
+  userId: ID!
+  followerCount: Long!
+  followingCount: Long!
+  likeCount: Long!
+  videoCount: Long!
+  heartCount: Long!
+}
+
+"""A follow relationship between two TikTok users."""
+type FollowRelation {
+  followerId: ID!
+  followeeId: ID!
+  followedAt: DateTime!
+  follower: TikTokUser
+  followee: TikTokUser
+}
+
+"""Simplified reference to a TikTok user used in relation objects."""
+type TikTokUser {
+  openId: ID!
+  displayName: String!
+  username: String!
+  avatarUrl: URL
+  isVerified: Boolean!
+}
+
+"""A follower entry linking a user to their follower."""
+type Follower {
+  userId: ID!
+  followerUser: TikTokUser!
+  followedAt: DateTime!
+}
+
+# ---------------------------------------------------------------------------
+# Video Types
+# ---------------------------------------------------------------------------
+
+"""A TikTok video post."""
+type Video {
+  id: ID!
+  createTime: DateTime!
+  coverImageUrl: URL
+  shareUrl: URL!
+  embedUrl: URL
+  title: String
+  description: String
+  duration: Int!
+  height: Int
+  width: Int
+  status: VideoStatus!
+  privacyLevel: String
+  commentDisabled: Boolean!
+  duetDisabled: Boolean!
+  stitchDisabled: Boolean!
+  author: TikTokUser
+  stats: VideoStat
+  details: VideoDetails
+  captions: [VideoCaption!]
+  sound: VideoSound
+  effects: [VideoEffect!]
+  filters: [VideoFilter!]
+  hashtags: [HashTag!]
+  comments(first: Int, after: String): CommentConnection
+  likes: Long
+  shares: Long
+  saves: Long
+}
+
+"""Detailed technical and metadata for a TikTok video."""
+type VideoDetails {
+  videoId: ID!
+  format: String
+  bitrate: Int
+  frameRate: Float
+  encodingFormat: String
+  downloadUrl: URL
+  embeddable: Boolean!
+  brandContentToggle: Boolean
+  brandOrganicToggle: Boolean
+}
+
+"""Engagement statistics for a single video."""
+type VideoStat {
+  videoId: ID!
+  playCount: Long!
+  likeCount: Long!
+  commentCount: Long!
+  shareCount: Long!
+  saveCount: Long!
+  forwardCount: Long
+  downloadCount: Long
+}
+
+"""A caption / subtitle entry for a TikTok video."""
+type VideoCaption {
+  videoId: ID!
+  language: String!
+  captionUrl: URL
+  captionText: String
+  startTime: Float
+  endTime: Float
+}
+
+"""The sound track associated with a TikTok video."""
+type VideoSound {
+  soundId: ID!
+  title: String!
+  authorName: String
+  coverUrl: URL
+  playUrl: URL
+  duration: Int
+  isOriginal: Boolean!
+  music: Music
+}
+
+"""A visual effect applied to a TikTok video."""
+type VideoEffect {
+  effectId: ID!
+  name: String!
+  iconUrl: URL
+  category: String
+}
+
+"""A filter applied to a TikTok video."""
+type VideoFilter {
+  filterId: ID!
+  name: String!
+  iconUrl: URL
+  intensity: Float
+}
+
+# ---------------------------------------------------------------------------
+# Music & Sound Types
+# ---------------------------------------------------------------------------
+
+"""A music track available on TikTok."""
+type Music {
+  id: ID!
+  title: String!
+  authorName: String!
+  coverUrl: URL
+  playUrl: URL
+  duration: Int!
+  isOriginal: Boolean!
+  details: MusicDetail
+  videos(first: Int, after: String): VideoConnection
+}
+
+"""An original sound created by a TikTok user."""
+type OriginalSound {
+  id: ID!
+  title: String!
+  authorOpenId: ID!
+  author: TikTokUser
+  coverUrl: URL
+  playUrl: URL
+  duration: Int!
+  usageCount: Long!
+}
+
+"""Extended details for a music track."""
+type MusicDetail {
+  musicId: ID!
+  album: String
+  genre: String
+  language: String
+  isCommerciallyAvailable: Boolean!
+  licenseType: String
+  externalUrl: URL
+}
+
+"""A generic sound resource (music or original sound)."""
+type Sound {
+  id: ID!
+  title: String!
+  authorName: String!
+  coverUrl: URL
+  playUrl: URL
+  duration: Int!
+  isOriginal: Boolean!
+}
+
+# ---------------------------------------------------------------------------
+# HashTag & Challenge Types
+# ---------------------------------------------------------------------------
+
+"""A hashtag used on TikTok."""
+type HashTag {
+  id: ID!
+  name: String!
+  stats: HashTagStat
+  challenge: HashTagChallenge
+  videos(first: Int, after: String): VideoConnection
+}
+
+"""A branded or community hashtag challenge."""
+type HashTagChallenge {
+  challengeId: ID!
+  title: String!
+  description: String
+  coverUrl: URL
+  startDate: DateTime
+  endDate: DateTime
+  sponsorBrand: Brand
+  stats: HashTagStat
+}
+
+"""Statistics for a hashtag or challenge."""
+type HashTagStat {
+  hashtagId: ID!
+  videoCount: Long!
+  viewCount: Long!
+  participantCount: Long
+}
+
+# ---------------------------------------------------------------------------
+# Engagement Types
+# ---------------------------------------------------------------------------
+
+"""A comment on a TikTok video."""
+type Comment {
+  id: ID!
+  videoId: ID!
+  text: String!
+  likeCount: Long!
+  replyCount: Long!
+  createTime: DateTime!
+  author: TikTokUser
+  replies(first: Int, after: String): CommentReplyConnection
+}
+
+"""A reply to a TikTok comment."""
+type CommentReply {
+  id: ID!
+  commentId: ID!
+  text: String!
+  likeCount: Long!
+  createTime: DateTime!
+  author: TikTokUser
+  replyToUser: TikTokUser
+}
+
+"""A like interaction on a video or comment."""
+type Like {
+  id: ID!
+  targetId: ID!
+  targetType: String!
+  userId: ID!
+  likedAt: DateTime!
+  user: TikTokUser
+}
+
+"""A share interaction for a video."""
+type Share {
+  id: ID!
+  videoId: ID!
+  userId: ID!
+  platform: SharePlatform!
+  sharedAt: DateTime!
+  user: TikTokUser
+  video: Video
+}
+
+"""A save/bookmark interaction on a video."""
+type Save {
+  id: ID!
+  videoId: ID!
+  userId: ID!
+  savedAt: DateTime!
+  user: TikTokUser
+  video: Video
+}
+
+# ---------------------------------------------------------------------------
+# Stories
+# ---------------------------------------------------------------------------
+
+"""A TikTok Story post."""
+type Story {
+  id: ID!
+  authorOpenId: ID!
+  expiresAt: DateTime!
+  createdAt: DateTime!
+  author: TikTokUser
+  videos: [StoryVideo!]!
+  viewCount: Long!
+}
+
+"""A video segment within a TikTok Story."""
+type StoryVideo {
+  id: ID!
+  storyId: ID!
+  videoUrl: URL!
+  thumbnailUrl: URL
+  duration: Int!
+  sequence: Int!
+}
+
+# ---------------------------------------------------------------------------
+# LIVE & Streaming Types
+# ---------------------------------------------------------------------------
+
+"""An active or historical TikTok LIVE session."""
+type LIVE {
+  id: ID!
+  hostOpenId: ID!
+  title: String!
+  status: LiveStatus!
+  startedAt: DateTime!
+  endedAt: DateTime
+  viewerCount: Long!
+  peakViewerCount: Long
+  host: TikTokUser
+  room: LiveRoom
+  gifts: [GiftRecord!]
+}
+
+"""Alias for a LIVE session."""
+type LiveStream {
+  id: ID!
+  hostOpenId: ID!
+  title: String!
+  status: LiveStatus!
+  startedAt: DateTime!
+  endedAt: DateTime
+  totalGiftRevenue: Float
+  viewerCount: Long!
+}
+
+"""A TikTok LIVE room configuration."""
+type LiveRoom {
+  roomId: ID!
+  liveId: ID!
+  title: String!
+  coverUrl: URL
+  shareUrl: URL!
+  streamUrl: URL
+  maxCapacity: Int
+  currentViewers: Long!
+}
+
+"""A gift sent during a TikTok LIVE."""
+type GiftRecord {
+  giftId: ID!
+  liveId: ID!
+  senderId: ID!
+  receiverId: ID!
+  giftName: String!
+  giftCount: Int!
+  diamondValue: Int!
+  sentAt: DateTime!
+  sender: TikTokUser
+}
+
+"""A creator's diamond wallet balance from LIVE gifts."""
+type DiamondWallet {
+  userId: ID!
+  totalDiamonds: Long!
+  withdrawableDiamonds: Long!
+  pendingDiamonds: Long!
+  lastUpdated: DateTime!
+}
+
+# ---------------------------------------------------------------------------
+# Creator Types
+# ---------------------------------------------------------------------------
+
+"""A TikTok content creator."""
+type Creator {
+  id: ID!
+  openId: ID!
+  displayName: String!
+  followerCount: Long!
+  tier: CreatorTier!
+  categories: [String!]
+  region: String
+  profile: CreatorProfile
+  marketplace: CreatorMarketplace
+}
+
+"""A creator's marketplace profile for brand collaboration."""
+type CreatorMarketplace {
+  creatorId: ID!
+  isEligible: Boolean!
+  audienceGender: AudienceGender
+  audienceAgeRange: String
+  avgVideoViews: Long
+  engagementRate: Float
+  collaborationTypes: [String!]
+}
+
+"""Detailed profile for a TikTok creator."""
+type CreatorProfile {
+  creatorId: ID!
+  bio: String
+  websiteUrl: URL
+  email: String
+  categories: [String!]
+  languages: [String!]
+  averageEngagementRate: Float
+  monthlyVideoCount: Int
+}
+
+# ---------------------------------------------------------------------------
+# Brand & Business Types
+# ---------------------------------------------------------------------------
+
+"""A brand entity on TikTok for Creator Marketplace."""
+type Brand {
+  id: ID!
+  name: String!
+  description: String
+  logoUrl: URL
+  websiteUrl: URL
+  categories: [String!]
+  region: String
+  isSuitable: Boolean!
+  suitableInfo: BrandSuitable
+}
+
+"""Brand suitability metadata for content safety."""
+type BrandSuitable {
+  brandId: ID!
+  suitabilityScore: Float!
+  flags: [String!]
+  reviewedAt: DateTime!
+}
+
+"""A TikTok business account."""
+type BusinessAccount {
+  accountId: ID!
+  name: String!
+  businessType: String
+  websiteUrl: URL
+  region: String
+  adAccount: AdAccount
+}
+
+# ---------------------------------------------------------------------------
+# Advertising Types
+# ---------------------------------------------------------------------------
+
+"""A TikTok Ads Manager ad account."""
+type AdAccount {
+  id: ID!
+  name: String!
+  currency: String!
+  timezone: String!
+  status: String!
+  balance: Float
+  campaigns(first: Int, after: String): CampaignConnection
+}
+
+"""A TikTok advertising campaign."""
+type Campaign {
+  id: ID!
+  adAccountId: ID!
+  name: String!
+  objective: CampaignObjective!
+  status: AdStatus!
+  budget: Float!
+  budgetMode: String!
+  startTime: DateTime
+  endTime: DateTime
+  createdAt: DateTime!
+  modifiedAt: DateTime!
+  adGroups(first: Int, after: String): AdGroupConnection
+}
+
+"""An ad group within a TikTok campaign."""
+type AdGroup {
+  id: ID!
+  campaignId: ID!
+  name: String!
+  status: AdStatus!
+  budget: Float!
+  budgetMode: String!
+  bidAmount: Float
+  bidStrategy: String
+  startTime: DateTime!
+  endTime: DateTime
+  placements: [AdPlacement!]
+  targeting: AdGroupAudience
+  ads(first: Int, after: String): TikTokAdConnection
+}
+
+"""Audience targeting configuration for an ad group."""
+type AdGroupAudience {
+  adGroupId: ID!
+  genders: [AudienceGender!]
+  ageGroups: [String!]
+  languages: [String!]
+  locations: [String!]
+  interests: [String!]
+  behaviors: [String!]
+  deviceTypes: [String!]
+  customAudiences: [CustomAudience!]
+  lookalike: LookAlike
+}
+
+"""A TikTok ad creative unit."""
+type TikTokAd {
+  id: ID!
+  adGroupId: ID!
+  name: String!
+  status: AdStatus!
+  creativeType: String!
+  creative: AdCreative
+  landingPageUrl: URL
+  callToAction: String
+  impressions: Long
+  clicks: Long
+  spend: Float
+  conversions: Long
+  createdAt: DateTime!
+}
+
+"""A Spark Ad that promotes organic TikTok posts."""
+type SparkAd {
+  id: ID!
+  adGroupId: ID!
+  name: String!
+  status: AdStatus!
+  organicVideoId: ID!
+  organicVideo: Video
+  boostType: String!
+  impressions: Long
+  clicks: Long
+  spend: Float
+  createdAt: DateTime!
+}
+
+"""A dynamic ad that auto-generates creative from a catalog."""
+type DynamicAd {
+  id: ID!
+  adGroupId: ID!
+  name: String!
+  status: AdStatus!
+  catalogId: ID!
+  productGroup: ProductGroup
+  template: String!
+  impressions: Long
+  clicks: Long
+  spend: Float
+  roas: Float
+  createdAt: DateTime!
+}
+
+"""Creative assets for a TikTok ad."""
+type AdCreative {
+  creativeId: ID!
+  adId: ID!
+  videoId: ID
+  imageIds: [String!]
+  adText: String
+  callToAction: String
+  displayName: String
+  avatarUrl: URL
+  brandLogoUrl: URL
+  musicId: String
+}
+
+"""An ad placement option on TikTok."""
+type AdPlacement {
+  placementId: ID!
+  name: String!
+  platform: String!
+  description: String
+}
+
+"""Generic ad targeting configuration."""
+type AdTarget {
+  targetId: ID!
+  adGroupId: ID!
+  targetType: String!
+  targetValue: JSON!
+}
+
+"""A custom audience segment for TikTok ads targeting."""
+type CustomAudience {
+  id: ID!
+  adAccountId: ID!
+  name: String!
+  audienceType: String!
+  size: Long
+  status: String!
+  createdAt: DateTime!
+}
+
+"""A lookalike audience based on a source custom audience."""
+type LookAlike {
+  id: ID!
+  sourceAudienceId: ID!
+  adAccountId: ID!
+  name: String!
+  country: String!
+  reachType: String!
+  size: Long
+  status: String!
+  createdAt: DateTime!
+}
+
+# ---------------------------------------------------------------------------
+# Conversion & Pixel Types
+# ---------------------------------------------------------------------------
+
+"""A TikTok Pixel for web event tracking."""
+type ConversionPixel {
+  pixelId: ID!
+  adAccountId: ID!
+  name: String!
+  pixelCode: String!
+  status: String!
+  websiteUrl: URL
+  events: [WebEvent!]
+  createdAt: DateTime!
+}
+
+"""A web conversion event tracked by a TikTok Pixel."""
+type WebEvent {
+  eventId: ID!
+  pixelId: ID!
+  eventType: String!
+  eventTime: DateTime!
+  currency: String
+  value: Float
+  orderId: String
+  properties: JSON
+}
+
+"""An in-app conversion event tracked via SDK or API."""
+type AppEvent {
+  eventId: ID!
+  appId: ID!
+  eventType: String!
+  eventTime: DateTime!
+  currency: String
+  value: Float
+  properties: JSON
+}
+
+# ---------------------------------------------------------------------------
+# Commerce / Shop Types
+# ---------------------------------------------------------------------------
+
+"""A product in the TikTok Shop catalog."""
+type CatalogProduct {
+  id: ID!
+  shopId: ID!
+  title: String!
+  description: String
+  status: String!
+  category: String
+  brand: String
+  skus: [JSON!]
+  images: [URL!]
+  price: Float!
+  currency: String!
+  inventoryCount: Int
+  productGroup: ProductGroup
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+"""A product group / collection in the TikTok catalog."""
+type ProductGroup {
+  id: ID!
+  name: String!
+  description: String
+  products(first: Int, after: String): CatalogProductConnection
+}
+
+"""TikTok Shopping feature integration metadata."""
+type ShoppingFeature {
+  featureId: ID!
+  type: String!
+  name: String!
+  description: String
+  eligibilityRequirements: [String!]
+  isEnabled: Boolean!
+}
+
+"""A TikTok Shop storefront."""
+type TikTokShop {
+  shopId: ID!
+  name: String!
+  region: String!
+  currency: String!
+  status: String!
+  ownerOpenId: ID!
+  products(first: Int, after: String): CatalogProductConnection
+  orders(first: Int, after: String, status: OrderStatus): OrderConnection
+  createdAt: DateTime!
+}
+
+"""A shop order in TikTok Shop."""
+type Order {
+  id: ID!
+  shopId: ID!
+  buyerOpenId: ID!
+  status: OrderStatus!
+  totalAmount: Float!
+  currency: String!
+  lineItems: [JSON!]!
+  shippingAddress: JSON
+  trackingNumber: String
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+# ---------------------------------------------------------------------------
+# Affiliate Types
+# ---------------------------------------------------------------------------
+
+"""A TikTok affiliate program participant."""
+type Affiliate {
+  affiliateId: ID!
+  creatorOpenId: ID!
+  shopId: ID!
+  status: String!
+  commissionRate: Float!
+  totalEarnings: Float
+  pendingEarnings: Float
+  tasks: [AffiliateTask!]
+  creator: TikTokUser
+}
+
+"""A specific task assigned to an affiliate creator."""
+type AffiliateTask {
+  taskId: ID!
+  affiliateId: ID!
+  productId: ID!
+  targetSales: Int
+  achievedSales: Int
+  status: AffiliateTaskStatus!
+  startDate: DateTime!
+  endDate: DateTime!
+  bonusAmount: Float
+  product: CatalogProduct
+}
+
+# ---------------------------------------------------------------------------
+# Auth & API Management Types
+# ---------------------------------------------------------------------------
+
+"""A registered TikTok OAuth application."""
+type OAuthApp {
+  appId: ID!
+  name: String!
+  clientKey: String!
+  description: String
+  category: String
+  status: String!
+  scopes: [String!]!
+  redirectUris: [URL!]!
+  createdAt: DateTime!
+}
+
+"""An OAuth access token for a TikTok user."""
+type AccessToken {
+  accessToken: String!
+  tokenType: String!
+  expiresIn: Int!
+  refreshToken: String
+  refreshTokenExpiresIn: Int
+  scope: String!
+  openId: ID!
+  unionId: ID
+}
+
+"""An API key for server-to-server authentication."""
+type APIKey {
+  keyId: ID!
+  adAccountId: ID!
+  name: String!
+  permissions: [String!]!
+  createdAt: DateTime!
+  expiresAt: DateTime
+}
+
+"""A webhook subscription for TikTok event notifications."""
+type Webhook {
+  webhookId: ID!
+  appId: ID!
+  endpointUrl: URL!
+  events: [String!]!
+  status: String!
+  secret: String
+  createdAt: DateTime!
+}
+
+# ---------------------------------------------------------------------------
+# Connection / Pagination Types
+# ---------------------------------------------------------------------------
+
+type VideoConnection {
+  edges: [VideoEdge!]!
+  pageInfo: PageInfo!
+  totalCount: Long
+}
+
+type VideoEdge {
+  node: Video!
+  cursor: String!
+}
+
+type CommentConnection {
+  edges: [CommentEdge!]!
+  pageInfo: PageInfo!
+  totalCount: Long
+}
+
+type CommentEdge {
+  node: Comment!
+  cursor: String!
+}
+
+type CommentReplyConnection {
+  edges: [CommentReplyEdge!]!
+  pageInfo: PageInfo!
+}
+
+type CommentReplyEdge {
+  node: CommentReply!
+  cursor: String!
+}
+
+type FollowerConnection {
+  edges: [FollowerEdge!]!
+  pageInfo: PageInfo!
+  totalCount: Long
+}
+
+type FollowerEdge {
+  node: Follower!
+  cursor: String!
+}
+
+type FollowRelationConnection {
+  edges: [FollowRelationEdge!]!
+  pageInfo: PageInfo!
+  totalCount: Long
+}
+
+type FollowRelationEdge {
+  node: FollowRelation!
+  cursor: String!
+}
+
+type CampaignConnection {
+  edges: [CampaignEdge!]!
+  pageInfo: PageInfo!
+  totalCount: Long
+}
+
+type CampaignEdge {
+  node: Campaign!
+  cursor: String!
+}
+
+type AdGroupConnection {
+  edges: [AdGroupEdge!]!
+  pageInfo: PageInfo!
+  totalCount: Long
+}
+
+type AdGroupEdge {
+  node: AdGroup!
+  cursor: String!
+}
+
+type TikTokAdConnection {
+  edges: [TikTokAdEdge!]!
+  pageInfo: PageInfo!
+  totalCount: Long
+}
+
+type TikTokAdEdge {
+  node: TikTokAd!
+  cursor: String!
+}
+
+type CatalogProductConnection {
+  edges: [CatalogProductEdge!]!
+  pageInfo: PageInfo!
+  totalCount: Long
+}
+
+type CatalogProductEdge {
+  node: CatalogProduct!
+  cursor: String!
+}
+
+type OrderConnection {
+  edges: [OrderEdge!]!
+  pageInfo: PageInfo!
+  totalCount: Long
+}
+
+type OrderEdge {
+  node: Order!
+  cursor: String!
+}
+
+type PageInfo {
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+  startCursor: String
+  endCursor: String
+}
+
+# ---------------------------------------------------------------------------
+# Root Types
+# ---------------------------------------------------------------------------
+
+type Query {
+  """Retrieve the authenticated user's basic information."""
+  me: User
+
+  """Look up any TikTok user by their open ID."""
+  user(openId: ID!): User
+
+  """Search for TikTok users."""
+  searchUsers(query: String!, first: Int, after: String): [TikTokUser!]
+
+  """Retrieve a video by ID."""
+  video(videoId: ID!): Video
+
+  """List videos posted by a user."""
+  userVideos(openId: ID!, first: Int, after: String): VideoConnection
+
+  """Retrieve a music track by ID."""
+  music(musicId: ID!): Music
+
+  """Look up a hashtag by name."""
+  hashtag(name: String!): HashTag
+
+  """Look up a hashtag challenge."""
+  hashtagChallenge(challengeId: ID!): HashTagChallenge
+
+  """Retrieve comments for a video."""
+  videoComments(videoId: ID!, first: Int, after: String): CommentConnection
+
+  """Retrieve an active or past LIVE session."""
+  live(liveId: ID!): LIVE
+
+  """Retrieve a creator's marketplace profile."""
+  creatorMarketplace(creatorId: ID!): CreatorMarketplace
+
+  """Retrieve an ad account."""
+  adAccount(adAccountId: ID!): AdAccount
+
+  """List campaigns in an ad account."""
+  campaigns(adAccountId: ID!, first: Int, after: String): CampaignConnection
+
+  """Retrieve a specific campaign."""
+  campaign(campaignId: ID!): Campaign
+
+  """Retrieve a specific ad group."""
+  adGroup(adGroupId: ID!): AdGroup
+
+  """Retrieve a specific TikTok ad."""
+  ad(adId: ID!): TikTokAd
+
+  """List custom audiences for an ad account."""
+  customAudiences(adAccountId: ID!, first: Int, after: String): [CustomAudience!]
+
+  """Retrieve a TikTok Shop."""
+  shop(shopId: ID!): TikTokShop
+
+  """List products in a shop."""
+  shopProducts(shopId: ID!, first: Int, after: String): CatalogProductConnection
+
+  """Retrieve a shop order."""
+  order(orderId: ID!): Order
+
+  """List orders for a shop."""
+  shopOrders(shopId: ID!, status: OrderStatus, first: Int, after: String): OrderConnection
+
+  """Retrieve affiliate program information for a creator."""
+  affiliate(affiliateId: ID!): Affiliate
+
+  """Retrieve an OAuth app registration."""
+  oauthApp(appId: ID!): OAuthApp
+
+  """List webhooks for an app."""
+  webhooks(appId: ID!): [Webhook!]
+
+  """Retrieve a conversion pixel."""
+  conversionPixel(pixelId: ID!): ConversionPixel
+}
+
+type Mutation {
+  """Post a video using the TikTok Content Posting API."""
+  createVideo(authorOpenId: ID!, caption: String, privacyLevel: String, disableDuet: Boolean, disableComment: Boolean, disableStitch: Boolean): Video
+
+  """Delete a TikTok video."""
+  deleteVideo(videoId: ID!): Boolean
+
+  """Create a comment on a video."""
+  createComment(videoId: ID!, text: String!): Comment
+
+  """Delete a comment."""
+  deleteComment(commentId: ID!): Boolean
+
+  """Like a video."""
+  likeVideo(videoId: ID!): Like
+
+  """Unlike a video."""
+  unlikeVideo(videoId: ID!): Boolean
+
+  """Follow a TikTok user."""
+  followUser(targetOpenId: ID!): FollowRelation
+
+  """Unfollow a TikTok user."""
+  unfollowUser(targetOpenId: ID!): Boolean
+
+  """Create a new ad campaign."""
+  createCampaign(adAccountId: ID!, name: String!, objective: CampaignObjective!, budget: Float!, budgetMode: String!): Campaign
+
+  """Update an existing ad campaign."""
+  updateCampaign(campaignId: ID!, name: String, status: AdStatus, budget: Float): Campaign
+
+  """Create an ad group within a campaign."""
+  createAdGroup(campaignId: ID!, name: String!, budget: Float!, bidAmount: Float, placements: [String!]): AdGroup
+
+  """Create a TikTok ad."""
+  createAd(adGroupId: ID!, name: String!, creativeType: String!, landingPageUrl: URL, callToAction: String): TikTokAd
+
+  """Create a Spark Ad from an organic video."""
+  createSparkAd(adGroupId: ID!, organicVideoId: ID!, boostType: String!): SparkAd
+
+  """Create a custom audience."""
+  createCustomAudience(adAccountId: ID!, name: String!, audienceType: String!): CustomAudience
+
+  """Create a lookalike audience."""
+  createLookAlike(adAccountId: ID!, sourceAudienceId: ID!, name: String!, country: String!, reachType: String!): LookAlike
+
+  """Register a conversion pixel."""
+  createConversionPixel(adAccountId: ID!, name: String!, websiteUrl: URL!): ConversionPixel
+
+  """Register a webhook for an app."""
+  createWebhook(appId: ID!, endpointUrl: URL!, events: [String!]!): Webhook
+
+  """Delete a webhook."""
+  deleteWebhook(webhookId: ID!): Boolean
+
+  """Create an order in TikTok Shop."""
+  createOrder(shopId: ID!, lineItems: [JSON!]!, shippingAddress: JSON!): Order
+
+  """Update an order status."""
+  updateOrderStatus(orderId: ID!, status: OrderStatus!): Order
+}
