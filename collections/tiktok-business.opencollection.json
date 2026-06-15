@@ -1,0 +1,314 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "TikTok API for Business",
+    "version": "v1.3"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Access-Token",
+      "value": "{{Access-Token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Campaigns",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Campaigns",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://business-api.tiktok.com/open_api/v1.3/campaign/get/",
+            "params": [
+              {
+                "name": "advertiser_id",
+                "value": "",
+                "type": "query",
+                "description": "Advertiser account ID"
+              },
+              {
+                "name": "campaign_ids",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of campaign IDs to filter"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number for pagination"
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "Results per page"
+              }
+            ]
+          },
+          "docs": "Retrieves a list of advertising campaigns for an advertiser account, with optional filters by campaign IDs, status, or creation time."
+        },
+        {
+          "info": {
+            "name": "Create Campaign",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://business-api.tiktok.com/open_api/v1.3/campaign/create/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new advertising campaign for a TikTok advertiser account."
+        },
+        {
+          "info": {
+            "name": "Update Campaign",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://business-api.tiktok.com/open_api/v1.3/campaign/update/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing advertising campaign."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Ad Groups",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Ad Groups",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://business-api.tiktok.com/open_api/v1.3/adgroup/get/",
+            "params": [
+              {
+                "name": "advertiser_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "campaign_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by campaign ID"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieves ad groups (ad sets) for an advertiser, with optional filtering by campaign ID or ad group IDs."
+        },
+        {
+          "info": {
+            "name": "Create Ad Group",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://business-api.tiktok.com/open_api/v1.3/adgroup/create/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new ad group within an existing campaign."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Ads",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Ads",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://business-api.tiktok.com/open_api/v1.3/ad/get/",
+            "params": [
+              {
+                "name": "advertiser_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "adgroup_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieves individual ads for an advertiser with optional filters."
+        },
+        {
+          "info": {
+            "name": "Create Ad",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://business-api.tiktok.com/open_api/v1.3/ad/create/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new ad within an ad group."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Reporting",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Integrated Report",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://business-api.tiktok.com/open_api/v1.3/report/integrated/get/",
+            "params": [
+              {
+                "name": "advertiser_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "report_type",
+                "value": "",
+                "type": "query",
+                "description": "Type of report to generate"
+              },
+              {
+                "name": "data_level",
+                "value": "",
+                "type": "query",
+                "description": "Data aggregation level"
+              },
+              {
+                "name": "dimensions",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated dimensions (e.g., campaign_id,stat_time_day)"
+              },
+              {
+                "name": "metrics",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated metrics (e.g., impressions,clicks,spend)"
+              },
+              {
+                "name": "start_date",
+                "value": "",
+                "type": "query",
+                "description": "Start date in YYYY-MM-DD format"
+              },
+              {
+                "name": "end_date",
+                "value": "",
+                "type": "query",
+                "description": "End date in YYYY-MM-DD format"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieves advertising performance reports with customizable dimensions, metrics, and date ranges. Supports BASIC, AUDIENCE, and CATALOG report types."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Audiences",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Custom Audiences",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://business-api.tiktok.com/open_api/v1.3/dmp/custom_audience/list/",
+            "params": [
+              {
+                "name": "advertiser_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieves a list of custom audiences for an advertiser account."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

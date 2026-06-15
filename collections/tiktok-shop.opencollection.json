@@ -1,0 +1,253 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "TikTok Shop API",
+    "version": "v2"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-tts-access-token",
+      "value": "{{x-tts-access-token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Products",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Products",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://open-api.tiktokglobalshop.com/product/202309/products",
+            "params": [
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "Number of products per page"
+              },
+              {
+                "name": "page_token",
+                "value": "",
+                "type": "query",
+                "description": "Pagination token for next page"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter by product status"
+              }
+            ]
+          },
+          "docs": "Retrieves a list of products from the seller's TikTok Shop catalog with pagination support."
+        },
+        {
+          "info": {
+            "name": "Get Product",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://open-api.tiktokglobalshop.com/product/202309/products/:product_id",
+            "params": [
+              {
+                "name": "product_id",
+                "value": "",
+                "type": "path",
+                "description": "Product unique identifier"
+              }
+            ]
+          },
+          "docs": "Retrieves detailed information about a specific product by its ID."
+        },
+        {
+          "info": {
+            "name": "Update Product",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://open-api.tiktokglobalshop.com/product/202309/products/:product_id",
+            "params": [
+              {
+                "name": "product_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the details of an existing product in the TikTok Shop catalog."
+        },
+        {
+          "info": {
+            "name": "Upload Product File",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://open-api.tiktokglobalshop.com/product/202309/products/upload_files",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "data",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "use_case",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Uploads images or video files to be used in product listings."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Orders",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Orders",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://open-api.tiktokglobalshop.com/order/202309/orders",
+            "params": [
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page_token",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "order_status",
+                "value": "",
+                "type": "query",
+                "description": "Filter by order status"
+              },
+              {
+                "name": "create_time_ge",
+                "value": "",
+                "type": "query",
+                "description": "Filter orders created after this Unix timestamp"
+              },
+              {
+                "name": "create_time_lt",
+                "value": "",
+                "type": "query",
+                "description": "Filter orders created before this Unix timestamp"
+              }
+            ]
+          },
+          "docs": "Retrieves a list of orders for the seller's TikTok Shop with filtering and pagination."
+        },
+        {
+          "info": {
+            "name": "Get Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://open-api.tiktokglobalshop.com/order/202309/orders/:order_id",
+            "params": [
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieves detailed information about a specific order by its ID."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Logistics",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Shipping Document",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://open-api.tiktokglobalshop.com/logistics/202309/orders/:order_id/shipping_documents",
+            "params": [
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "document_type",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieves shipping label or packing slip documents for an order."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Finance",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Payments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://open-api.tiktokglobalshop.com/finance/202309/payments",
+            "params": [
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page_token",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieves payment settlement records for the seller's TikTok Shop."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

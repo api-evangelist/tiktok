@@ -1,0 +1,54 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "TikTok Data Portability API",
+    "version": "v2"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Data Portability",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create Data Portability Task",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://open.tiktokapis.com/v2/data_portability/task/create/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a data export task for a user, specifying the data categories to include."
+        },
+        {
+          "info": {
+            "name": "Get Data Portability Task Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://open.tiktokapis.com/v2/data_portability/task/status/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Retrieves the status of a data portability export task."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
