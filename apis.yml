@@ -91,13 +91,13 @@ common:
   url: https://developers.tiktok.com/doc/login-kit-manage-user-access-tokens
 - type: GitHubOrganization
   url: https://github.com/tiktok
-- type: SDK
+- type: SDKs
   url: https://github.com/tiktok/tiktok-business-api-sdk
 - type: ChangeLog
   url: https://developers.tiktok.com/doc/changelog
 - type: Blog
   url: https://developers.tiktok.com/blog
-- type: Forum
+- type: Forums
   url: https://developers.tiktok.com/community
 - type: StatusPage
   url: https://status.tiktok.com/
@@ -105,7 +105,7 @@ common:
   url: https://developers.tiktok.com/doc/tiktok-api-terms-of-service
 - type: PrivacyPolicy
   url: https://developers.tiktok.com/doc/tiktok-api-data-privacy
-- type: SignUp
+- type: Signup
   url: https://developers.tiktok.com/
 - type: Login
   url: https://developers.tiktok.com/login
