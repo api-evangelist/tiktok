@@ -1,0 +1,29 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/tiktok-business-openapi.yml, openapi/tiktok-data-portability-openapi.yml, openapi/tiktok-shop-openapi.yml
+summary:
+  types:
+  - apiKey
+  - http
+  api_key_in:
+  - header
+schemes:
+- name: AccessToken
+  type: apiKey
+  in: header
+  parameter: Access-Token
+  description: TikTok Business API access token
+  sources:
+  - openapi/tiktok-business-openapi.yml
+- name: BearerAuth
+  type: http
+  scheme: bearer
+  sources:
+  - openapi/tiktok-data-portability-openapi.yml
+- name: AccessToken
+  type: apiKey
+  in: header
+  parameter: x-tts-access-token
+  description: TikTok Shop API access token
+  sources:
+  - openapi/tiktok-shop-openapi.yml
