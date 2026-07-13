@@ -2,11 +2,13 @@
   "repo": "tiktok",
   "feeds": [
     {
-      "source": "https://developers.tiktok.com/blog",
+      "source": "https://developers.tiktok.com/doc/changelog",
+      "feed_url": "https://developers.tiktok.com/doc/changelog",
+      "title": "",
       "saved": 0,
-      "error": "HTTP 404 Not Found"
+      "method": "none"
     }
   ],
-  "fetched": "2026-06-27T13:18:00Z",
+  "fetched": "2026-07-11T11:50:51Z",
   "post_count": 0
 }
