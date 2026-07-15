@@ -73,6 +73,8 @@ apis:
   - type: OpenAPI
     url: https://raw.githubusercontent.com/api-evangelist/tiktok/refs/heads/main/openapi/tiktok-data-portability-openapi.yml
 common:
+- type: AgenticAccess
+  url: agentic-access/tiktok-agentic-access.yml
 - type: DomainSecurity
   url: security/tiktok-domain-security.yml
 - type: Authentication
