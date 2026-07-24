@@ -1,33 +1,28 @@
 openapi: 3.1.0
 info:
-  title: TikTok Data Portability API
-  description: >-
-    The TikTok Data Portability API allows users to export their TikTok data
-    including activity, videos, and profile information to authorized
-    third-party services, supporting data portability rights.
-  version: v2
+  title: TikTok API for Business Ad Groups Data Portability API
+  description: TikTok's advertising API enabling developers to create and manage ad campaigns, ad groups, creatives, audiences, and reporting for global advertisers on TikTok's platform.
+  version: v1.3
   contact:
-    name: TikTok for Developers
-    url: https://developers.tiktok.com/doc/data-portability-api-get-started
+    name: TikTok API for Business
+    url: https://business-api.tiktok.com/portal/docs
   termsOfService: https://developers.tiktok.com/doc/tiktok-api-terms-of-service
 servers:
-  - url: https://open.tiktokapis.com
-    description: TikTok Open API Production
+- url: https://business-api.tiktok.com
+  description: TikTok Business API Production
 security:
-  - BearerAuth: []
+- AccessToken: []
 tags:
-  - name: Data Portability
-    description: User data export operations
+- name: Data Portability
+  description: User data export operations
 paths:
   /v2/data_portability/task/create/:
     post:
       operationId: createDataPortabilityTask
       summary: Create Data Portability Task
-      description: >-
-        Creates a data export task for a user, specifying the data categories
-        to include.
+      description: Creates a data export task for a user, specifying the data categories to include.
       tags:
-        - Data Portability
+      - Data Portability
       requestBody:
         required: true
         content:
@@ -47,10 +42,9 @@ paths:
     post:
       operationId: getDataPortabilityTaskStatus
       summary: Get Data Portability Task Status
-      description: >-
-        Retrieves the status of a data portability export task.
+      description: Retrieves the status of a data portability export task.
       tags:
-        - Data Portability
+      - Data Portability
       requestBody:
         required: true
         content:
@@ -58,7 +52,7 @@ paths:
             schema:
               type: object
               required:
-                - task_id
+              - task_id
               properties:
                 task_id:
                   type: string
@@ -71,40 +65,26 @@ paths:
               schema:
                 $ref: '#/components/schemas/TaskStatusResponse'
 components:
-  securitySchemes:
-    BearerAuth:
-      type: http
-      scheme: bearer
   schemas:
     DataPortabilityTaskRequest:
       type: object
       required:
-        - data_types
+      - data_types
       properties:
         data_types:
           type: array
           items:
             type: string
             enum:
-              - ACTIVITY
-              - VIDEOS
-              - FAVORITES
-              - FOLLOWING
-              - FOLLOWERS
-              - PROFILE
-              - DIRECT_MESSAGES
-              - COMMENTS
+            - ACTIVITY
+            - VIDEOS
+            - FAVORITES
+            - FOLLOWING
+            - FOLLOWERS
+            - PROFILE
+            - DIRECT_MESSAGES
+            - COMMENTS
           description: Data categories to export
-    DataPortabilityTaskResponse:
-      type: object
-      properties:
-        data:
-          type: object
-          properties:
-            task_id:
-              type: string
-        error:
-          $ref: '#/components/schemas/Error'
     TaskStatusResponse:
       type: object
       properties:
@@ -116,15 +96,25 @@ components:
             status:
               type: string
               enum:
-                - PROCESSING
-                - READY
-                - FAILED
-                - EXPIRED
+              - PROCESSING
+              - READY
+              - FAILED
+              - EXPIRED
             download_urls:
               type: array
               items:
                 type: string
               description: Download URLs when status is READY
+        error:
+          $ref: '#/components/schemas/Error'
+    DataPortabilityTaskResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            task_id:
+              type: string
         error:
           $ref: '#/components/schemas/Error'
     Error:
@@ -136,3 +126,9 @@ components:
           type: string
         log_id:
           type: string
+  securitySchemes:
+    AccessToken:
+      type: apiKey
+      in: header
+      name: Access-Token
+      description: TikTok Business API access token

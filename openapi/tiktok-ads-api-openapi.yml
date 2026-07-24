@@ -1,0 +1,149 @@
+openapi: 3.1.0
+info:
+  title: TikTok API for Business Ad Groups Ads API
+  description: TikTok's advertising API enabling developers to create and manage ad campaigns, ad groups, creatives, audiences, and reporting for global advertisers on TikTok's platform.
+  version: v1.3
+  contact:
+    name: TikTok API for Business
+    url: https://business-api.tiktok.com/portal/docs
+  termsOfService: https://developers.tiktok.com/doc/tiktok-api-terms-of-service
+servers:
+- url: https://business-api.tiktok.com
+  description: TikTok Business API Production
+security:
+- AccessToken: []
+tags:
+- name: Ads
+  description: Individual ad management
+paths:
+  /open_api/v1.3/ad/get/:
+    get:
+      operationId: getAds
+      summary: Get Ads
+      description: Retrieves individual ads for an advertiser with optional filters.
+      tags:
+      - Ads
+      parameters:
+      - name: advertiser_id
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: adgroup_id
+        in: query
+        schema:
+          type: string
+      - name: page
+        in: query
+        schema:
+          type: integer
+          default: 1
+      - name: page_size
+        in: query
+        schema:
+          type: integer
+          default: 10
+      responses:
+        '200':
+          description: Ads retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdListResponse'
+  /open_api/v1.3/ad/create/:
+    post:
+      operationId: createAd
+      summary: Create Ad
+      description: Creates a new ad within an ad group.
+      tags:
+      - Ads
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AdCreateRequest'
+      responses:
+        '200':
+          description: Ad created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericResponse'
+components:
+  schemas:
+    PageInfo:
+      type: object
+      properties:
+        page:
+          type: integer
+        page_size:
+          type: integer
+        total_number:
+          type: integer
+        total_page:
+          type: integer
+    AdCreateRequest:
+      type: object
+      required:
+      - advertiser_id
+      - adgroup_id
+      - ad_name
+      - ad_format
+      properties:
+        advertiser_id:
+          type: string
+        adgroup_id:
+          type: string
+        ad_name:
+          type: string
+        ad_format:
+          type: string
+        landing_page_url:
+          type: string
+    AdListResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        data:
+          type: object
+          properties:
+            list:
+              type: array
+              items:
+                $ref: '#/components/schemas/Ad'
+            page_info:
+              $ref: '#/components/schemas/PageInfo'
+    Ad:
+      type: object
+      properties:
+        ad_id:
+          type: string
+        ad_name:
+          type: string
+        adgroup_id:
+          type: string
+        status:
+          type: string
+        ad_format:
+          type: string
+        creative_type:
+          type: string
+    GenericResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        data:
+          type: object
+  securitySchemes:
+    AccessToken:
+      type: apiKey
+      in: header
+      name: Access-Token
+      description: TikTok Business API access token

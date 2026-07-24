@@ -1,0 +1,161 @@
+openapi: 3.1.0
+info:
+  title: TikTok API for Business Ad Groups API
+  description: TikTok's advertising API enabling developers to create and manage ad campaigns, ad groups, creatives, audiences, and reporting for global advertisers on TikTok's platform.
+  version: v1.3
+  contact:
+    name: TikTok API for Business
+    url: https://business-api.tiktok.com/portal/docs
+  termsOfService: https://developers.tiktok.com/doc/tiktok-api-terms-of-service
+servers:
+- url: https://business-api.tiktok.com
+  description: TikTok Business API Production
+security:
+- AccessToken: []
+tags:
+- name: Ad Groups
+  description: Ad group (ad set) management
+paths:
+  /open_api/v1.3/adgroup/get/:
+    get:
+      operationId: getAdGroups
+      summary: Get Ad Groups
+      description: Retrieves ad groups (ad sets) for an advertiser, with optional filtering by campaign ID or ad group IDs.
+      tags:
+      - Ad Groups
+      parameters:
+      - name: advertiser_id
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: campaign_id
+        in: query
+        schema:
+          type: string
+        description: Filter by campaign ID
+      - name: page
+        in: query
+        schema:
+          type: integer
+          default: 1
+      - name: page_size
+        in: query
+        schema:
+          type: integer
+          default: 10
+      responses:
+        '200':
+          description: Ad groups retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdGroupListResponse'
+  /open_api/v1.3/adgroup/create/:
+    post:
+      operationId: createAdGroup
+      summary: Create Ad Group
+      description: Creates a new ad group within an existing campaign.
+      tags:
+      - Ad Groups
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AdGroupCreateRequest'
+      responses:
+        '200':
+          description: Ad group created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericResponse'
+components:
+  schemas:
+    PageInfo:
+      type: object
+      properties:
+        page:
+          type: integer
+        page_size:
+          type: integer
+        total_number:
+          type: integer
+        total_page:
+          type: integer
+    AdGroupListResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        data:
+          type: object
+          properties:
+            list:
+              type: array
+              items:
+                $ref: '#/components/schemas/AdGroup'
+            page_info:
+              $ref: '#/components/schemas/PageInfo'
+    GenericResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        data:
+          type: object
+    AdGroupCreateRequest:
+      type: object
+      required:
+      - advertiser_id
+      - campaign_id
+      - adgroup_name
+      - placement_type
+      properties:
+        advertiser_id:
+          type: string
+        campaign_id:
+          type: string
+        adgroup_name:
+          type: string
+        placement_type:
+          type: string
+          enum:
+          - PLACEMENT_TYPE_AUTOMATIC
+          - PLACEMENT_TYPE_NORMAL
+        budget:
+          type: number
+        budget_mode:
+          type: string
+    AdGroup:
+      type: object
+      properties:
+        adgroup_id:
+          type: string
+        adgroup_name:
+          type: string
+        campaign_id:
+          type: string
+        advertiser_id:
+          type: string
+        budget:
+          type: number
+        budget_mode:
+          type: string
+        placement_type:
+          type: string
+        status:
+          type: string
+        create_time:
+          type: string
+  securitySchemes:
+    AccessToken:
+      type: apiKey
+      in: header
+      name: Access-Token
+      description: TikTok Business API access token

@@ -1,0 +1,255 @@
+openapi: 3.1.0
+info:
+  title: TikTok API for Business Ad Groups Products API
+  description: TikTok's advertising API enabling developers to create and manage ad campaigns, ad groups, creatives, audiences, and reporting for global advertisers on TikTok's platform.
+  version: v1.3
+  contact:
+    name: TikTok API for Business
+    url: https://business-api.tiktok.com/portal/docs
+  termsOfService: https://developers.tiktok.com/doc/tiktok-api-terms-of-service
+servers:
+- url: https://business-api.tiktok.com
+  description: TikTok Business API Production
+security:
+- AccessToken: []
+tags:
+- name: Products
+  description: Product catalog management
+paths:
+  /product/202309/products:
+    get:
+      operationId: listProducts
+      summary: List Products
+      description: Retrieves a list of products from the seller's TikTok Shop catalog with pagination support.
+      tags:
+      - Products
+      parameters:
+      - name: page_size
+        in: query
+        schema:
+          type: integer
+          default: 10
+          maximum: 100
+        description: Number of products per page
+      - name: page_token
+        in: query
+        schema:
+          type: string
+        description: Pagination token for next page
+      - name: status
+        in: query
+        schema:
+          type: string
+          enum:
+          - ALL
+          - ACTIVATE
+          - REVIEWING
+          - SELLER_DEACTIVATED
+          - PLATFORM_SUSPENDED
+        description: Filter by product status
+      responses:
+        '200':
+          description: Products retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductListResponse'
+        '401':
+          description: Unauthorized
+  /product/202309/products/{product_id}:
+    get:
+      operationId: getProduct
+      summary: Get Product
+      description: Retrieves detailed information about a specific product by its ID.
+      tags:
+      - Products
+      parameters:
+      - name: product_id
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Product unique identifier
+      responses:
+        '200':
+          description: Product details retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductDetailResponse'
+    put:
+      operationId: updateProduct
+      summary: Update Product
+      description: Updates the details of an existing product in the TikTok Shop catalog.
+      tags:
+      - Products
+      parameters:
+      - name: product_id
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProductUpdateRequest'
+      responses:
+        '200':
+          description: Product updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericResponse'
+  /product/202309/products/upload_files:
+    post:
+      operationId: uploadProductFile
+      summary: Upload Product File
+      description: Uploads images or video files to be used in product listings.
+      tags:
+      - Products
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                data:
+                  type: string
+                  format: binary
+                use_case:
+                  type: string
+                  enum:
+                  - MAIN_IMAGE
+                  - ATTRIBUTE_IMAGE
+                  - SIZE_CHART
+                  - BRAND_LOGO
+      responses:
+        '200':
+          description: File uploaded successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FileUploadResponse'
+components:
+  schemas:
+    Product:
+      type: object
+      properties:
+        product_id:
+          type: string
+        product_name:
+          type: string
+        status:
+          type: string
+        create_time:
+          type: integer
+        update_time:
+          type: integer
+        category_id:
+          type: string
+        brand_id:
+          type: string
+        price:
+          $ref: '#/components/schemas/Price'
+        skus:
+          type: array
+          items:
+            $ref: '#/components/schemas/SKU'
+    ProductDetailResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        data:
+          $ref: '#/components/schemas/Product'
+    GenericResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        data:
+          type: object
+    SKU:
+      type: object
+      properties:
+        id:
+          type: string
+        seller_sku:
+          type: string
+        price:
+          $ref: '#/components/schemas/Price'
+        stock_infos:
+          type: array
+          items:
+            type: object
+            properties:
+              warehouse_id:
+                type: string
+              available_stock:
+                type: integer
+    ProductListResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        data:
+          type: object
+          properties:
+            products:
+              type: array
+              items:
+                $ref: '#/components/schemas/Product'
+            next_page_token:
+              type: string
+            total_count:
+              type: integer
+    ProductUpdateRequest:
+      type: object
+      properties:
+        product_name:
+          type: string
+        description:
+          type: string
+        main_images:
+          type: array
+          items:
+            type: object
+            properties:
+              uri:
+                type: string
+    FileUploadResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        data:
+          type: object
+          properties:
+            uri:
+              type: string
+            url:
+              type: string
+    Price:
+      type: object
+      properties:
+        amount:
+          type: string
+        currency:
+          type: string
+  securitySchemes:
+    AccessToken:
+      type: apiKey
+      in: header
+      name: Access-Token
+      description: TikTok Business API access token

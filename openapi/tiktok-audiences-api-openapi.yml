@@ -1,0 +1,79 @@
+openapi: 3.1.0
+info:
+  title: TikTok API for Business Ad Groups Audiences API
+  description: TikTok's advertising API enabling developers to create and manage ad campaigns, ad groups, creatives, audiences, and reporting for global advertisers on TikTok's platform.
+  version: v1.3
+  contact:
+    name: TikTok API for Business
+    url: https://business-api.tiktok.com/portal/docs
+  termsOfService: https://developers.tiktok.com/doc/tiktok-api-terms-of-service
+servers:
+- url: https://business-api.tiktok.com
+  description: TikTok Business API Production
+security:
+- AccessToken: []
+tags:
+- name: Audiences
+  description: Custom audience management
+paths:
+  /open_api/v1.3/dmp/custom_audience/list/:
+    get:
+      operationId: listCustomAudiences
+      summary: List Custom Audiences
+      description: Retrieves a list of custom audiences for an advertiser account.
+      tags:
+      - Audiences
+      parameters:
+      - name: advertiser_id
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: page
+        in: query
+        schema:
+          type: integer
+          default: 1
+      - name: page_size
+        in: query
+        schema:
+          type: integer
+          default: 10
+      responses:
+        '200':
+          description: Custom audiences retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AudienceListResponse'
+components:
+  schemas:
+    AudienceListResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        data:
+          type: object
+          properties:
+            list:
+              type: array
+              items:
+                type: object
+                properties:
+                  audience_id:
+                    type: string
+                  name:
+                    type: string
+                  audience_type:
+                    type: string
+                  size:
+                    type: integer
+  securitySchemes:
+    AccessToken:
+      type: apiKey
+      in: header
+      name: Access-Token
+      description: TikTok Business API access token

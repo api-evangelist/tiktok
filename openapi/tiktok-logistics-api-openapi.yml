@@ -1,0 +1,66 @@
+openapi: 3.1.0
+info:
+  title: TikTok API for Business Ad Groups Logistics API
+  description: TikTok's advertising API enabling developers to create and manage ad campaigns, ad groups, creatives, audiences, and reporting for global advertisers on TikTok's platform.
+  version: v1.3
+  contact:
+    name: TikTok API for Business
+    url: https://business-api.tiktok.com/portal/docs
+  termsOfService: https://developers.tiktok.com/doc/tiktok-api-terms-of-service
+servers:
+- url: https://business-api.tiktok.com
+  description: TikTok Business API Production
+security:
+- AccessToken: []
+tags:
+- name: Logistics
+  description: Shipping and logistics operations
+paths:
+  /logistics/202309/orders/{order_id}/shipping_documents:
+    get:
+      operationId: getShippingDocument
+      summary: Get Shipping Document
+      description: Retrieves shipping label or packing slip documents for an order.
+      tags:
+      - Logistics
+      parameters:
+      - name: order_id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: document_type
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - SHIPPING_LABEL
+          - PICK_LIST
+      responses:
+        '200':
+          description: Shipping document retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ShippingDocumentResponse'
+components:
+  schemas:
+    ShippingDocumentResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        data:
+          type: object
+          properties:
+            doc_url:
+              type: string
+  securitySchemes:
+    AccessToken:
+      type: apiKey
+      in: header
+      name: Access-Token
+      description: TikTok Business API access token

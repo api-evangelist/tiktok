@@ -1,0 +1,229 @@
+openapi: 3.1.0
+info:
+  title: TikTok API for Business Ad Groups Campaigns API
+  description: TikTok's advertising API enabling developers to create and manage ad campaigns, ad groups, creatives, audiences, and reporting for global advertisers on TikTok's platform.
+  version: v1.3
+  contact:
+    name: TikTok API for Business
+    url: https://business-api.tiktok.com/portal/docs
+  termsOfService: https://developers.tiktok.com/doc/tiktok-api-terms-of-service
+servers:
+- url: https://business-api.tiktok.com
+  description: TikTok Business API Production
+security:
+- AccessToken: []
+tags:
+- name: Campaigns
+  description: Advertising campaign management
+paths:
+  /open_api/v1.3/campaign/get/:
+    get:
+      operationId: getCampaigns
+      summary: Get Campaigns
+      description: Retrieves a list of advertising campaigns for an advertiser account, with optional filters by campaign IDs, status, or creation time.
+      tags:
+      - Campaigns
+      parameters:
+      - name: advertiser_id
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Advertiser account ID
+      - name: campaign_ids
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Comma-separated list of campaign IDs to filter
+      - name: page
+        in: query
+        schema:
+          type: integer
+          default: 1
+        description: Page number for pagination
+      - name: page_size
+        in: query
+        schema:
+          type: integer
+          default: 10
+          maximum: 1000
+        description: Results per page
+      responses:
+        '200':
+          description: Campaigns retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CampaignListResponse'
+        '401':
+          description: Unauthorized
+  /open_api/v1.3/campaign/create/:
+    post:
+      operationId: createCampaign
+      summary: Create Campaign
+      description: Creates a new advertising campaign for a TikTok advertiser account.
+      tags:
+      - Campaigns
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CampaignCreateRequest'
+      responses:
+        '200':
+          description: Campaign created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CampaignCreateResponse'
+        '400':
+          description: Bad Request
+  /open_api/v1.3/campaign/update/:
+    post:
+      operationId: updateCampaign
+      summary: Update Campaign
+      description: Updates an existing advertising campaign.
+      tags:
+      - Campaigns
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CampaignUpdateRequest'
+      responses:
+        '200':
+          description: Campaign updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericResponse'
+components:
+  schemas:
+    CampaignCreateResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        data:
+          type: object
+          properties:
+            campaign_id:
+              type: string
+    PageInfo:
+      type: object
+      properties:
+        page:
+          type: integer
+        page_size:
+          type: integer
+        total_number:
+          type: integer
+        total_page:
+          type: integer
+    CampaignListResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        data:
+          type: object
+          properties:
+            list:
+              type: array
+              items:
+                $ref: '#/components/schemas/Campaign'
+            page_info:
+              $ref: '#/components/schemas/PageInfo'
+    CampaignUpdateRequest:
+      type: object
+      required:
+      - advertiser_id
+      - campaign_id
+      properties:
+        advertiser_id:
+          type: string
+        campaign_id:
+          type: string
+        campaign_name:
+          type: string
+        budget:
+          type: number
+        status:
+          type: string
+    Campaign:
+      type: object
+      properties:
+        campaign_id:
+          type: string
+        campaign_name:
+          type: string
+        advertiser_id:
+          type: string
+        objective_type:
+          type: string
+          enum:
+          - REACH
+          - TRAFFIC
+          - APP_PROMOTION
+          - LEAD_GENERATION
+          - ENGAGEMENT
+          - VIDEO_VIEWS
+          - CONVERSIONS
+          - CATALOG_SALES
+        status:
+          type: string
+          enum:
+          - ENABLE
+          - DISABLE
+          - DELETE
+        budget:
+          type: number
+        budget_mode:
+          type: string
+          enum:
+          - BUDGET_MODE_DAY
+          - BUDGET_MODE_TOTAL
+        create_time:
+          type: string
+        modify_time:
+          type: string
+    GenericResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        data:
+          type: object
+    CampaignCreateRequest:
+      type: object
+      required:
+      - advertiser_id
+      - campaign_name
+      - objective_type
+      - budget_mode
+      properties:
+        advertiser_id:
+          type: string
+        campaign_name:
+          type: string
+        objective_type:
+          type: string
+        budget_mode:
+          type: string
+        budget:
+          type: number
+  securitySchemes:
+    AccessToken:
+      type: apiKey
+      in: header
+      name: Access-Token
+      description: TikTok Business API access token
