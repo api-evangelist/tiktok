@@ -6,9 +6,22 @@ description: TikTok is a short-form social video platform offering developers RE
   TikTok Shop API (seller product and order management), and the Data Portability
   API.
 type: Index
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
 position: Consumer
 access: 3rd-Party
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/tiktok.png
 tags:
 - Advertising
 - Commerce
@@ -21,58 +34,189 @@ modified: '2026-05-19'
 url: https://raw.githubusercontent.com/api-evangelist/tiktok/refs/heads/main/apis.yml
 specificationVersion: '0.19'
 apis:
-- aid: tiktok:tiktok-business-api
-  name: TikTok API for Business
-  description: TikTok's advertising API enabling developers to create and manage ad
-    campaigns, ad groups, creatives, audiences, and reporting for global advertisers
-    on TikTok.
+- aid: tiktok:tiktok-ad-groups-api
+  name: TikTok Ad Groups API
+  description: Ad group (ad set) management
   humanURL: https://business-api.tiktok.com/portal/docs
   baseURL: https://business-api.tiktok.com
   tags:
-  - Advertising
-  - Campaigns
-  - Marketing
-  - Social Media
+  - Ad Groups
   properties:
+  - type: OpenAPI
+    url: openapi/tiktok-ad-groups-api-openapi.yml
   - type: Documentation
     url: https://business-api.tiktok.com/portal/docs
-  - type: OpenAPI
-    url: https://raw.githubusercontent.com/api-evangelist/tiktok/refs/heads/main/openapi/tiktok-business-openapi.yml
-  - url: graphql/tiktok-graphql.md
-    type: GraphQL
-- aid: tiktok:tiktok-shop-api
-  name: TikTok Shop API
-  description: TikTok Shop Partner API enabling sellers and partners to manage product
-    catalogs, process orders, handle logistics, and integrate with TikTok's commerce
-    ecosystem.
-  humanURL: https://partner.tiktokshop.com/docv2/page/tts-api-concepts-overview
-  baseURL: https://open-api.tiktokglobalshop.com
-  tags:
-  - Commerce
-  - E-Commerce
-  - Products
-  - Orders
-  properties:
+  - type: GraphQL
+    url: graphql/tiktok-graphql.md
   - type: Documentation
     url: https://partner.tiktokshop.com/doc/page/63fd743c715d622a338c4e54
-  - type: OpenAPI
-    url: https://raw.githubusercontent.com/api-evangelist/tiktok/refs/heads/main/openapi/tiktok-shop-openapi.yml
-- aid: tiktok:tiktok-data-portability-api
-  name: TikTok Data Portability API
-  description: Allows users to export their TikTok data including activity, videos,
-    and profile information to third-party services.
-  humanURL: https://developers.tiktok.com/doc/data-portability-api-get-started
-  baseURL: https://open.tiktokapis.com
-  tags:
-  - Data Portability
-  - Privacy
-  - User Data
-  properties:
   - type: Documentation
     url: https://developers.tiktok.com/doc/data-portability-api-get-started
+- aid: tiktok:tiktok-ads-api
+  name: TikTok Ads API
+  description: Individual ad management
+  humanURL: https://business-api.tiktok.com/portal/docs
+  baseURL: https://business-api.tiktok.com
+  tags:
+  - Ads
+  properties:
   - type: OpenAPI
-    url: https://raw.githubusercontent.com/api-evangelist/tiktok/refs/heads/main/openapi/tiktok-data-portability-openapi.yml
+    url: openapi/tiktok-ads-api-openapi.yml
+  - type: Documentation
+    url: https://business-api.tiktok.com/portal/docs
+  - type: GraphQL
+    url: graphql/tiktok-graphql.md
+  - type: Documentation
+    url: https://partner.tiktokshop.com/doc/page/63fd743c715d622a338c4e54
+  - type: Documentation
+    url: https://developers.tiktok.com/doc/data-portability-api-get-started
+- aid: tiktok:tiktok-audiences-api
+  name: TikTok Audiences API
+  description: Custom audience management
+  humanURL: https://business-api.tiktok.com/portal/docs
+  baseURL: https://business-api.tiktok.com
+  tags:
+  - Audiences
+  properties:
+  - type: OpenAPI
+    url: openapi/tiktok-audiences-api-openapi.yml
+  - type: Documentation
+    url: https://business-api.tiktok.com/portal/docs
+  - type: GraphQL
+    url: graphql/tiktok-graphql.md
+  - type: Documentation
+    url: https://partner.tiktokshop.com/doc/page/63fd743c715d622a338c4e54
+  - type: Documentation
+    url: https://developers.tiktok.com/doc/data-portability-api-get-started
+- aid: tiktok:tiktok-campaigns-api
+  name: TikTok Campaigns API
+  description: Advertising campaign management
+  humanURL: https://business-api.tiktok.com/portal/docs
+  baseURL: https://business-api.tiktok.com
+  tags:
+  - Campaigns
+  properties:
+  - type: OpenAPI
+    url: openapi/tiktok-campaigns-api-openapi.yml
+  - type: Documentation
+    url: https://business-api.tiktok.com/portal/docs
+  - type: GraphQL
+    url: graphql/tiktok-graphql.md
+  - type: Documentation
+    url: https://partner.tiktokshop.com/doc/page/63fd743c715d622a338c4e54
+  - type: Documentation
+    url: https://developers.tiktok.com/doc/data-portability-api-get-started
+- aid: tiktok:tiktok-data-portability-api
+  name: TikTok Data Portability API
+  description: User data export operations
+  humanURL: https://business-api.tiktok.com/portal/docs
+  baseURL: https://business-api.tiktok.com
+  tags:
+  - Data Portability
+  properties:
+  - type: OpenAPI
+    url: openapi/tiktok-data-portability-api-openapi.yml
+  - type: Documentation
+    url: https://business-api.tiktok.com/portal/docs
+  - type: GraphQL
+    url: graphql/tiktok-graphql.md
+  - type: Documentation
+    url: https://partner.tiktokshop.com/doc/page/63fd743c715d622a338c4e54
+  - type: Documentation
+    url: https://developers.tiktok.com/doc/data-portability-api-get-started
+- aid: tiktok:tiktok-finance-api
+  name: TikTok Finance API
+  description: Settlement and financial reporting
+  humanURL: https://business-api.tiktok.com/portal/docs
+  baseURL: https://business-api.tiktok.com
+  tags:
+  - Finance
+  properties:
+  - type: OpenAPI
+    url: openapi/tiktok-finance-api-openapi.yml
+  - type: Documentation
+    url: https://business-api.tiktok.com/portal/docs
+  - type: GraphQL
+    url: graphql/tiktok-graphql.md
+  - type: Documentation
+    url: https://partner.tiktokshop.com/doc/page/63fd743c715d622a338c4e54
+  - type: Documentation
+    url: https://developers.tiktok.com/doc/data-portability-api-get-started
+- aid: tiktok:tiktok-logistics-api
+  name: TikTok Logistics API
+  description: Shipping and logistics operations
+  humanURL: https://business-api.tiktok.com/portal/docs
+  baseURL: https://business-api.tiktok.com
+  tags:
+  - Logistics
+  properties:
+  - type: OpenAPI
+    url: openapi/tiktok-logistics-api-openapi.yml
+  - type: Documentation
+    url: https://business-api.tiktok.com/portal/docs
+  - type: GraphQL
+    url: graphql/tiktok-graphql.md
+  - type: Documentation
+    url: https://partner.tiktokshop.com/doc/page/63fd743c715d622a338c4e54
+  - type: Documentation
+    url: https://developers.tiktok.com/doc/data-portability-api-get-started
+- aid: tiktok:tiktok-orders-api
+  name: TikTok Orders API
+  description: Order management and fulfillment
+  humanURL: https://business-api.tiktok.com/portal/docs
+  baseURL: https://business-api.tiktok.com
+  tags:
+  - Orders
+  properties:
+  - type: OpenAPI
+    url: openapi/tiktok-orders-api-openapi.yml
+  - type: Documentation
+    url: https://business-api.tiktok.com/portal/docs
+  - type: GraphQL
+    url: graphql/tiktok-graphql.md
+  - type: Documentation
+    url: https://partner.tiktokshop.com/doc/page/63fd743c715d622a338c4e54
+  - type: Documentation
+    url: https://developers.tiktok.com/doc/data-portability-api-get-started
+- aid: tiktok:tiktok-products-api
+  name: TikTok Products API
+  description: Product catalog management
+  humanURL: https://business-api.tiktok.com/portal/docs
+  baseURL: https://business-api.tiktok.com
+  tags:
+  - Products
+  properties:
+  - type: OpenAPI
+    url: openapi/tiktok-products-api-openapi.yml
+  - type: Documentation
+    url: https://business-api.tiktok.com/portal/docs
+  - type: GraphQL
+    url: graphql/tiktok-graphql.md
+  - type: Documentation
+    url: https://partner.tiktokshop.com/doc/page/63fd743c715d622a338c4e54
+  - type: Documentation
+    url: https://developers.tiktok.com/doc/data-portability-api-get-started
+- aid: tiktok:tiktok-reporting-api
+  name: TikTok Reporting API
+  description: Campaign performance reporting
+  humanURL: https://business-api.tiktok.com/portal/docs
+  baseURL: https://business-api.tiktok.com
+  tags:
+  - Reporting
+  properties:
+  - type: OpenAPI
+    url: openapi/tiktok-reporting-api-openapi.yml
+  - type: Documentation
+    url: https://business-api.tiktok.com/portal/docs
+  - type: GraphQL
+    url: graphql/tiktok-graphql.md
+  - type: Documentation
+    url: https://partner.tiktokshop.com/doc/page/63fd743c715d622a338c4e54
+  - type: Documentation
+    url: https://developers.tiktok.com/doc/data-portability-api-get-started
 common:
+- type: PostmanWorkspace
+  url: https://www.postman.com/kinlaneapi/tiktok/overview
 - type: AgenticAccess
   url: agentic-access/tiktok-agentic-access.yml
 - type: DomainSecurity
