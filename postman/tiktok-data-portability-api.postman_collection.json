@@ -1,0 +1,354 @@
+{
+  "info": {
+    "_postman_id": "8b4073cb-f998-4188-b002-45d1dddd0ab7",
+    "name": "TikTok API for Business Ad Groups Data Portability API",
+    "description": "TikTok's advertising API enabling developers to create and manage ad campaigns, ad groups, creatives, audiences, and reporting for global advertisers on TikTok's platform.\n\nContact Support:\n Name: TikTok API for Business",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:13:55.000Z",
+    "updatedAt": "2026-07-28T03:13:55.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-8b4073cb-f998-4188-b002-45d1dddd0ab7"
+  },
+  "item": [
+    {
+      "name": "v2",
+      "item": [
+        {
+          "name": "data_portability",
+          "item": [
+            {
+              "name": "task",
+              "item": [
+                {
+                  "name": "create",
+                  "item": [
+                    {
+                      "name": "Create Data Portability Task",
+                      "id": "d950152f-6658-4e92-a826-04da3dfcf2f3",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"data_types\": [\n    \"FOLLOWING\",\n    \"PROFILE\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/data_portability/task/create/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "data_portability",
+                            "task",
+                            "create",
+                            ""
+                          ]
+                        },
+                        "description": "Creates a data export task for a user, specifying the data categories to include."
+                      },
+                      "response": [
+                        {
+                          "id": "157da203-0688-48fa-b925-13f6ecae5713",
+                          "name": "Data portability task created",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Access-Token",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"data_types\": [\n    \"FOLLOWING\",\n    \"PROFILE\"\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/data_portability/task/create/",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "data_portability",
+                                "task",
+                                "create",
+                                ""
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"data\": {\n    \"task_id\": \"<string>\"\n  },\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\",\n    \"log_id\": \"<string>\"\n  }\n}",
+                          "createdAt": "2026-07-28T03:13:56.000Z",
+                          "updatedAt": "2026-07-28T03:13:56.000Z",
+                          "uid": "35240-157da203-0688-48fa-b925-13f6ecae5713"
+                        },
+                        {
+                          "id": "b5d664fa-87fd-4396-bcea-edf784c5546d",
+                          "name": "Unauthorized",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Access-Token",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"data_types\": [\n    \"FOLLOWING\",\n    \"PROFILE\"\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/data_portability/task/create/",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "data_portability",
+                                "task",
+                                "create",
+                                ""
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T03:13:56.000Z",
+                          "updatedAt": "2026-07-28T03:13:56.000Z",
+                          "uid": "35240-b5d664fa-87fd-4396-bcea-edf784c5546d"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T03:13:56.000Z",
+                      "updatedAt": "2026-07-28T03:13:56.000Z",
+                      "uid": "35240-d950152f-6658-4e92-a826-04da3dfcf2f3"
+                    }
+                  ],
+                  "id": "a55094c3-873f-40b6-95b9-496e44c540eb",
+                  "createdAt": "2026-07-28T03:13:56.000Z",
+                  "updatedAt": "2026-07-28T03:13:56.000Z",
+                  "uid": "35240-a55094c3-873f-40b6-95b9-496e44c540eb"
+                },
+                {
+                  "name": "status",
+                  "item": [
+                    {
+                      "name": "Get Data Portability Task Status",
+                      "id": "9d0b493e-9ae9-45f7-a92b-5b4a3591fd2a",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"task_id\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/data_portability/task/status/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "data_portability",
+                            "task",
+                            "status",
+                            ""
+                          ]
+                        },
+                        "description": "Retrieves the status of a data portability export task."
+                      },
+                      "response": [
+                        {
+                          "id": "7648d1b4-674d-47a3-8664-a8db4920c8b5",
+                          "name": "Task status retrieved",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Access-Token",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"task_id\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/data_portability/task/status/",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "data_portability",
+                                "task",
+                                "status",
+                                ""
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"data\": {\n    \"task_id\": \"<string>\",\n    \"status\": \"FAILED\",\n    \"download_urls\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\",\n    \"log_id\": \"<string>\"\n  }\n}",
+                          "createdAt": "2026-07-28T03:13:56.000Z",
+                          "updatedAt": "2026-07-28T03:13:56.000Z",
+                          "uid": "35240-7648d1b4-674d-47a3-8664-a8db4920c8b5"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T03:13:56.000Z",
+                      "updatedAt": "2026-07-28T03:13:56.000Z",
+                      "uid": "35240-9d0b493e-9ae9-45f7-a92b-5b4a3591fd2a"
+                    }
+                  ],
+                  "id": "b8711a2c-eec0-4a38-84b9-e359a89b905c",
+                  "createdAt": "2026-07-28T03:13:56.000Z",
+                  "updatedAt": "2026-07-28T03:13:56.000Z",
+                  "uid": "35240-b8711a2c-eec0-4a38-84b9-e359a89b905c"
+                }
+              ],
+              "id": "a05f858f-85bc-4e46-82fd-3f58ce53bd80",
+              "createdAt": "2026-07-28T03:13:56.000Z",
+              "updatedAt": "2026-07-28T03:13:56.000Z",
+              "uid": "35240-a05f858f-85bc-4e46-82fd-3f58ce53bd80"
+            }
+          ],
+          "id": "37906e68-e90a-433e-b403-1bdbee6eb93c",
+          "createdAt": "2026-07-28T03:13:56.000Z",
+          "updatedAt": "2026-07-28T03:13:56.000Z",
+          "uid": "35240-37906e68-e90a-433e-b403-1bdbee6eb93c"
+        }
+      ],
+      "id": "148f2c2a-a928-4136-9c1f-3bc1bfea04fc",
+      "createdAt": "2026-07-28T03:13:56.000Z",
+      "updatedAt": "2026-07-28T03:13:56.000Z",
+      "uid": "35240-148f2c2a-a928-4136-9c1f-3bc1bfea04fc"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Access-Token",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://business-api.tiktok.com"
+    }
+  ]
+}

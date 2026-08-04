@@ -1,0 +1,547 @@
+{
+  "info": {
+    "_postman_id": "bfc98d2b-323d-441b-b0ce-6f6594cb9120",
+    "name": "TikTok API for Business Ad Groups Campaigns API",
+    "description": "TikTok's advertising API enabling developers to create and manage ad campaigns, ad groups, creatives, audiences, and reporting for global advertisers on TikTok's platform.\n\nContact Support:\n Name: TikTok API for Business",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:13:54.000Z",
+    "updatedAt": "2026-07-28T03:13:54.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-bfc98d2b-323d-441b-b0ce-6f6594cb9120"
+  },
+  "item": [
+    {
+      "name": "open_api",
+      "item": [
+        {
+          "name": "v1.3",
+          "item": [
+            {
+              "name": "campaign",
+              "item": [
+                {
+                  "name": "get",
+                  "item": [
+                    {
+                      "name": "Get Campaigns",
+                      "id": "3566fa1f-0349-47c8-8830-b28fcf95cc9e",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/open_api/v1.3/campaign/get/?advertiser_id=<string>&campaign_ids=<string>&page=1&page_size=10",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "open_api",
+                            "v1.3",
+                            "campaign",
+                            "get",
+                            ""
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) Advertiser account ID",
+                              "key": "advertiser_id",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Comma-separated list of campaign IDs to filter",
+                              "key": "campaign_ids",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Page number for pagination",
+                              "key": "page",
+                              "value": "1"
+                            },
+                            {
+                              "description": "Results per page",
+                              "key": "page_size",
+                              "value": "10"
+                            }
+                          ]
+                        },
+                        "description": "Retrieves a list of advertising campaigns for an advertiser account, with optional filters by campaign IDs, status, or creation time."
+                      },
+                      "response": [
+                        {
+                          "id": "59dca1b9-3550-4d6b-9003-e826ad5fb7cf",
+                          "name": "Campaigns retrieved successfully",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Access-Token",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/open_api/v1.3/campaign/get/?advertiser_id=<string>&campaign_ids=<string>&page=1&page_size=10",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "open_api",
+                                "v1.3",
+                                "campaign",
+                                "get",
+                                ""
+                              ],
+                              "query": [
+                                {
+                                  "description": "(Required) Advertiser account ID",
+                                  "key": "advertiser_id",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Comma-separated list of campaign IDs to filter",
+                                  "key": "campaign_ids",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Page number for pagination",
+                                  "key": "page",
+                                  "value": "1"
+                                },
+                                {
+                                  "description": "Results per page",
+                                  "key": "page_size",
+                                  "value": "10"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"data\": {\n    \"list\": [\n      {\n        \"campaign_id\": \"<string>\",\n        \"campaign_name\": \"<string>\",\n        \"advertiser_id\": \"<string>\",\n        \"objective_type\": \"ENGAGEMENT\",\n        \"status\": \"DISABLE\",\n        \"budget\": \"<number>\",\n        \"budget_mode\": \"BUDGET_MODE_TOTAL\",\n        \"create_time\": \"<string>\",\n        \"modify_time\": \"<string>\"\n      },\n      {\n        \"campaign_id\": \"<string>\",\n        \"campaign_name\": \"<string>\",\n        \"advertiser_id\": \"<string>\",\n        \"objective_type\": \"REACH\",\n        \"status\": \"ENABLE\",\n        \"budget\": \"<number>\",\n        \"budget_mode\": \"BUDGET_MODE_DAY\",\n        \"create_time\": \"<string>\",\n        \"modify_time\": \"<string>\"\n      }\n    ],\n    \"page_info\": {\n      \"page\": \"<integer>\",\n      \"page_size\": \"<integer>\",\n      \"total_number\": \"<integer>\",\n      \"total_page\": \"<integer>\"\n    }\n  }\n}",
+                          "createdAt": "2026-07-28T03:13:55.000Z",
+                          "updatedAt": "2026-07-28T03:13:55.000Z",
+                          "uid": "35240-59dca1b9-3550-4d6b-9003-e826ad5fb7cf"
+                        },
+                        {
+                          "id": "d39a30cf-a3d9-4bca-9f3b-2e2980871d2e",
+                          "name": "Unauthorized",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Access-Token",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/open_api/v1.3/campaign/get/?advertiser_id=<string>&campaign_ids=<string>&page=1&page_size=10",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "open_api",
+                                "v1.3",
+                                "campaign",
+                                "get",
+                                ""
+                              ],
+                              "query": [
+                                {
+                                  "description": "(Required) Advertiser account ID",
+                                  "key": "advertiser_id",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Comma-separated list of campaign IDs to filter",
+                                  "key": "campaign_ids",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Page number for pagination",
+                                  "key": "page",
+                                  "value": "1"
+                                },
+                                {
+                                  "description": "Results per page",
+                                  "key": "page_size",
+                                  "value": "10"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T03:13:55.000Z",
+                          "updatedAt": "2026-07-28T03:13:55.000Z",
+                          "uid": "35240-d39a30cf-a3d9-4bca-9f3b-2e2980871d2e"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T03:13:55.000Z",
+                      "updatedAt": "2026-07-28T03:13:55.000Z",
+                      "uid": "35240-3566fa1f-0349-47c8-8830-b28fcf95cc9e"
+                    }
+                  ],
+                  "id": "5a963dd6-8bf7-46c4-83c0-83e006bede85",
+                  "createdAt": "2026-07-28T03:13:55.000Z",
+                  "updatedAt": "2026-07-28T03:13:55.000Z",
+                  "uid": "35240-5a963dd6-8bf7-46c4-83c0-83e006bede85"
+                },
+                {
+                  "name": "create",
+                  "item": [
+                    {
+                      "name": "Create Campaign",
+                      "id": "1120a1b0-0742-4917-b78e-fca9a82adee4",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"advertiser_id\": \"<string>\",\n  \"campaign_name\": \"<string>\",\n  \"objective_type\": \"<string>\",\n  \"budget_mode\": \"<string>\",\n  \"budget\": \"<number>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/open_api/v1.3/campaign/create/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "open_api",
+                            "v1.3",
+                            "campaign",
+                            "create",
+                            ""
+                          ]
+                        },
+                        "description": "Creates a new advertising campaign for a TikTok advertiser account."
+                      },
+                      "response": [
+                        {
+                          "id": "c3e0c520-1394-46ab-af68-1f7e3913a1d7",
+                          "name": "Campaign created successfully",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Access-Token",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"advertiser_id\": \"<string>\",\n  \"campaign_name\": \"<string>\",\n  \"objective_type\": \"<string>\",\n  \"budget_mode\": \"<string>\",\n  \"budget\": \"<number>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/open_api/v1.3/campaign/create/",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "open_api",
+                                "v1.3",
+                                "campaign",
+                                "create",
+                                ""
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"data\": {\n    \"campaign_id\": \"<string>\"\n  }\n}",
+                          "createdAt": "2026-07-28T03:13:55.000Z",
+                          "updatedAt": "2026-07-28T03:13:55.000Z",
+                          "uid": "35240-c3e0c520-1394-46ab-af68-1f7e3913a1d7"
+                        },
+                        {
+                          "id": "291c57a8-e6d3-4187-ad44-7a9e491d51ed",
+                          "name": "Bad Request",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Access-Token",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"advertiser_id\": \"<string>\",\n  \"campaign_name\": \"<string>\",\n  \"objective_type\": \"<string>\",\n  \"budget_mode\": \"<string>\",\n  \"budget\": \"<number>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/open_api/v1.3/campaign/create/",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "open_api",
+                                "v1.3",
+                                "campaign",
+                                "create",
+                                ""
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T03:13:55.000Z",
+                          "updatedAt": "2026-07-28T03:13:55.000Z",
+                          "uid": "35240-291c57a8-e6d3-4187-ad44-7a9e491d51ed"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T03:13:55.000Z",
+                      "updatedAt": "2026-07-28T03:13:55.000Z",
+                      "uid": "35240-1120a1b0-0742-4917-b78e-fca9a82adee4"
+                    }
+                  ],
+                  "id": "5c586083-ea5f-4635-b9e1-4d536aa5a606",
+                  "createdAt": "2026-07-28T03:13:55.000Z",
+                  "updatedAt": "2026-07-28T03:13:55.000Z",
+                  "uid": "35240-5c586083-ea5f-4635-b9e1-4d536aa5a606"
+                },
+                {
+                  "name": "update",
+                  "item": [
+                    {
+                      "name": "Update Campaign",
+                      "id": "7c5b11f6-97a0-42c8-8258-1218b7be0b6b",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"advertiser_id\": \"<string>\",\n  \"campaign_id\": \"<string>\",\n  \"campaign_name\": \"<string>\",\n  \"budget\": \"<number>\",\n  \"status\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/open_api/v1.3/campaign/update/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "open_api",
+                            "v1.3",
+                            "campaign",
+                            "update",
+                            ""
+                          ]
+                        },
+                        "description": "Updates an existing advertising campaign."
+                      },
+                      "response": [
+                        {
+                          "id": "d1259789-5c99-4472-a755-3dc442c5c541",
+                          "name": "Campaign updated successfully",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Access-Token",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"advertiser_id\": \"<string>\",\n  \"campaign_id\": \"<string>\",\n  \"campaign_name\": \"<string>\",\n  \"budget\": \"<number>\",\n  \"status\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/open_api/v1.3/campaign/update/",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "open_api",
+                                "v1.3",
+                                "campaign",
+                                "update",
+                                ""
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"data\": {}\n}",
+                          "createdAt": "2026-07-28T03:13:55.000Z",
+                          "updatedAt": "2026-07-28T03:13:55.000Z",
+                          "uid": "35240-d1259789-5c99-4472-a755-3dc442c5c541"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T03:13:55.000Z",
+                      "updatedAt": "2026-07-28T03:13:55.000Z",
+                      "uid": "35240-7c5b11f6-97a0-42c8-8258-1218b7be0b6b"
+                    }
+                  ],
+                  "id": "fbfcfaf6-c87a-4a14-954b-631235477a98",
+                  "createdAt": "2026-07-28T03:13:55.000Z",
+                  "updatedAt": "2026-07-28T03:13:55.000Z",
+                  "uid": "35240-fbfcfaf6-c87a-4a14-954b-631235477a98"
+                }
+              ],
+              "id": "400d8811-f1fe-40df-9963-c0343287db88",
+              "createdAt": "2026-07-28T03:13:55.000Z",
+              "updatedAt": "2026-07-28T03:13:55.000Z",
+              "uid": "35240-400d8811-f1fe-40df-9963-c0343287db88"
+            }
+          ],
+          "id": "d4691873-3579-4e87-90ad-e7339bf23bc7",
+          "createdAt": "2026-07-28T03:13:55.000Z",
+          "updatedAt": "2026-07-28T03:13:55.000Z",
+          "uid": "35240-d4691873-3579-4e87-90ad-e7339bf23bc7"
+        }
+      ],
+      "id": "5ab5e8b5-2964-4d3d-b7db-88e583cb2037",
+      "createdAt": "2026-07-28T03:13:55.000Z",
+      "updatedAt": "2026-07-28T03:13:55.000Z",
+      "uid": "35240-5ab5e8b5-2964-4d3d-b7db-88e583cb2037"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Access-Token",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://business-api.tiktok.com"
+    }
+  ]
+}

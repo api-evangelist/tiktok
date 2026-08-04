@@ -1,0 +1,32 @@
+{
+  "provider": "tiktok",
+  "sources": [
+    "tiktok-ad-groups-api-openapi.yml",
+    "tiktok-ads-api-openapi.yml",
+    "tiktok-audiences-api-openapi.yml",
+    "tiktok-campaigns-api-openapi.yml",
+    "tiktok-data-portability-api-openapi.yml",
+    "tiktok-finance-api-openapi.yml",
+    "tiktok-logistics-api-openapi.yml",
+    "tiktok-orders-api-openapi.yml",
+    "tiktok-products-api-openapi.yml",
+    "tiktok-reporting-api-openapi.yml"
+  ],
+  "outputs": [
+    "tiktok-ad-groups-api-openapi.yml",
+    "tiktok-ads-api-openapi.yml",
+    "tiktok-audiences-api-openapi.yml",
+    "tiktok-campaigns-api-openapi.yml",
+    "tiktok-data-portability-api-openapi.yml",
+    "tiktok-finance-api-openapi.yml",
+    "tiktok-logistics-api-openapi.yml",
+    "tiktok-orders-api-openapi.yml",
+    "tiktok-products-api-openapi.yml",
+    "tiktok-reporting-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

@@ -1,0 +1,193 @@
+{
+  "info": {
+    "_postman_id": "9682713d-5f4e-4edd-9f42-465fdd8c28b2",
+    "name": "TikTok API for Business Ad Groups Logistics API",
+    "description": "TikTok's advertising API enabling developers to create and manage ad campaigns, ad groups, creatives, audiences, and reporting for global advertisers on TikTok's platform.\n\nContact Support:\n Name: TikTok API for Business",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:14:00.000Z",
+    "updatedAt": "2026-07-28T03:14:01.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-9682713d-5f4e-4edd-9f42-465fdd8c28b2"
+  },
+  "item": [
+    {
+      "name": "logistics",
+      "item": [
+        {
+          "name": "202309",
+          "item": [
+            {
+              "name": "orders",
+              "item": [
+                {
+                  "name": "{order_id}",
+                  "item": [
+                    {
+                      "name": "shipping_documents",
+                      "item": [
+                        {
+                          "name": "Get Shipping Document",
+                          "id": "ea1e0e5e-937a-44b2-903c-fb9193dd0c9b",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/logistics/202309/orders/:order_id/shipping_documents?document_type=PICK_LIST",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "logistics",
+                                "202309",
+                                "orders",
+                                ":order_id",
+                                "shipping_documents"
+                              ],
+                              "query": [
+                                {
+                                  "description": "(Required) ",
+                                  "key": "document_type",
+                                  "value": "PICK_LIST"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "id": "d7ab2715-633c-460d-a0db-ef814dd444ac",
+                                  "key": "order_id",
+                                  "value": "<string>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            },
+                            "description": "Retrieves shipping label or packing slip documents for an order."
+                          },
+                          "response": [
+                            {
+                              "id": "13779b80-5b40-4f91-ad55-4a39de0eadc1",
+                              "name": "Shipping document retrieved successfully",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "Access-Token",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/logistics/202309/orders/:order_id/shipping_documents?document_type=PICK_LIST",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "logistics",
+                                    "202309",
+                                    "orders",
+                                    ":order_id",
+                                    "shipping_documents"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "(Required) ",
+                                      "key": "document_type",
+                                      "value": "PICK_LIST"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "order_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"data\": {\n    \"doc_url\": \"<string>\"\n  }\n}",
+                              "createdAt": "2026-07-28T03:14:01.000Z",
+                              "updatedAt": "2026-07-28T03:14:01.000Z",
+                              "uid": "35240-13779b80-5b40-4f91-ad55-4a39de0eadc1"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T03:14:01.000Z",
+                          "updatedAt": "2026-07-28T03:14:01.000Z",
+                          "uid": "35240-ea1e0e5e-937a-44b2-903c-fb9193dd0c9b"
+                        }
+                      ],
+                      "id": "91ee8256-7a7e-47d6-878b-f1d3f6c4eeb7",
+                      "createdAt": "2026-07-28T03:14:01.000Z",
+                      "updatedAt": "2026-07-28T03:14:01.000Z",
+                      "uid": "35240-91ee8256-7a7e-47d6-878b-f1d3f6c4eeb7"
+                    }
+                  ],
+                  "id": "e1ace908-e58c-41d1-9eb9-41d7c76f535b",
+                  "createdAt": "2026-07-28T03:14:01.000Z",
+                  "updatedAt": "2026-07-28T03:14:01.000Z",
+                  "uid": "35240-e1ace908-e58c-41d1-9eb9-41d7c76f535b"
+                }
+              ],
+              "id": "5f3b3c11-68dd-4539-be7c-5901a74ed41b",
+              "createdAt": "2026-07-28T03:14:01.000Z",
+              "updatedAt": "2026-07-28T03:14:01.000Z",
+              "uid": "35240-5f3b3c11-68dd-4539-be7c-5901a74ed41b"
+            }
+          ],
+          "id": "948bcce8-4e7c-4ca8-94f2-538397d9c1ef",
+          "createdAt": "2026-07-28T03:14:01.000Z",
+          "updatedAt": "2026-07-28T03:14:01.000Z",
+          "uid": "35240-948bcce8-4e7c-4ca8-94f2-538397d9c1ef"
+        }
+      ],
+      "id": "8743b680-e08d-4847-9edf-ec47cb9b5f38",
+      "createdAt": "2026-07-28T03:14:01.000Z",
+      "updatedAt": "2026-07-28T03:14:01.000Z",
+      "uid": "35240-8743b680-e08d-4847-9edf-ec47cb9b5f38"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Access-Token",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://business-api.tiktok.com"
+    }
+  ]
+}

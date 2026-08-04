@@ -1,0 +1,624 @@
+openapi: 3.1.0
+info:
+  title: TikTok API for Business
+  description: >-
+    TikTok's advertising API enabling developers to create and manage ad
+    campaigns, ad groups, creatives, audiences, and reporting for global
+    advertisers on TikTok's platform.
+  version: v1.3
+  contact:
+    name: TikTok API for Business
+    url: https://business-api.tiktok.com/portal/docs
+  termsOfService: https://developers.tiktok.com/doc/tiktok-api-terms-of-service
+servers:
+  - url: https://business-api.tiktok.com
+    description: TikTok Business API Production
+security:
+  - AccessToken: []
+tags:
+  - name: Campaigns
+    description: Advertising campaign management
+  - name: Ad Groups
+    description: Ad group (ad set) management
+  - name: Ads
+    description: Individual ad management
+  - name: Reporting
+    description: Campaign performance reporting
+  - name: Audiences
+    description: Custom audience management
+  - name: Creatives
+    description: Creative material management
+paths:
+  /open_api/v1.3/campaign/get/:
+    get:
+      operationId: getCampaigns
+      summary: Get Campaigns
+      description: >-
+        Retrieves a list of advertising campaigns for an advertiser account,
+        with optional filters by campaign IDs, status, or creation time.
+      tags:
+        - Campaigns
+      parameters:
+        - name: advertiser_id
+          in: query
+          required: true
+          schema:
+            type: string
+          description: Advertiser account ID
+        - name: campaign_ids
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Comma-separated list of campaign IDs to filter
+        - name: page
+          in: query
+          schema:
+            type: integer
+            default: 1
+          description: Page number for pagination
+        - name: page_size
+          in: query
+          schema:
+            type: integer
+            default: 10
+            maximum: 1000
+          description: Results per page
+      responses:
+        '200':
+          description: Campaigns retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CampaignListResponse'
+        '401':
+          description: Unauthorized
+  /open_api/v1.3/campaign/create/:
+    post:
+      operationId: createCampaign
+      summary: Create Campaign
+      description: >-
+        Creates a new advertising campaign for a TikTok advertiser account.
+      tags:
+        - Campaigns
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CampaignCreateRequest'
+      responses:
+        '200':
+          description: Campaign created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CampaignCreateResponse'
+        '400':
+          description: Bad Request
+  /open_api/v1.3/campaign/update/:
+    post:
+      operationId: updateCampaign
+      summary: Update Campaign
+      description: >-
+        Updates an existing advertising campaign.
+      tags:
+        - Campaigns
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CampaignUpdateRequest'
+      responses:
+        '200':
+          description: Campaign updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericResponse'
+  /open_api/v1.3/adgroup/get/:
+    get:
+      operationId: getAdGroups
+      summary: Get Ad Groups
+      description: >-
+        Retrieves ad groups (ad sets) for an advertiser, with optional
+        filtering by campaign ID or ad group IDs.
+      tags:
+        - Ad Groups
+      parameters:
+        - name: advertiser_id
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: campaign_id
+          in: query
+          schema:
+            type: string
+          description: Filter by campaign ID
+        - name: page
+          in: query
+          schema:
+            type: integer
+            default: 1
+        - name: page_size
+          in: query
+          schema:
+            type: integer
+            default: 10
+      responses:
+        '200':
+          description: Ad groups retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdGroupListResponse'
+  /open_api/v1.3/adgroup/create/:
+    post:
+      operationId: createAdGroup
+      summary: Create Ad Group
+      description: >-
+        Creates a new ad group within an existing campaign.
+      tags:
+        - Ad Groups
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AdGroupCreateRequest'
+      responses:
+        '200':
+          description: Ad group created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericResponse'
+  /open_api/v1.3/ad/get/:
+    get:
+      operationId: getAds
+      summary: Get Ads
+      description: >-
+        Retrieves individual ads for an advertiser with optional filters.
+      tags:
+        - Ads
+      parameters:
+        - name: advertiser_id
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: adgroup_id
+          in: query
+          schema:
+            type: string
+        - name: page
+          in: query
+          schema:
+            type: integer
+            default: 1
+        - name: page_size
+          in: query
+          schema:
+            type: integer
+            default: 10
+      responses:
+        '200':
+          description: Ads retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdListResponse'
+  /open_api/v1.3/ad/create/:
+    post:
+      operationId: createAd
+      summary: Create Ad
+      description: >-
+        Creates a new ad within an ad group.
+      tags:
+        - Ads
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AdCreateRequest'
+      responses:
+        '200':
+          description: Ad created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericResponse'
+  /open_api/v1.3/report/integrated/get/:
+    get:
+      operationId: getReport
+      summary: Get Integrated Report
+      description: >-
+        Retrieves advertising performance reports with customizable dimensions,
+        metrics, and date ranges. Supports BASIC, AUDIENCE, and CATALOG report
+        types.
+      tags:
+        - Reporting
+      parameters:
+        - name: advertiser_id
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: report_type
+          in: query
+          required: true
+          schema:
+            type: string
+            enum:
+              - BASIC
+              - AUDIENCE
+              - PLAYABLE_MATERIAL
+              - CATALOG
+              - BC
+          description: Type of report to generate
+        - name: data_level
+          in: query
+          required: true
+          schema:
+            type: string
+            enum:
+              - AUCTION_ADVERTISER
+              - AUCTION_CAMPAIGN
+              - AUCTION_ADGROUP
+              - AUCTION_AD
+          description: Data aggregation level
+        - name: dimensions
+          in: query
+          required: true
+          schema:
+            type: string
+          description: Comma-separated dimensions (e.g., campaign_id,stat_time_day)
+        - name: metrics
+          in: query
+          required: true
+          schema:
+            type: string
+          description: Comma-separated metrics (e.g., impressions,clicks,spend)
+        - name: start_date
+          in: query
+          required: true
+          schema:
+            type: string
+          description: Start date in YYYY-MM-DD format
+        - name: end_date
+          in: query
+          required: true
+          schema:
+            type: string
+          description: End date in YYYY-MM-DD format
+        - name: page
+          in: query
+          schema:
+            type: integer
+            default: 1
+        - name: page_size
+          in: query
+          schema:
+            type: integer
+            default: 20
+      responses:
+        '200':
+          description: Report data returned successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReportResponse'
+  /open_api/v1.3/dmp/custom_audience/list/:
+    get:
+      operationId: listCustomAudiences
+      summary: List Custom Audiences
+      description: >-
+        Retrieves a list of custom audiences for an advertiser account.
+      tags:
+        - Audiences
+      parameters:
+        - name: advertiser_id
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: page
+          in: query
+          schema:
+            type: integer
+            default: 1
+        - name: page_size
+          in: query
+          schema:
+            type: integer
+            default: 10
+      responses:
+        '200':
+          description: Custom audiences retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AudienceListResponse'
+components:
+  securitySchemes:
+    AccessToken:
+      type: apiKey
+      in: header
+      name: Access-Token
+      description: TikTok Business API access token
+  schemas:
+    Campaign:
+      type: object
+      properties:
+        campaign_id:
+          type: string
+        campaign_name:
+          type: string
+        advertiser_id:
+          type: string
+        objective_type:
+          type: string
+          enum:
+            - REACH
+            - TRAFFIC
+            - APP_PROMOTION
+            - LEAD_GENERATION
+            - ENGAGEMENT
+            - VIDEO_VIEWS
+            - CONVERSIONS
+            - CATALOG_SALES
+        status:
+          type: string
+          enum:
+            - ENABLE
+            - DISABLE
+            - DELETE
+        budget:
+          type: number
+        budget_mode:
+          type: string
+          enum:
+            - BUDGET_MODE_DAY
+            - BUDGET_MODE_TOTAL
+        create_time:
+          type: string
+        modify_time:
+          type: string
+    CampaignListResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        data:
+          type: object
+          properties:
+            list:
+              type: array
+              items:
+                $ref: '#/components/schemas/Campaign'
+            page_info:
+              $ref: '#/components/schemas/PageInfo'
+    CampaignCreateRequest:
+      type: object
+      required:
+        - advertiser_id
+        - campaign_name
+        - objective_type
+        - budget_mode
+      properties:
+        advertiser_id:
+          type: string
+        campaign_name:
+          type: string
+        objective_type:
+          type: string
+        budget_mode:
+          type: string
+        budget:
+          type: number
+    CampaignCreateResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        data:
+          type: object
+          properties:
+            campaign_id:
+              type: string
+    CampaignUpdateRequest:
+      type: object
+      required:
+        - advertiser_id
+        - campaign_id
+      properties:
+        advertiser_id:
+          type: string
+        campaign_id:
+          type: string
+        campaign_name:
+          type: string
+        budget:
+          type: number
+        status:
+          type: string
+    AdGroup:
+      type: object
+      properties:
+        adgroup_id:
+          type: string
+        adgroup_name:
+          type: string
+        campaign_id:
+          type: string
+        advertiser_id:
+          type: string
+        budget:
+          type: number
+        budget_mode:
+          type: string
+        placement_type:
+          type: string
+        status:
+          type: string
+        create_time:
+          type: string
+    AdGroupListResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        data:
+          type: object
+          properties:
+            list:
+              type: array
+              items:
+                $ref: '#/components/schemas/AdGroup'
+            page_info:
+              $ref: '#/components/schemas/PageInfo'
+    AdGroupCreateRequest:
+      type: object
+      required:
+        - advertiser_id
+        - campaign_id
+        - adgroup_name
+        - placement_type
+      properties:
+        advertiser_id:
+          type: string
+        campaign_id:
+          type: string
+        adgroup_name:
+          type: string
+        placement_type:
+          type: string
+          enum:
+            - PLACEMENT_TYPE_AUTOMATIC
+            - PLACEMENT_TYPE_NORMAL
+        budget:
+          type: number
+        budget_mode:
+          type: string
+    Ad:
+      type: object
+      properties:
+        ad_id:
+          type: string
+        ad_name:
+          type: string
+        adgroup_id:
+          type: string
+        status:
+          type: string
+        ad_format:
+          type: string
+        creative_type:
+          type: string
+    AdListResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        data:
+          type: object
+          properties:
+            list:
+              type: array
+              items:
+                $ref: '#/components/schemas/Ad'
+            page_info:
+              $ref: '#/components/schemas/PageInfo'
+    AdCreateRequest:
+      type: object
+      required:
+        - advertiser_id
+        - adgroup_id
+        - ad_name
+        - ad_format
+      properties:
+        advertiser_id:
+          type: string
+        adgroup_id:
+          type: string
+        ad_name:
+          type: string
+        ad_format:
+          type: string
+        landing_page_url:
+          type: string
+    ReportResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        data:
+          type: object
+          properties:
+            list:
+              type: array
+              items:
+                type: object
+                properties:
+                  dimensions:
+                    type: object
+                  metrics:
+                    type: object
+            page_info:
+              $ref: '#/components/schemas/PageInfo'
+    AudienceListResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        data:
+          type: object
+          properties:
+            list:
+              type: array
+              items:
+                type: object
+                properties:
+                  audience_id:
+                    type: string
+                  name:
+                    type: string
+                  audience_type:
+                    type: string
+                  size:
+                    type: integer
+    PageInfo:
+      type: object
+      properties:
+        page:
+          type: integer
+        page_size:
+          type: integer
+        total_number:
+          type: integer
+        total_page:
+          type: integer
+    GenericResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        data:
+          type: object

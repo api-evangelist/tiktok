@@ -1,0 +1,198 @@
+{
+  "info": {
+    "_postman_id": "343abc25-09a4-4fad-9b84-46e24b288ab9",
+    "name": "TikTok API for Business Ad Groups Audiences API",
+    "description": "TikTok's advertising API enabling developers to create and manage ad campaigns, ad groups, creatives, audiences, and reporting for global advertisers on TikTok's platform.\n\nContact Support:\n Name: TikTok API for Business",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:13:51.000Z",
+    "updatedAt": "2026-07-28T03:13:51.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-343abc25-09a4-4fad-9b84-46e24b288ab9"
+  },
+  "item": [
+    {
+      "name": "open_api",
+      "item": [
+        {
+          "name": "v1.3",
+          "item": [
+            {
+              "name": "dmp",
+              "item": [
+                {
+                  "name": "custom_audience",
+                  "item": [
+                    {
+                      "name": "list",
+                      "item": [
+                        {
+                          "name": "List Custom Audiences",
+                          "id": "e89d2aa1-ba4e-41c1-8ce0-1b9b0f247670",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/open_api/v1.3/dmp/custom_audience/list/?advertiser_id=<string>&page=1&page_size=10",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "open_api",
+                                "v1.3",
+                                "dmp",
+                                "custom_audience",
+                                "list",
+                                ""
+                              ],
+                              "query": [
+                                {
+                                  "description": "(Required) ",
+                                  "key": "advertiser_id",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "key": "page",
+                                  "value": "1"
+                                },
+                                {
+                                  "key": "page_size",
+                                  "value": "10"
+                                }
+                              ]
+                            },
+                            "description": "Retrieves a list of custom audiences for an advertiser account."
+                          },
+                          "response": [
+                            {
+                              "id": "d6cbb012-d6ef-4e1e-9416-60100e6950e3",
+                              "name": "Custom audiences retrieved successfully",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "Access-Token",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/open_api/v1.3/dmp/custom_audience/list/?advertiser_id=<string>&page=1&page_size=10",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "open_api",
+                                    "v1.3",
+                                    "dmp",
+                                    "custom_audience",
+                                    "list",
+                                    ""
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "(Required) ",
+                                      "key": "advertiser_id",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "key": "page",
+                                      "value": "1"
+                                    },
+                                    {
+                                      "key": "page_size",
+                                      "value": "10"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"data\": {\n    \"list\": [\n      {\n        \"audience_id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"audience_type\": \"<string>\",\n        \"size\": \"<integer>\"\n      },\n      {\n        \"audience_id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"audience_type\": \"<string>\",\n        \"size\": \"<integer>\"\n      }\n    ]\n  }\n}",
+                              "createdAt": "2026-07-28T03:13:52.000Z",
+                              "updatedAt": "2026-07-28T03:13:52.000Z",
+                              "uid": "35240-d6cbb012-d6ef-4e1e-9416-60100e6950e3"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T03:13:52.000Z",
+                          "updatedAt": "2026-07-28T03:13:52.000Z",
+                          "uid": "35240-e89d2aa1-ba4e-41c1-8ce0-1b9b0f247670"
+                        }
+                      ],
+                      "id": "7986a846-1a85-49b7-8177-1aeaa763a149",
+                      "createdAt": "2026-07-28T03:13:52.000Z",
+                      "updatedAt": "2026-07-28T03:13:52.000Z",
+                      "uid": "35240-7986a846-1a85-49b7-8177-1aeaa763a149"
+                    }
+                  ],
+                  "id": "ac5de126-8089-481f-8a82-c51a2a4dccca",
+                  "createdAt": "2026-07-28T03:13:52.000Z",
+                  "updatedAt": "2026-07-28T03:13:52.000Z",
+                  "uid": "35240-ac5de126-8089-481f-8a82-c51a2a4dccca"
+                }
+              ],
+              "id": "1be8174e-4f41-41a6-8d14-dd3fa1914564",
+              "createdAt": "2026-07-28T03:13:52.000Z",
+              "updatedAt": "2026-07-28T03:13:52.000Z",
+              "uid": "35240-1be8174e-4f41-41a6-8d14-dd3fa1914564"
+            }
+          ],
+          "id": "b8d29e27-8573-4cd9-b3c9-b7315a320668",
+          "createdAt": "2026-07-28T03:13:52.000Z",
+          "updatedAt": "2026-07-28T03:13:52.000Z",
+          "uid": "35240-b8d29e27-8573-4cd9-b3c9-b7315a320668"
+        }
+      ],
+      "id": "7e694ad0-df93-4875-806b-f258d56babce",
+      "createdAt": "2026-07-28T03:13:52.000Z",
+      "updatedAt": "2026-07-28T03:13:52.000Z",
+      "uid": "35240-7e694ad0-df93-4875-806b-f258d56babce"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Access-Token",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://business-api.tiktok.com"
+    }
+  ]
+}
