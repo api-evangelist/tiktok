@@ -32,7 +32,7 @@ tags:
 created: '2025-08-14'
 modified: '2026-05-19'
 url: https://raw.githubusercontent.com/api-evangelist/tiktok/refs/heads/main/apis.yml
-specificationVersion: '0.19'
+specificationVersion: '0.23'
 apis:
 - aid: tiktok:tiktok-ad-groups-api
   name: TikTok Ad Groups API
