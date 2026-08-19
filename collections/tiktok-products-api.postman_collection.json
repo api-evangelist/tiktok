@@ -1,0 +1,564 @@
+{
+  "item": [
+    {
+      "id": "004da6d6-5057-49b3-9f5c-f27ae18d49d5",
+      "name": "Products",
+      "description": {
+        "content": "Product catalog management",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "85856dfc-a895-4ca2-bbb3-446d28c0a04a",
+          "name": "List Products",
+          "request": {
+            "name": "List Products",
+            "description": {
+              "content": "Retrieves a list of products from the seller's TikTok Shop catalog with pagination support.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "product",
+                "202309",
+                "products"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "10",
+                  "description": "Number of products per page"
+                },
+                {
+                  "disabled": false,
+                  "key": "page_token",
+                  "value": "<string>",
+                  "description": "Pagination token for next page"
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Filter by product status"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8c389119-16f3-452e-bea1-a343ae87cd8d",
+              "name": "Products retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "product",
+                    "202309",
+                    "products"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page_size",
+                      "value": "10"
+                    },
+                    {
+                      "key": "page_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Access-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 1694,\n  \"message\": \"string\",\n  \"data\": {\n    \"products\": [\n      {\n        \"product_id\": \"string\",\n        \"product_name\": \"string\",\n        \"status\": \"string\",\n        \"create_time\": 873,\n        \"update_time\": 1173,\n        \"category_id\": \"string\",\n        \"brand_id\": \"string\",\n        \"price\": {\n          \"amount\": \"string\",\n          \"currency\": \"string\"\n        },\n        \"skus\": [\n          {\n            \"id\": \"string\",\n            \"seller_sku\": \"string\",\n            \"price\": {\n              \"amount\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"currency\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"stock_infos\": [\n              {\n                \"warehouse_id\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"available_stock\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              {\n                \"warehouse_id\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"available_stock\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            ]\n          },\n          {\n            \"id\": \"string\",\n            \"seller_sku\": \"string\",\n            \"price\": {\n              \"amount\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"currency\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"stock_infos\": [\n              {\n                \"warehouse_id\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"available_stock\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              {\n                \"warehouse_id\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"available_stock\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            ]\n          }\n        ]\n      },\n      {\n        \"product_id\": \"string\",\n        \"product_name\": \"string\",\n        \"status\": \"string\",\n        \"create_time\": 5023,\n        \"update_time\": 9965,\n        \"category_id\": \"string\",\n        \"brand_id\": \"string\",\n        \"price\": {\n          \"amount\": \"string\",\n          \"currency\": \"string\"\n        },\n        \"skus\": [\n          {\n            \"id\": \"string\",\n            \"seller_sku\": \"string\",\n            \"price\": {\n              \"amount\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"currency\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"stock_infos\": [\n              {\n                \"warehouse_id\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"available_stock\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              {\n                \"warehouse_id\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"available_stock\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            ]\n          },\n          {\n            \"id\": \"string\",\n            \"seller_sku\": \"string\",\n            \"price\": {\n              \"amount\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"currency\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"stock_infos\": [\n              {\n                \"warehouse_id\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"available_stock\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              {\n                \"warehouse_id\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"available_stock\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            ]\n          }\n        ]\n      }\n    ],\n    \"next_page_token\": \"string\",\n    \"total_count\": 5456\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3ec7da3d-80cb-4f6d-ab72-a1eea78242e0",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "product",
+                    "202309",
+                    "products"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page_size",
+                      "value": "10"
+                    },
+                    {
+                      "key": "page_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Access-Token",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4fef7d4b-5045-441a-bd41-872de323bfd0",
+          "name": "Get Product",
+          "request": {
+            "name": "Get Product",
+            "description": {
+              "content": "Retrieves detailed information about a specific product by its ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "product",
+                "202309",
+                "products",
+                ":product_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "product_id",
+                  "description": "(Required) Product unique identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b4b0c9b2-1030-46da-a8b5-bcdc89998188",
+              "name": "Product details retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "product",
+                    "202309",
+                    "products",
+                    ":product_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "product_id",
+                      "description": "(Required) Product unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Access-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 5832,\n  \"message\": \"string\",\n  \"data\": {\n    \"product_id\": \"string\",\n    \"product_name\": \"string\",\n    \"status\": \"string\",\n    \"create_time\": 1074,\n    \"update_time\": 7305,\n    \"category_id\": \"string\",\n    \"brand_id\": \"string\",\n    \"price\": {\n      \"amount\": \"string\",\n      \"currency\": \"string\"\n    },\n    \"skus\": [\n      {\n        \"id\": \"string\",\n        \"seller_sku\": \"string\",\n        \"price\": {\n          \"amount\": \"string\",\n          \"currency\": \"string\"\n        },\n        \"stock_infos\": [\n          {\n            \"warehouse_id\": \"string\",\n            \"available_stock\": 9876\n          },\n          {\n            \"warehouse_id\": \"string\",\n            \"available_stock\": 131\n          }\n        ]\n      },\n      {\n        \"id\": \"string\",\n        \"seller_sku\": \"string\",\n        \"price\": {\n          \"amount\": \"string\",\n          \"currency\": \"string\"\n        },\n        \"stock_infos\": [\n          {\n            \"warehouse_id\": \"string\",\n            \"available_stock\": 1698\n          },\n          {\n            \"warehouse_id\": \"string\",\n            \"available_stock\": 5887\n          }\n        ]\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9cf8b602-3d09-4a4e-8ad9-576c2c16f61a",
+          "name": "Update Product",
+          "request": {
+            "name": "Update Product",
+            "description": {
+              "content": "Updates the details of an existing product in the TikTok Shop catalog.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "product",
+                "202309",
+                "products",
+                ":product_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "product_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"product_name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"main_images\": [\n    {\n      \"uri\": \"<string>\"\n    },\n    {\n      \"uri\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3fdcc48f-8bab-4e0e-a364-ad12190dda6a",
+              "name": "Product updated successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "product",
+                    "202309",
+                    "products",
+                    ":product_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "product_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Access-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"product_name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"main_images\": [\n    {\n      \"uri\": \"<string>\"\n    },\n    {\n      \"uri\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 8034,\n  \"message\": \"string\",\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c9a9667a-c5d3-4018-a7da-4822fef7b6d7",
+          "name": "Upload Product File",
+          "request": {
+            "name": "Upload Product File",
+            "description": {
+              "content": "Uploads images or video files to be used in product listings.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "product",
+                "202309",
+                "products",
+                "upload_files"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "data",
+                  "type": "file",
+                  "description": ""
+                },
+                {
+                  "key": "use_case",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": " (This can only be one of MAIN_IMAGE,ATTRIBUTE_IMAGE,SIZE_CHART,BRAND_LOGO)"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "cd5ebb14-096d-441a-a05d-49f217bc692e",
+              "name": "File uploaded successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "product",
+                    "202309",
+                    "products",
+                    "upload_files"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Access-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "data",
+                      "value": "<binary>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": " (This can only be one of MAIN_IMAGE,ATTRIBUTE_IMAGE,SIZE_CHART,BRAND_LOGO)",
+                        "type": "text/plain"
+                      },
+                      "key": "use_case",
+                      "value": "<string>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 2235,\n  \"message\": \"string\",\n  \"data\": {\n    \"uri\": \"string\",\n    \"url\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://business-api.tiktok.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Access-Token"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "d6fcf14c-fb8e-44e9-b65e-567bce5a48ad",
+    "name": "TikTok API for Business Ad Groups Products API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "TikTok's advertising API enabling developers to create and manage ad campaigns, ad groups, creatives, audiences, and reporting for global advertisers on TikTok's platform.\n\nContact Support:\n Name: TikTok API for Business",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "TikTok API for Business Ad Groups Logistics API",
+    "version": "v1.3"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Access-Token",
+      "value": "{{Access-Token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Logistics",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Shipping Document",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://business-api.tiktok.com/logistics/202309/orders/:order_id/shipping_documents",
+            "params": [
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "document_type",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieves shipping label or packing slip documents for an order."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

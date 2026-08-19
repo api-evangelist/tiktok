@@ -1,0 +1,151 @@
+{
+  "item": [
+    {
+      "id": "6e72341e-5318-4b66-af01-b7245e1554d9",
+      "name": "Finance",
+      "description": {
+        "content": "Settlement and financial reporting",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "8476a14c-1582-4c98-802b-979c0ed72fc9",
+          "name": "List Payments",
+          "request": {
+            "name": "List Payments",
+            "description": {
+              "content": "Retrieves payment settlement records for the seller's TikTok Shop.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "finance",
+                "202309",
+                "payments"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "20"
+                },
+                {
+                  "disabled": false,
+                  "key": "page_token",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9cf84fdb-0329-4579-b8c1-c80ec17c3fac",
+              "name": "Payment records retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "finance",
+                    "202309",
+                    "payments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page_size",
+                      "value": "20"
+                    },
+                    {
+                      "key": "page_token",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Access-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 6532,\n  \"message\": \"string\",\n  \"data\": {\n    \"payments\": [\n      {\n        \"payment_id\": \"string\",\n        \"amount\": {\n          \"amount\": \"string\",\n          \"currency\": \"string\"\n        },\n        \"status\": \"string\",\n        \"create_time\": 6535\n      },\n      {\n        \"payment_id\": \"string\",\n        \"amount\": {\n          \"amount\": \"string\",\n          \"currency\": \"string\"\n        },\n        \"status\": \"string\",\n        \"create_time\": 2092\n      }\n    ],\n    \"next_page_token\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://business-api.tiktok.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Access-Token"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "2e8d5b26-4d44-4ad0-8b14-e4ea1d911ff3",
+    "name": "TikTok API for Business Ad Groups Finance API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "TikTok's advertising API enabling developers to create and manage ad campaigns, ad groups, creatives, audiences, and reporting for global advertisers on TikTok's platform.\n\nContact Support:\n Name: TikTok API for Business",
+      "type": "text/plain"
+    }
+  }
+}

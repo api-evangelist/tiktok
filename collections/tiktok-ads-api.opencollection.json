@@ -1,0 +1,74 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "TikTok API for Business Ad Groups Ads API",
+    "version": "v1.3"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Access-Token",
+      "value": "{{Access-Token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Ads",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Ads",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://business-api.tiktok.com/open_api/v1.3/ad/get/",
+            "params": [
+              {
+                "name": "advertiser_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "adgroup_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieves individual ads for an advertiser with optional filters."
+        },
+        {
+          "info": {
+            "name": "Create Ad",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://business-api.tiktok.com/open_api/v1.3/ad/create/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new ad within an ad group."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,227 @@
+{
+  "item": [
+    {
+      "id": "43cde900-5a25-46c0-a5e8-5fc73c511def",
+      "name": "Reporting",
+      "description": {
+        "content": "Campaign performance reporting",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b20f3a30-7197-42e4-9c15-900991480575",
+          "name": "Get Integrated Report",
+          "request": {
+            "name": "Get Integrated Report",
+            "description": {
+              "content": "Retrieves advertising performance reports with customizable dimensions, metrics, and date ranges. Supports BASIC, AUDIENCE, and CATALOG report types.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "open_api",
+                "v1.3",
+                "report",
+                "integrated",
+                "get",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "advertiser_id",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "report_type",
+                  "value": "<string>",
+                  "description": "(Required) Type of report to generate"
+                },
+                {
+                  "disabled": false,
+                  "key": "data_level",
+                  "value": "<string>",
+                  "description": "(Required) Data aggregation level"
+                },
+                {
+                  "disabled": false,
+                  "key": "dimensions",
+                  "value": "<string>",
+                  "description": "(Required) Comma-separated dimensions (e.g., campaign_id,stat_time_day)"
+                },
+                {
+                  "disabled": false,
+                  "key": "metrics",
+                  "value": "<string>",
+                  "description": "(Required) Comma-separated metrics (e.g., impressions,clicks,spend)"
+                },
+                {
+                  "disabled": false,
+                  "key": "start_date",
+                  "value": "<string>",
+                  "description": "(Required) Start date in YYYY-MM-DD format"
+                },
+                {
+                  "disabled": false,
+                  "key": "end_date",
+                  "value": "<string>",
+                  "description": "(Required) End date in YYYY-MM-DD format"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "20"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1cbc8e91-3074-442e-b6f1-6440ef2aa4d7",
+              "name": "Report data returned successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "open_api",
+                    "v1.3",
+                    "report",
+                    "integrated",
+                    "get",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "advertiser_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "report_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "data_level",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "dimensions",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "metrics",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "start_date",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "end_date",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "20"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Access-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 5257,\n  \"message\": \"string\",\n  \"data\": {\n    \"list\": [\n      {\n        \"dimensions\": {},\n        \"metrics\": {}\n      },\n      {\n        \"dimensions\": {},\n        \"metrics\": {}\n      }\n    ],\n    \"page_info\": {\n      \"page\": 2308,\n      \"page_size\": 3654,\n      \"total_number\": 6286,\n      \"total_page\": 7173\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://business-api.tiktok.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Access-Token"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "995aef41-5b1c-4a31-af07-538f11c7bc27",
+    "name": "TikTok API for Business Ad Groups Reporting API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "TikTok's advertising API enabling developers to create and manage ad campaigns, ad groups, creatives, audiences, and reporting for global advertisers on TikTok's platform.\n\nContact Support:\n Name: TikTok API for Business",
+      "type": "text/plain"
+    }
+  }
+}

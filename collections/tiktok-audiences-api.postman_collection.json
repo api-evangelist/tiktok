@@ -1,0 +1,167 @@
+{
+  "item": [
+    {
+      "id": "170ac172-e431-458b-a100-8f932c16fe65",
+      "name": "Audiences",
+      "description": {
+        "content": "Custom audience management",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "73b67583-128a-44ab-99cd-8ca1fd153f04",
+          "name": "List Custom Audiences",
+          "request": {
+            "name": "List Custom Audiences",
+            "description": {
+              "content": "Retrieves a list of custom audiences for an advertiser account.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "open_api",
+                "v1.3",
+                "dmp",
+                "custom_audience",
+                "list",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "advertiser_id",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "10"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a6dcb7db-69b7-4f94-a336-330fdf0997b0",
+              "name": "Custom audiences retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "open_api",
+                    "v1.3",
+                    "dmp",
+                    "custom_audience",
+                    "list",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "advertiser_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Access-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 258,\n  \"message\": \"string\",\n  \"data\": {\n    \"list\": [\n      {\n        \"audience_id\": \"string\",\n        \"name\": \"string\",\n        \"audience_type\": \"string\",\n        \"size\": 4832\n      },\n      {\n        \"audience_id\": \"string\",\n        \"name\": \"string\",\n        \"audience_type\": \"string\",\n        \"size\": 4588\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://business-api.tiktok.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Access-Token"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "7e215e67-3a3a-4ac4-852a-031b0c53aa0c",
+    "name": "TikTok API for Business Ad Groups Audiences API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "TikTok's advertising API enabling developers to create and manage ad campaigns, ad groups, creatives, audiences, and reporting for global advertisers on TikTok's platform.\n\nContact Support:\n Name: TikTok API for Business",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,93 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "TikTok API for Business Ad Groups Campaigns API",
+    "version": "v1.3"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Access-Token",
+      "value": "{{Access-Token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Campaigns",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Campaigns",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://business-api.tiktok.com/open_api/v1.3/campaign/get/",
+            "params": [
+              {
+                "name": "advertiser_id",
+                "value": "",
+                "type": "query",
+                "description": "Advertiser account ID"
+              },
+              {
+                "name": "campaign_ids",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of campaign IDs to filter"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number for pagination"
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "Results per page"
+              }
+            ]
+          },
+          "docs": "Retrieves a list of advertising campaigns for an advertiser account, with optional filters by campaign IDs, status, or creation time."
+        },
+        {
+          "info": {
+            "name": "Create Campaign",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://business-api.tiktok.com/open_api/v1.3/campaign/create/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new advertising campaign for a TikTok advertiser account."
+        },
+        {
+          "info": {
+            "name": "Update Campaign",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://business-api.tiktok.com/open_api/v1.3/campaign/update/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing advertising campaign."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

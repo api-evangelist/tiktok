@@ -1,0 +1,85 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "TikTok API for Business Ad Groups Orders API",
+    "version": "v1.3"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Access-Token",
+      "value": "{{Access-Token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Orders",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Orders",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://business-api.tiktok.com/order/202309/orders",
+            "params": [
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page_token",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "order_status",
+                "value": "",
+                "type": "query",
+                "description": "Filter by order status"
+              },
+              {
+                "name": "create_time_ge",
+                "value": "",
+                "type": "query",
+                "description": "Filter orders created after this Unix timestamp"
+              },
+              {
+                "name": "create_time_lt",
+                "value": "",
+                "type": "query",
+                "description": "Filter orders created before this Unix timestamp"
+              }
+            ]
+          },
+          "docs": "Retrieves a list of orders for the seller's TikTok Shop with filtering and pagination."
+        },
+        {
+          "info": {
+            "name": "Get Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://business-api.tiktok.com/order/202309/orders/:order_id",
+            "params": [
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieves detailed information about a specific order by its ID."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
