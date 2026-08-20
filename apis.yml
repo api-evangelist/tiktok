@@ -27,6 +27,13 @@ tags:
 - Commerce
 - Content
 - E-Commerce
+- Social-Media
+- Video
+tags_raw:
+- Advertising
+- Commerce
+- Content
+- E-Commerce
 - Social Media
 - Video
 created: '2025-08-14'
@@ -166,6 +173,8 @@ apis:
   humanURL: https://business-api.tiktok.com/portal/docs
   baseURL: https://business-api.tiktok.com
   tags:
+  - Order
+  tags_raw:
   - Orders
   properties:
   - type: OpenAPI
@@ -184,6 +193,8 @@ apis:
   humanURL: https://business-api.tiktok.com/portal/docs
   baseURL: https://business-api.tiktok.com
   tags:
+  - Product
+  tags_raw:
   - Products
   properties:
   - type: OpenAPI
