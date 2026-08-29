@@ -238,6 +238,9 @@ apis:
   - type: Documentation
     url: https://developers.tiktok.com/doc/data-portability-api-get-started
 common:
+- type: CapabilityMap
+  url: capabilities/tiktok-capability-edges.yml
+  name: TikTok Business Capability Map
 - type: PostmanWorkspace
   url: https://www.postman.com/kinlaneapi/tiktok/overview
 - type: AgenticAccess

@@ -1,0 +1,47 @@
+slug: tiktok
+provider: TikTok
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Media, Entertainment & Telecom Content
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 3
+edges:
+- tag: Data Portability
+  spec_file: tiktok-data-portability-api-openapi.yml
+  capability_id: BC-130.50
+  capability_id_l1: BC-130
+  capability_name: Privacy & Data Protection Management
+  confidence: 0.78
+  evidence: '"allows users to export their TikTok data including activity, videos, and profile information
+    to authorized third-party services, supporting data portability rights"'
+  reason: The API exists to fulfil statutory data portability (a data subject right), with task create/status
+    operations driving the export. This is Privacy & Data Protection Management rather than a generic
+    export utility, as the description explicitly frames it as a rights mechanism.
+- tag: Campaigns
+  spec_file: tiktok-campaigns-api-openapi.yml
+  capability_id: BC-400.60
+  capability_id_l1: BC-400
+  capability_name: Digital Marketing Management
+  confidence: 0.72
+  evidence: POST /open_api/v1.3/campaign/create/ createCampaign Create Campaign; POST /open_api/v1.3/campaign/update/
+    updateCampaign
+  reason: Full create/read/update lifecycle of advertising campaigns for advertisers on a digital media
+    platform — paid media campaign management, i.e. digital marketing execution. Not sell-side inventory
+    or trafficking since the surface is the advertiser's campaign object.
+- tag: Logistics
+  spec_file: tiktok-logistics-api-openapi.yml
+  capability_id: BC-520.50
+  capability_id_l1: BC-520
+  capability_name: Logistics Operations Management
+  confidence: 0.72
+  evidence: GET /logistics/202309/orders/{order_id}/shipping_documents getShippingDocument
+  reason: Retrieval of shipping documents (labels/manifests) for an order, part of the vendor's stated
+    ability to "handle logistics". Maps to Logistics Operations Management; confidence moderate because
+    only one document-retrieval operation is exposed.
