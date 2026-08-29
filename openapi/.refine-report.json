@@ -1,32 +1,41 @@
 {
   "provider": "tiktok",
   "sources": [
-    "tiktok-ad-groups-api-openapi.yml",
-    "tiktok-ads-api-openapi.yml",
-    "tiktok-audiences-api-openapi.yml",
-    "tiktok-campaigns-api-openapi.yml",
-    "tiktok-data-portability-api-openapi.yml",
-    "tiktok-finance-api-openapi.yml",
-    "tiktok-logistics-api-openapi.yml",
-    "tiktok-orders-api-openapi.yml",
-    "tiktok-products-api-openapi.yml",
-    "tiktok-reporting-api-openapi.yml"
+    "_original/tiktok-business-openapi.yml",
+    "_original/tiktok-data-portability-openapi.yml",
+    "_original/tiktok-shop-openapi.yml"
   ],
   "outputs": [
     "tiktok-ad-groups-api-openapi.yml",
     "tiktok-ads-api-openapi.yml",
     "tiktok-audiences-api-openapi.yml",
     "tiktok-campaigns-api-openapi.yml",
+    "tiktok-reporting-api-openapi.yml",
     "tiktok-data-portability-api-openapi.yml",
     "tiktok-finance-api-openapi.yml",
     "tiktok-logistics-api-openapi.yml",
     "tiktok-orders-api-openapi.yml",
-    "tiktok-products-api-openapi.yml",
-    "tiktok-reporting-api-openapi.yml"
+    "tiktok-products-api-openapi.yml"
   ],
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (3 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "tiktok-business-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "tiktok-data-portability-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "tiktok-shop-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0"
+  ],
+  "skipped": [
+    "tiktok-ad-groups-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "tiktok-ads-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "tiktok-audiences-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "tiktok-campaigns-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "tiktok-data-portability-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "tiktok-finance-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "tiktok-logistics-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "tiktok-orders-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "tiktok-products-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "tiktok-reporting-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

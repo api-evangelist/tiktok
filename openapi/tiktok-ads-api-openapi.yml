@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: TikTok API for Business Ad Groups Ads API
+  title: TikTok API for Business Ads API
   description: TikTok's advertising API enabling developers to create and manage ad campaigns, ad groups, creatives, audiences, and reporting for global advertisers on TikTok's platform.
   version: v1.3
   contact:
@@ -72,17 +72,6 @@ paths:
                 $ref: '#/components/schemas/GenericResponse'
 components:
   schemas:
-    PageInfo:
-      type: object
-      properties:
-        page:
-          type: integer
-        page_size:
-          type: integer
-        total_number:
-          type: integer
-        total_page:
-          type: integer
     AdCreateRequest:
       type: object
       required:
@@ -117,6 +106,17 @@ components:
                 $ref: '#/components/schemas/Ad'
             page_info:
               $ref: '#/components/schemas/PageInfo'
+    PageInfo:
+      type: object
+      properties:
+        page:
+          type: integer
+        page_size:
+          type: integer
+        total_number:
+          type: integer
+        total_page:
+          type: integer
     Ad:
       type: object
       properties:

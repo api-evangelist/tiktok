@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: TikTok API for Business Ad Groups Campaigns API
+  title: TikTok API for Business Campaigns API
   description: TikTok's advertising API enabling developers to create and manage ad campaigns, ad groups, creatives, audiences, and reporting for global advertisers on TikTok's platform.
   version: v1.3
   contact:
@@ -102,45 +102,6 @@ paths:
                 $ref: '#/components/schemas/GenericResponse'
 components:
   schemas:
-    CampaignCreateResponse:
-      type: object
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
-        data:
-          type: object
-          properties:
-            campaign_id:
-              type: string
-    PageInfo:
-      type: object
-      properties:
-        page:
-          type: integer
-        page_size:
-          type: integer
-        total_number:
-          type: integer
-        total_page:
-          type: integer
-    CampaignListResponse:
-      type: object
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
-        data:
-          type: object
-          properties:
-            list:
-              type: array
-              items:
-                $ref: '#/components/schemas/Campaign'
-            page_info:
-              $ref: '#/components/schemas/PageInfo'
     CampaignUpdateRequest:
       type: object
       required:
@@ -157,6 +118,17 @@ components:
           type: number
         status:
           type: string
+    PageInfo:
+      type: object
+      properties:
+        page:
+          type: integer
+        page_size:
+          type: integer
+        total_number:
+          type: integer
+        total_page:
+          type: integer
     Campaign:
       type: object
       properties:
@@ -194,15 +166,6 @@ components:
           type: string
         modify_time:
           type: string
-    GenericResponse:
-      type: object
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
-        data:
-          type: object
     CampaignCreateRequest:
       type: object
       required:
@@ -221,6 +184,43 @@ components:
           type: string
         budget:
           type: number
+    GenericResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        data:
+          type: object
+    CampaignCreateResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        data:
+          type: object
+          properties:
+            campaign_id:
+              type: string
+    CampaignListResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        data:
+          type: object
+          properties:
+            list:
+              type: array
+              items:
+                $ref: '#/components/schemas/Campaign'
+            page_info:
+              $ref: '#/components/schemas/PageInfo'
   securitySchemes:
     AccessToken:
       type: apiKey
