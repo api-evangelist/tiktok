@@ -240,6 +240,169 @@ apis:
     url: https://partner.tiktokshop.com/doc/page/63fd743c715d622a338c4e54
   - type: Documentation
     url: https://developers.tiktok.com/doc/data-portability-api-get-started
+- aid: tiktok:tiktok-for-developers-post-api
+  name: TikTok Post API
+  description: Video publishing operations
+  humanURL: https://developers.tiktok.com/doc/display-api-overview
+  baseURL: https://open.tiktokapis.com
+  tags: []
+  tags_raw:
+  - Post
+  properties:
+  - type: OpenAPI
+    url: openapi/tiktok-for-developers-post-api-openapi.yml
+  - type: Documentation
+    url: https://developers.tiktok.com/doc/display-api-overview
+  - type: GraphQL
+    url: graphql/tiktok-for-developers-graphql.md
+  - type: Documentation
+    url: https://developers.tiktok.com/doc/content-posting-api-get-started
+  - type: Documentation
+    url: https://developers.tiktok.com/doc/research-api-get-started
+  - type: Documentation
+    url: https://developers.tiktok.com/doc/login-kit-web
+- aid: tiktok:tiktok-for-developers-research-comments-api
+  name: TikTok Research Comments API
+  description: Comment data operations
+  humanURL: https://developers.tiktok.com/doc/display-api-overview
+  baseURL: https://open.tiktokapis.com
+  tags:
+  - Research Comments
+  properties:
+  - type: OpenAPI
+    url: openapi/tiktok-for-developers-research-comments-api-openapi.yml
+  - type: Documentation
+    url: https://developers.tiktok.com/doc/display-api-overview
+  - type: GraphQL
+    url: graphql/tiktok-for-developers-graphql.md
+  - type: Documentation
+    url: https://developers.tiktok.com/doc/content-posting-api-get-started
+  - type: Documentation
+    url: https://developers.tiktok.com/doc/research-api-get-started
+  - type: Documentation
+    url: https://developers.tiktok.com/doc/login-kit-web
+- aid: tiktok:tiktok-for-developers-research-social-api
+  name: TikTok Research Social API
+  description: Social graph data
+  humanURL: https://developers.tiktok.com/doc/display-api-overview
+  baseURL: https://open.tiktokapis.com
+  tags:
+  - Research Social
+  properties:
+  - type: OpenAPI
+    url: openapi/tiktok-for-developers-research-social-api-openapi.yml
+  - type: Documentation
+    url: https://developers.tiktok.com/doc/display-api-overview
+  - type: GraphQL
+    url: graphql/tiktok-for-developers-graphql.md
+  - type: Documentation
+    url: https://developers.tiktok.com/doc/content-posting-api-get-started
+  - type: Documentation
+    url: https://developers.tiktok.com/doc/research-api-get-started
+  - type: Documentation
+    url: https://developers.tiktok.com/doc/login-kit-web
+- aid: tiktok:tiktok-for-developers-research-users-api
+  name: TikTok Research Users API
+  description: User information for research
+  humanURL: https://developers.tiktok.com/doc/display-api-overview
+  baseURL: https://open.tiktokapis.com
+  tags:
+  - Research Users
+  properties:
+  - type: OpenAPI
+    url: openapi/tiktok-for-developers-research-users-api-openapi.yml
+  - type: Documentation
+    url: https://developers.tiktok.com/doc/display-api-overview
+  - type: GraphQL
+    url: graphql/tiktok-for-developers-graphql.md
+  - type: Documentation
+    url: https://developers.tiktok.com/doc/content-posting-api-get-started
+  - type: Documentation
+    url: https://developers.tiktok.com/doc/research-api-get-started
+  - type: Documentation
+    url: https://developers.tiktok.com/doc/login-kit-web
+- aid: tiktok:tiktok-for-developers-research-videos-api
+  name: TikTok Research Videos API
+  description: Video search and query operations
+  humanURL: https://developers.tiktok.com/doc/display-api-overview
+  baseURL: https://open.tiktokapis.com
+  tags:
+  - Research Videos
+  properties:
+  - type: OpenAPI
+    url: openapi/tiktok-for-developers-research-videos-api-openapi.yml
+  - type: Documentation
+    url: https://developers.tiktok.com/doc/display-api-overview
+  - type: GraphQL
+    url: graphql/tiktok-for-developers-graphql.md
+  - type: Documentation
+    url: https://developers.tiktok.com/doc/content-posting-api-get-started
+  - type: Documentation
+    url: https://developers.tiktok.com/doc/research-api-get-started
+  - type: Documentation
+    url: https://developers.tiktok.com/doc/login-kit-web
+- aid: tiktok:tiktok-for-developers-user-api
+  name: TikTok User API
+  description: User profile information
+  humanURL: https://developers.tiktok.com/doc/display-api-overview
+  baseURL: https://open.tiktokapis.com
+  tags:
+  - User
+  properties:
+  - type: OpenAPI
+    url: openapi/tiktok-for-developers-user-api-openapi.yml
+  - type: Documentation
+    url: https://developers.tiktok.com/doc/display-api-overview
+  - type: GraphQL
+    url: graphql/tiktok-for-developers-graphql.md
+  - type: Documentation
+    url: https://developers.tiktok.com/doc/content-posting-api-get-started
+  - type: Documentation
+    url: https://developers.tiktok.com/doc/research-api-get-started
+  - type: Documentation
+    url: https://developers.tiktok.com/doc/login-kit-web
+- aid: tiktok:tiktok-for-developers-video-api
+  name: TikTok Video API
+  description: Video metadata and management
+  humanURL: https://developers.tiktok.com/doc/display-api-overview
+  baseURL: https://open.tiktokapis.com
+  tags:
+  - Video
+  properties:
+  - type: OpenAPI
+    url: openapi/tiktok-for-developers-video-api-openapi.yml
+  - type: Documentation
+    url: https://developers.tiktok.com/doc/display-api-overview
+  - type: GraphQL
+    url: graphql/tiktok-for-developers-graphql.md
+  - type: Documentation
+    url: https://developers.tiktok.com/doc/content-posting-api-get-started
+  - type: Documentation
+    url: https://developers.tiktok.com/doc/research-api-get-started
+  - type: Documentation
+    url: https://developers.tiktok.com/doc/login-kit-web
+- aid: tiktok:tiktok-for-developers-oauth-api
+  name: TikTok O Auth API
+  description: OAuth 2.0 authorization and token management
+  humanURL: https://developers.tiktok.com/doc/display-api-overview
+  baseURL: https://open.tiktokapis.com
+  tags:
+  - Authentication
+  tags_raw:
+  - OAuth
+  properties:
+  - type: OpenAPI
+    url: openapi/tiktok-for-developers-oauth-api-openapi.yml
+  - type: Documentation
+    url: https://developers.tiktok.com/doc/display-api-overview
+  - type: GraphQL
+    url: graphql/tiktok-for-developers-graphql.md
+  - type: Documentation
+    url: https://developers.tiktok.com/doc/content-posting-api-get-started
+  - type: Documentation
+    url: https://developers.tiktok.com/doc/research-api-get-started
+  - type: Documentation
+    url: https://developers.tiktok.com/doc/login-kit-web
 common:
 - type: CapabilityMap
   url: capabilities/tiktok-capability-edges.yml
