@@ -106,52 +106,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/LineItem'
-    LineItem:
-      type: object
-      properties:
-        item_id:
-          type: string
-        product_name:
-          type: string
-        sku_id:
-          type: string
-        quantity:
-          type: integer
-        sale_price:
-          $ref: '#/components/schemas/Price'
-    Address:
-      type: object
-      properties:
-        name:
-          type: string
-        phone_number:
-          type: string
-        address_line1:
-          type: string
-        city:
-          type: string
-        province_code:
-          type: string
-        postal_code:
-          type: string
-        region_code:
-          type: string
-    OrderDetailResponse:
-      type: object
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
-        data:
-          $ref: '#/components/schemas/Order'
-    Price:
-      type: object
-      properties:
-        amount:
-          type: string
-        currency:
-          type: string
     OrderListResponse:
       type: object
       properties:
@@ -170,6 +124,52 @@ components:
               type: string
             total_count:
               type: integer
+    LineItem:
+      type: object
+      properties:
+        item_id:
+          type: string
+        product_name:
+          type: string
+        sku_id:
+          type: string
+        quantity:
+          type: integer
+        sale_price:
+          $ref: '#/components/schemas/Price'
+    OrderDetailResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        data:
+          $ref: '#/components/schemas/Order'
+    Address:
+      type: object
+      properties:
+        name:
+          type: string
+        phone_number:
+          type: string
+        address_line1:
+          type: string
+        city:
+          type: string
+        province_code:
+          type: string
+        postal_code:
+          type: string
+        region_code:
+          type: string
+    Price:
+      type: object
+      properties:
+        amount:
+          type: string
+        currency:
+          type: string
   securitySchemes:
     AccessToken:
       type: apiKey

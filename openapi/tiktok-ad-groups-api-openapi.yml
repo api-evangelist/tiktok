@@ -73,6 +73,47 @@ paths:
                 $ref: '#/components/schemas/GenericResponse'
 components:
   schemas:
+    AdGroup:
+      type: object
+      properties:
+        adgroup_id:
+          type: string
+        adgroup_name:
+          type: string
+        campaign_id:
+          type: string
+        advertiser_id:
+          type: string
+        budget:
+          type: number
+        budget_mode:
+          type: string
+        placement_type:
+          type: string
+        status:
+          type: string
+        create_time:
+          type: string
+    GenericResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        data:
+          type: object
+    PageInfo:
+      type: object
+      properties:
+        page:
+          type: integer
+        page_size:
+          type: integer
+        total_number:
+          type: integer
+        total_page:
+          type: integer
     AdGroupCreateRequest:
       type: object
       required:
@@ -96,38 +137,6 @@ components:
           type: number
         budget_mode:
           type: string
-    AdGroup:
-      type: object
-      properties:
-        adgroup_id:
-          type: string
-        adgroup_name:
-          type: string
-        campaign_id:
-          type: string
-        advertiser_id:
-          type: string
-        budget:
-          type: number
-        budget_mode:
-          type: string
-        placement_type:
-          type: string
-        status:
-          type: string
-        create_time:
-          type: string
-    PageInfo:
-      type: object
-      properties:
-        page:
-          type: integer
-        page_size:
-          type: integer
-        total_number:
-          type: integer
-        total_page:
-          type: integer
     AdGroupListResponse:
       type: object
       properties:
@@ -144,15 +153,6 @@ components:
                 $ref: '#/components/schemas/AdGroup'
             page_info:
               $ref: '#/components/schemas/PageInfo'
-    GenericResponse:
-      type: object
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
-        data:
-          type: object
   securitySchemes:
     AccessToken:
       type: apiKey

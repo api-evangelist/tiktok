@@ -1,0 +1,128 @@
+openapi: 3.2.0
+info:
+  title: TikTok Research Research Social API
+  description: The TikTok Research API provides academic and institutional researchers access to TikTok public data. Supports querying videos, user information, comments, followers, following lists, liked videos, and reposted videos.
+  version: v2
+  contact:
+    name: TikTok for Developers
+    url: https://developers.tiktok.com/doc/research-api-get-started
+  termsOfService: https://developers.tiktok.com/doc/tiktok-api-terms-of-service
+servers:
+- url: https://open.tiktokapis.com
+  description: TikTok Open API Production
+security:
+- BearerAuth: []
+tags:
+- name: Research Social
+  description: Social graph data
+paths:
+  /v2/research/user/followers/:
+    post:
+      operationId: listUserFollowers
+      summary: List User Followers
+      description: Retrieves the list of followers for a specified TikTok user.
+      tags:
+      - Research Social
+      parameters:
+      - name: fields
+        in: query
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SocialListRequest'
+      responses:
+        '200':
+          description: Followers list returned successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SocialListResponse'
+        '401':
+          description: Unauthorized
+  /v2/research/user/following/:
+    post:
+      operationId: listUserFollowing
+      summary: List User Following
+      description: Retrieves the list of accounts that a specified TikTok user follows.
+      tags:
+      - Research Social
+      parameters:
+      - name: fields
+        in: query
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SocialListRequest'
+      responses:
+        '200':
+          description: Following list returned successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SocialListResponse'
+        '401':
+          description: Unauthorized
+components:
+  schemas:
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        log_id:
+          type: string
+    SocialListRequest:
+      type: object
+      required:
+      - username
+      - max_count
+      properties:
+        username:
+          type: string
+          description: TikTok handle (without @)
+        max_count:
+          type: integer
+          minimum: 1
+          maximum: 100
+        cursor:
+          type: integer
+    SocialListResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            user_followers:
+              type: array
+              items:
+                $ref: '#/components/schemas/SocialUser'
+            cursor:
+              type: integer
+            has_more:
+              type: boolean
+        error:
+          $ref: '#/components/schemas/Error'
+    SocialUser:
+      type: object
+      properties:
+        display_name:
+          type: string
+        username:
+          type: string
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      description: OAuth 2.0 Bearer token (client credentials flow for Research API)

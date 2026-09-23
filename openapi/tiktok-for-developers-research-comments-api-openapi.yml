@@ -1,0 +1,110 @@
+openapi: 3.2.0
+info:
+  title: TikTok Research Research Comments API
+  description: The TikTok Research API provides academic and institutional researchers access to TikTok public data. Supports querying videos, user information, comments, followers, following lists, liked videos, and reposted videos.
+  version: v2
+  contact:
+    name: TikTok for Developers
+    url: https://developers.tiktok.com/doc/research-api-get-started
+  termsOfService: https://developers.tiktok.com/doc/tiktok-api-terms-of-service
+servers:
+- url: https://open.tiktokapis.com
+  description: TikTok Open API Production
+security:
+- BearerAuth: []
+tags:
+- name: Research Comments
+  description: Comment data operations
+paths:
+  /v2/research/video/comment/list/:
+    post:
+      operationId: listVideoComments
+      summary: List Video Comments
+      description: Retrieves all comments on a specific TikTok video, including comment text, author information, create time, and like count.
+      tags:
+      - Research Comments
+      parameters:
+      - name: fields
+        in: query
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CommentListRequest'
+      responses:
+        '200':
+          description: Comments returned successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CommentListResponse'
+        '401':
+          description: Unauthorized
+components:
+  schemas:
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        log_id:
+          type: string
+    CommentListRequest:
+      type: object
+      required:
+      - video_id
+      - max_count
+      properties:
+        video_id:
+          type: string
+          description: TikTok video ID
+        max_count:
+          type: integer
+          minimum: 1
+          maximum: 100
+        cursor:
+          type: integer
+    CommentListResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            comments:
+              type: array
+              items:
+                $ref: '#/components/schemas/Comment'
+            cursor:
+              type: integer
+            has_more:
+              type: boolean
+        error:
+          $ref: '#/components/schemas/Error'
+    Comment:
+      type: object
+      properties:
+        id:
+          type: string
+        video_id:
+          type: string
+        text:
+          type: string
+        like_count:
+          type: integer
+        reply_count:
+          type: integer
+        parent_comment_id:
+          type: string
+        create_time:
+          type: integer
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      description: OAuth 2.0 Bearer token (client credentials flow for Research API)

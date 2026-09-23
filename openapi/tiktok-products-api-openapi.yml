@@ -135,20 +135,6 @@ paths:
                 $ref: '#/components/schemas/FileUploadResponse'
 components:
   schemas:
-    FileUploadResponse:
-      type: object
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
-        data:
-          type: object
-          properties:
-            uri:
-              type: string
-            url:
-              type: string
     ProductUpdateRequest:
       type: object
       properties:
@@ -181,6 +167,20 @@ components:
               type: string
             total_count:
               type: integer
+    FileUploadResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        data:
+          type: object
+          properties:
+            uri:
+              type: string
+            url:
+              type: string
     GenericResponse:
       type: object
       properties:
@@ -190,31 +190,6 @@ components:
           type: string
         data:
           type: object
-    SKU:
-      type: object
-      properties:
-        id:
-          type: string
-        seller_sku:
-          type: string
-        price:
-          $ref: '#/components/schemas/Price'
-        stock_infos:
-          type: array
-          items:
-            type: object
-            properties:
-              warehouse_id:
-                type: string
-              available_stock:
-                type: integer
-    Price:
-      type: object
-      properties:
-        amount:
-          type: string
-        currency:
-          type: string
     ProductDetailResponse:
       type: object
       properties:
@@ -247,6 +222,31 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/SKU'
+    Price:
+      type: object
+      properties:
+        amount:
+          type: string
+        currency:
+          type: string
+    SKU:
+      type: object
+      properties:
+        id:
+          type: string
+        seller_sku:
+          type: string
+        price:
+          $ref: '#/components/schemas/Price'
+        stock_infos:
+          type: array
+          items:
+            type: object
+            properties:
+              warehouse_id:
+                type: string
+              available_stock:
+                type: integer
   securitySchemes:
     AccessToken:
       type: apiKey

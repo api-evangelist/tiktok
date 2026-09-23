@@ -1,0 +1,178 @@
+openapi: 3.2.0
+info:
+  title: TikTok Login Kit O Auth API
+  description: The TikTok Login Kit API enables users to securely log in to third-party applications and websites using their TikTok credentials via OAuth 2.0. Supports authorization code flow, token issuance, token refresh, and token revocation.
+  version: v2
+  contact:
+    name: TikTok for Developers
+    url: https://developers.tiktok.com/doc/login-kit-web
+  termsOfService: https://developers.tiktok.com/doc/tiktok-api-terms-of-service
+servers:
+- url: https://open.tiktokapis.com
+  description: TikTok Open API Production
+tags:
+- name: OAuth
+  description: OAuth 2.0 authorization and token management
+paths:
+  /v2/oauth/token/:
+    post:
+      operationId: exchangeToken
+      summary: Exchange Authorization Code for Token
+      description: Exchanges an authorization code for an access token and refresh token. Called after the user completes the TikTok OAuth authorization flow.
+      tags:
+      - OAuth
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/TokenRequest'
+      responses:
+        '200':
+          description: Token issued successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenResponse'
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+  /v2/oauth/token/refresh/:
+    post:
+      operationId: refreshToken
+      summary: Refresh Access Token
+      description: Refreshes an expired access token using a valid refresh token.
+      tags:
+      - OAuth
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/RefreshTokenRequest'
+      responses:
+        '200':
+          description: Token refreshed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenResponse'
+        '400':
+          description: Bad Request
+  /v2/oauth/revoke/:
+    post:
+      operationId: revokeToken
+      summary: Revoke Access Token
+      description: Revokes a user's access token, ending their authorized session with the third-party application.
+      tags:
+      - OAuth
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/RevokeTokenRequest'
+      responses:
+        '200':
+          description: Token revoked successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RevokeTokenResponse'
+        '400':
+          description: Bad Request
+components:
+  schemas:
+    TokenRequest:
+      type: object
+      required:
+      - client_key
+      - client_secret
+      - code
+      - grant_type
+      - redirect_uri
+      properties:
+        client_key:
+          type: string
+          description: Your app's client key
+        client_secret:
+          type: string
+          description: Your app's client secret
+        code:
+          type: string
+          description: Authorization code from the OAuth redirect
+        grant_type:
+          type: string
+          enum:
+          - authorization_code
+          description: OAuth grant type
+        redirect_uri:
+          type: string
+          description: Redirect URI registered for your app
+    RefreshTokenRequest:
+      type: object
+      required:
+      - client_key
+      - client_secret
+      - grant_type
+      - refresh_token
+      properties:
+        client_key:
+          type: string
+        client_secret:
+          type: string
+        grant_type:
+          type: string
+          enum:
+          - refresh_token
+        refresh_token:
+          type: string
+          description: The refresh token to use
+    RevokeTokenResponse:
+      type: object
+      properties:
+        error:
+          type: string
+        error_description:
+          type: string
+        message:
+          type: string
+    RevokeTokenRequest:
+      type: object
+      required:
+      - client_key
+      - client_secret
+      - token
+      properties:
+        client_key:
+          type: string
+        client_secret:
+          type: string
+        token:
+          type: string
+          description: The access token to revoke
+    TokenResponse:
+      type: object
+      properties:
+        access_token:
+          type: string
+          description: OAuth access token
+        expires_in:
+          type: integer
+          description: Access token expiration time in seconds
+        open_id:
+          type: string
+          description: User's unique identifier
+        refresh_expires_in:
+          type: integer
+          description: Refresh token expiration time in seconds
+        refresh_token:
+          type: string
+          description: Refresh token
+        scope:
+          type: string
+          description: Granted scopes (comma-separated)
+        token_type:
+          type: string
+          description: Token type (Bearer)

@@ -42,13 +42,6 @@ paths:
                 $ref: '#/components/schemas/PaymentListResponse'
 components:
   schemas:
-    Price:
-      type: object
-      properties:
-        amount:
-          type: string
-        currency:
-          type: string
     PaymentListResponse:
       type: object
       properties:
@@ -74,6 +67,13 @@ components:
                     type: integer
             next_page_token:
               type: string
+    Price:
+      type: object
+      properties:
+        amount:
+          type: string
+        currency:
+          type: string
   securitySchemes:
     AccessToken:
       type: apiKey

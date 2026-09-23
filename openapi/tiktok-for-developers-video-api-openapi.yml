@@ -1,0 +1,197 @@
+openapi: 3.2.0
+info:
+  title: TikTok Display Video API
+  description: The TikTok Display API enables developers to access TikTok user profile information and video metadata. Supports retrieving user info, listing recent videos, and querying specific videos by ID.
+  version: v2
+  contact:
+    name: TikTok for Developers
+    url: https://developers.tiktok.com/
+  termsOfService: https://developers.tiktok.com/doc/tiktok-api-terms-of-service
+servers:
+- url: https://open.tiktokapis.com
+  description: TikTok Open API Production
+security:
+- BearerAuth: []
+tags:
+- name: Video
+  description: Video metadata and management
+paths:
+  /v2/video/list/:
+    post:
+      operationId: listVideos
+      summary: List Videos
+      description: Retrieves a paginated list of a TikTok user's most recently uploaded public videos, sorted by create_time in descending order.
+      tags:
+      - Video
+      parameters:
+      - name: fields
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Comma-separated list of fields to return (e.g. id,create_time,cover_image_url,share_url,video_description,duration,height,width,title,embed_html,embed_link,like_count,comment_count,share_count,view_count)
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VideoListRequest'
+      responses:
+        '200':
+          description: Video list retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VideoListResponse'
+        '401':
+          description: Unauthorized
+  /v2/video/query/:
+    post:
+      operationId: queryVideos
+      summary: Query Videos
+      description: Retrieves metadata of TikTok user videos filtered by video IDs. Verifies that the videos belong to the authorized user and returns video details. Can be used to refresh video cover image URL TTL.
+      tags:
+      - Video
+      parameters:
+      - name: fields
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Comma-separated list of fields to return
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VideoQueryRequest'
+      responses:
+        '200':
+          description: Video query results returned successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VideoQueryResponse'
+        '401':
+          description: Unauthorized
+components:
+  schemas:
+    VideoListRequest:
+      type: object
+      properties:
+        max_count:
+          type: integer
+          description: Maximum number of videos to return (1-20)
+          minimum: 1
+          maximum: 20
+        cursor:
+          type: integer
+          description: Cursor for pagination
+    VideoQueryResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            videos:
+              type: array
+              items:
+                $ref: '#/components/schemas/Video'
+        error:
+          $ref: '#/components/schemas/Error'
+    VideoQueryRequest:
+      type: object
+      required:
+      - filters
+      properties:
+        filters:
+          type: object
+          properties:
+            video_ids:
+              type: array
+              items:
+                type: string
+              description: List of video IDs to query
+    VideoListResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            videos:
+              type: array
+              items:
+                $ref: '#/components/schemas/Video'
+            cursor:
+              type: integer
+              description: Cursor for next page
+            has_more:
+              type: boolean
+              description: Whether more results are available
+        error:
+          $ref: '#/components/schemas/Error'
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+          description: Error code
+        message:
+          type: string
+          description: Human-readable error message
+        log_id:
+          type: string
+          description: Log identifier for debugging
+    Video:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Video unique identifier
+        create_time:
+          type: integer
+          description: Unix timestamp of video creation
+        cover_image_url:
+          type: string
+          description: URL of the video cover image
+        share_url:
+          type: string
+          description: Shareable URL for the video
+        video_description:
+          type: string
+          description: Caption/description of the video
+        duration:
+          type: integer
+          description: Video duration in seconds
+        height:
+          type: integer
+          description: Video height in pixels
+        width:
+          type: integer
+          description: Video width in pixels
+        title:
+          type: string
+          description: Video title
+        embed_html:
+          type: string
+          description: HTML embed code
+        embed_link:
+          type: string
+          description: Embed link URL
+        like_count:
+          type: integer
+          description: Number of likes
+        comment_count:
+          type: integer
+          description: Number of comments
+        share_count:
+          type: integer
+          description: Number of shares
+        view_count:
+          type: integer
+          description: Number of views
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      description: OAuth 2.0 Bearer token

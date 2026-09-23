@@ -72,24 +72,15 @@ paths:
                 $ref: '#/components/schemas/GenericResponse'
 components:
   schemas:
-    AdCreateRequest:
+    GenericResponse:
       type: object
-      required:
-      - advertiser_id
-      - adgroup_id
-      - ad_name
-      - ad_format
       properties:
-        advertiser_id:
+        code:
+          type: integer
+        message:
           type: string
-        adgroup_id:
-          type: string
-        ad_name:
-          type: string
-        ad_format:
-          type: string
-        landing_page_url:
-          type: string
+        data:
+          type: object
     AdListResponse:
       type: object
       properties:
@@ -117,6 +108,24 @@ components:
           type: integer
         total_page:
           type: integer
+    AdCreateRequest:
+      type: object
+      required:
+      - advertiser_id
+      - adgroup_id
+      - ad_name
+      - ad_format
+      properties:
+        advertiser_id:
+          type: string
+        adgroup_id:
+          type: string
+        ad_name:
+          type: string
+        ad_format:
+          type: string
+        landing_page_url:
+          type: string
     Ad:
       type: object
       properties:
@@ -132,15 +141,6 @@ components:
           type: string
         creative_type:
           type: string
-    GenericResponse:
-      type: object
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
-        data:
-          type: object
   securitySchemes:
     AccessToken:
       type: apiKey

@@ -75,7 +75,7 @@ components:
           type: string
         log_id:
           type: string
-    TaskStatusResponse:
+    DataPortabilityTaskResponse:
       type: object
       properties:
         data:
@@ -83,18 +83,6 @@ components:
           properties:
             task_id:
               type: string
-            status:
-              type: string
-              enum:
-              - PROCESSING
-              - READY
-              - FAILED
-              - EXPIRED
-            download_urls:
-              type: array
-              items:
-                type: string
-              description: Download URLs when status is READY
         error:
           $ref: '#/components/schemas/Error'
     DataPortabilityTaskRequest:
@@ -116,7 +104,7 @@ components:
             - DIRECT_MESSAGES
             - COMMENTS
           description: Data categories to export
-    DataPortabilityTaskResponse:
+    TaskStatusResponse:
       type: object
       properties:
         data:
@@ -124,6 +112,18 @@ components:
           properties:
             task_id:
               type: string
+            status:
+              type: string
+              enum:
+              - PROCESSING
+              - READY
+              - FAILED
+              - EXPIRED
+            download_urls:
+              type: array
+              items:
+                type: string
+              description: Download URLs when status is READY
         error:
           $ref: '#/components/schemas/Error'
   securitySchemes:

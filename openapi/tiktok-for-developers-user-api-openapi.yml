@@ -1,0 +1,108 @@
+openapi: 3.2.0
+info:
+  title: TikTok Display User API
+  description: The TikTok Display API enables developers to access TikTok user profile information and video metadata. Supports retrieving user info, listing recent videos, and querying specific videos by ID.
+  version: v2
+  contact:
+    name: TikTok for Developers
+    url: https://developers.tiktok.com/
+  termsOfService: https://developers.tiktok.com/doc/tiktok-api-terms-of-service
+servers:
+- url: https://open.tiktokapis.com
+  description: TikTok Open API Production
+security:
+- BearerAuth: []
+tags:
+- name: User
+  description: User profile information
+paths:
+  /v2/user/info/:
+    get:
+      operationId: getUserInfo
+      summary: Get User Info
+      description: Retrieves a TikTok user's basic profile information including open_id, avatar_url, display_name, profile_deep_link, and bio_description.
+      tags:
+      - User
+      parameters:
+      - name: fields
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Comma-separated list of fields to return (e.g. open_id,avatar_url,display_name,bio_description,profile_deep_link,union_id,is_verified,follower_count,following_count,likes_count,video_count)
+      responses:
+        '200':
+          description: User information retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserInfoResponse'
+        '401':
+          description: Unauthorized
+        '400':
+          description: Bad Request
+components:
+  schemas:
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+          description: Error code
+        message:
+          type: string
+          description: Human-readable error message
+        log_id:
+          type: string
+          description: Log identifier for debugging
+    User:
+      type: object
+      properties:
+        open_id:
+          type: string
+          description: User's unique identifier
+        union_id:
+          type: string
+          description: Union ID across TikTok apps
+        avatar_url:
+          type: string
+          description: URL of the user's avatar image
+        display_name:
+          type: string
+          description: User's display name
+        bio_description:
+          type: string
+          description: User's biography text
+        profile_deep_link:
+          type: string
+          description: Deep link to the user's profile
+        is_verified:
+          type: boolean
+          description: Whether the user is verified
+        follower_count:
+          type: integer
+          description: Number of followers
+        following_count:
+          type: integer
+          description: Number of accounts followed
+        likes_count:
+          type: integer
+          description: Total likes received
+        video_count:
+          type: integer
+          description: Total number of public videos
+    UserInfoResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            user:
+              $ref: '#/components/schemas/User'
+        error:
+          $ref: '#/components/schemas/Error'
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      description: OAuth 2.0 Bearer token

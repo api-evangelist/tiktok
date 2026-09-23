@@ -1,0 +1,279 @@
+openapi: 3.2.0
+info:
+  title: TikTok Research Research Videos API
+  description: The TikTok Research API provides academic and institutional researchers access to TikTok public data. Supports querying videos, user information, comments, followers, following lists, liked videos, and reposted videos.
+  version: v2
+  contact:
+    name: TikTok for Developers
+    url: https://developers.tiktok.com/doc/research-api-get-started
+  termsOfService: https://developers.tiktok.com/doc/tiktok-api-terms-of-service
+servers:
+- url: https://open.tiktokapis.com
+  description: TikTok Open API Production
+security:
+- BearerAuth: []
+tags:
+- name: Research Videos
+  description: Video search and query operations
+paths:
+  /v2/research/video/query/:
+    post:
+      operationId: queryResearchVideos
+      summary: Query Research Videos
+      description: Queries TikTok videos using boolean operators (AND, OR, NOT) with filters such as keywords, region, date range, hashtags, music ID, and effect ID. Returns video IDs and selected metadata fields.
+      tags:
+      - Research Videos
+      parameters:
+      - name: fields
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Comma-separated list of fields to return
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VideoQueryRequest'
+      responses:
+        '200':
+          description: Video query results returned successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VideoQueryResponse'
+        '401':
+          description: Unauthorized
+        '400':
+          description: Bad Request
+  /v2/research/user/liked_videos/:
+    post:
+      operationId: listUserLikedVideos
+      summary: List User Liked Videos
+      description: Retrieves the list of videos liked by a specified TikTok user.
+      tags:
+      - Research Videos
+      parameters:
+      - name: fields
+        in: query
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SocialListRequest'
+      responses:
+        '200':
+          description: Liked videos returned successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VideoQueryResponse'
+        '401':
+          description: Unauthorized
+  /v2/research/user/pinned_videos/:
+    post:
+      operationId: listUserPinnedVideos
+      summary: List User Pinned Videos
+      description: Retrieves the list of videos pinned by a specified TikTok user.
+      tags:
+      - Research Videos
+      parameters:
+      - name: fields
+        in: query
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SocialListRequest'
+      responses:
+        '200':
+          description: Pinned videos returned successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VideoQueryResponse'
+        '401':
+          description: Unauthorized
+  /v2/research/user/reposted_videos/:
+    post:
+      operationId: listUserRepostedVideos
+      summary: List User Reposted Videos
+      description: Retrieves the list of videos reposted by a specified TikTok user.
+      tags:
+      - Research Videos
+      parameters:
+      - name: fields
+        in: query
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SocialListRequest'
+      responses:
+        '200':
+          description: Reposted videos returned successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VideoQueryResponse'
+        '401':
+          description: Unauthorized
+components:
+  schemas:
+    VideoQueryResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            videos:
+              type: array
+              items:
+                $ref: '#/components/schemas/ResearchVideo'
+            cursor:
+              type: integer
+            has_more:
+              type: boolean
+            search_id:
+              type: string
+        error:
+          $ref: '#/components/schemas/Error'
+    SocialListRequest:
+      type: object
+      required:
+      - username
+      - max_count
+      properties:
+        username:
+          type: string
+          description: TikTok handle (without @)
+        max_count:
+          type: integer
+          minimum: 1
+          maximum: 100
+        cursor:
+          type: integer
+    VideoQueryRequest:
+      type: object
+      required:
+      - query
+      - start_date
+      - end_date
+      - max_count
+      properties:
+        query:
+          type: object
+          description: Boolean query object with and/or/not operators
+          properties:
+            and:
+              type: array
+              items:
+                $ref: '#/components/schemas/QueryCondition'
+            or:
+              type: array
+              items:
+                $ref: '#/components/schemas/QueryCondition'
+            not:
+              type: array
+              items:
+                $ref: '#/components/schemas/QueryCondition'
+        start_date:
+          type: string
+          description: Start date in YYYYMMDD format
+        end_date:
+          type: string
+          description: End date in YYYYMMDD format
+        max_count:
+          type: integer
+          description: Maximum results per page (1-100)
+          minimum: 1
+          maximum: 100
+        cursor:
+          type: integer
+          description: Pagination cursor
+        search_id:
+          type: string
+          description: Search ID for pagination continuation
+    ResearchVideo:
+      type: object
+      properties:
+        id:
+          type: string
+        create_time:
+          type: integer
+        username:
+          type: string
+        region_code:
+          type: string
+        video_description:
+          type: string
+        music_id:
+          type: string
+        like_count:
+          type: integer
+        comment_count:
+          type: integer
+        share_count:
+          type: integer
+        view_count:
+          type: integer
+        hashtag_names:
+          type: array
+          items:
+            type: string
+    QueryCondition:
+      type: object
+      properties:
+        field_name:
+          type: string
+          enum:
+          - id
+          - video_description
+          - create_date
+          - username
+          - region_code
+          - hashtag_name
+          - keyword
+          - music_id
+          - effect_id
+          - video_length
+        operation:
+          type: string
+          enum:
+          - EQ
+          - IN
+          - GT
+          - GTE
+          - LT
+          - LTE
+        field_values:
+          type: array
+          items:
+            type: string
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        log_id:
+          type: string
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      description: OAuth 2.0 Bearer token (client credentials flow for Research API)
