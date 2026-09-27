@@ -102,24 +102,6 @@ paths:
                 $ref: '#/components/schemas/GenericResponse'
 components:
   schemas:
-    CampaignCreateRequest:
-      type: object
-      required:
-      - advertiser_id
-      - campaign_name
-      - objective_type
-      - budget_mode
-      properties:
-        advertiser_id:
-          type: string
-        campaign_name:
-          type: string
-        objective_type:
-          type: string
-        budget_mode:
-          type: string
-        budget:
-          type: number
     GenericResponse:
       type: object
       properties:
@@ -129,22 +111,6 @@ components:
           type: string
         data:
           type: object
-    CampaignUpdateRequest:
-      type: object
-      required:
-      - advertiser_id
-      - campaign_id
-      properties:
-        advertiser_id:
-          type: string
-        campaign_id:
-          type: string
-        campaign_name:
-          type: string
-        budget:
-          type: number
-        status:
-          type: string
     CampaignListResponse:
       type: object
       properties:
@@ -173,17 +139,6 @@ components:
           properties:
             campaign_id:
               type: string
-    PageInfo:
-      type: object
-      properties:
-        page:
-          type: integer
-        page_size:
-          type: integer
-        total_number:
-          type: integer
-        total_page:
-          type: integer
     Campaign:
       type: object
       properties:
@@ -221,6 +176,51 @@ components:
           type: string
         modify_time:
           type: string
+    PageInfo:
+      type: object
+      properties:
+        page:
+          type: integer
+        page_size:
+          type: integer
+        total_number:
+          type: integer
+        total_page:
+          type: integer
+    CampaignUpdateRequest:
+      type: object
+      required:
+      - advertiser_id
+      - campaign_id
+      properties:
+        advertiser_id:
+          type: string
+        campaign_id:
+          type: string
+        campaign_name:
+          type: string
+        budget:
+          type: number
+        status:
+          type: string
+    CampaignCreateRequest:
+      type: object
+      required:
+      - advertiser_id
+      - campaign_name
+      - objective_type
+      - budget_mode
+      properties:
+        advertiser_id:
+          type: string
+        campaign_name:
+          type: string
+        objective_type:
+          type: string
+        budget_mode:
+          type: string
+        budget:
+          type: number
   securitySchemes:
     AccessToken:
       type: apiKey

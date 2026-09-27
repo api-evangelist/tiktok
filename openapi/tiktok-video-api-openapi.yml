@@ -76,72 +76,6 @@ paths:
           description: Unauthorized
 components:
   schemas:
-    VideoListRequest:
-      type: object
-      properties:
-        max_count:
-          type: integer
-          description: Maximum number of videos to return (1-20)
-          minimum: 1
-          maximum: 20
-        cursor:
-          type: integer
-          description: Cursor for pagination
-    VideoQueryResponse:
-      type: object
-      properties:
-        data:
-          type: object
-          properties:
-            videos:
-              type: array
-              items:
-                $ref: '#/components/schemas/Video'
-        error:
-          $ref: '#/components/schemas/Error'
-    VideoQueryRequest:
-      type: object
-      required:
-      - filters
-      properties:
-        filters:
-          type: object
-          properties:
-            video_ids:
-              type: array
-              items:
-                type: string
-              description: List of video IDs to query
-    VideoListResponse:
-      type: object
-      properties:
-        data:
-          type: object
-          properties:
-            videos:
-              type: array
-              items:
-                $ref: '#/components/schemas/Video'
-            cursor:
-              type: integer
-              description: Cursor for next page
-            has_more:
-              type: boolean
-              description: Whether more results are available
-        error:
-          $ref: '#/components/schemas/Error'
-    Error:
-      type: object
-      properties:
-        code:
-          type: string
-          description: Error code
-        message:
-          type: string
-          description: Human-readable error message
-        log_id:
-          type: string
-          description: Log identifier for debugging
     Video:
       type: object
       properties:
@@ -190,6 +124,72 @@ components:
         view_count:
           type: integer
           description: Number of views
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+          description: Error code
+        message:
+          type: string
+          description: Human-readable error message
+        log_id:
+          type: string
+          description: Log identifier for debugging
+    VideoListRequest:
+      type: object
+      properties:
+        max_count:
+          type: integer
+          description: Maximum number of videos to return (1-20)
+          minimum: 1
+          maximum: 20
+        cursor:
+          type: integer
+          description: Cursor for pagination
+    VideoListResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            videos:
+              type: array
+              items:
+                $ref: '#/components/schemas/Video'
+            cursor:
+              type: integer
+              description: Cursor for next page
+            has_more:
+              type: boolean
+              description: Whether more results are available
+        error:
+          $ref: '#/components/schemas/Error'
+    VideoQueryResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            videos:
+              type: array
+              items:
+                $ref: '#/components/schemas/Video'
+        error:
+          $ref: '#/components/schemas/Error'
+    VideoQueryRequest:
+      type: object
+      required:
+      - filters
+      properties:
+        filters:
+          type: object
+          properties:
+            video_ids:
+              type: array
+              items:
+                type: string
+              description: List of video IDs to query
   securitySchemes:
     BearerAuth:
       type: http

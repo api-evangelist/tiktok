@@ -95,6 +95,17 @@ paths:
                 $ref: '#/components/schemas/ReportResponse'
 components:
   schemas:
+    PageInfo:
+      type: object
+      properties:
+        page:
+          type: integer
+        page_size:
+          type: integer
+        total_number:
+          type: integer
+        total_page:
+          type: integer
     ReportResponse:
       type: object
       properties:
@@ -116,17 +127,6 @@ components:
                     type: object
             page_info:
               $ref: '#/components/schemas/PageInfo'
-    PageInfo:
-      type: object
-      properties:
-        page:
-          type: integer
-        page_size:
-          type: integer
-        total_number:
-          type: integer
-        total_page:
-          type: integer
   securitySchemes:
     AccessToken:
       type: apiKey

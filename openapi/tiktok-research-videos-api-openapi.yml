@@ -133,39 +133,35 @@ paths:
           description: Unauthorized
 components:
   schemas:
-    VideoQueryResponse:
+    QueryCondition:
       type: object
       properties:
-        data:
-          type: object
-          properties:
-            videos:
-              type: array
-              items:
-                $ref: '#/components/schemas/ResearchVideo'
-            cursor:
-              type: integer
-            has_more:
-              type: boolean
-            search_id:
-              type: string
-        error:
-          $ref: '#/components/schemas/Error'
-    SocialListRequest:
-      type: object
-      required:
-      - username
-      - max_count
-      properties:
-        username:
+        field_name:
           type: string
-          description: TikTok handle (without @)
-        max_count:
-          type: integer
-          minimum: 1
-          maximum: 100
-        cursor:
-          type: integer
+          enum:
+          - id
+          - video_description
+          - create_date
+          - username
+          - region_code
+          - hashtag_name
+          - keyword
+          - music_id
+          - effect_id
+          - video_length
+        operation:
+          type: string
+          enum:
+          - EQ
+          - IN
+          - GT
+          - GTE
+          - LT
+          - LTE
+        field_values:
+          type: array
+          items:
+            type: string
     VideoQueryRequest:
       type: object
       required:
@@ -207,6 +203,30 @@ components:
         search_id:
           type: string
           description: Search ID for pagination continuation
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        log_id:
+          type: string
+    SocialListRequest:
+      type: object
+      required:
+      - username
+      - max_count
+      properties:
+        username:
+          type: string
+          description: TikTok handle (without @)
+        max_count:
+          type: integer
+          minimum: 1
+          maximum: 100
+        cursor:
+          type: integer
     ResearchVideo:
       type: object
       properties:
@@ -234,44 +254,24 @@ components:
           type: array
           items:
             type: string
-    QueryCondition:
+    VideoQueryResponse:
       type: object
       properties:
-        field_name:
-          type: string
-          enum:
-          - id
-          - video_description
-          - create_date
-          - username
-          - region_code
-          - hashtag_name
-          - keyword
-          - music_id
-          - effect_id
-          - video_length
-        operation:
-          type: string
-          enum:
-          - EQ
-          - IN
-          - GT
-          - GTE
-          - LT
-          - LTE
-        field_values:
-          type: array
-          items:
-            type: string
-    Error:
-      type: object
-      properties:
-        code:
-          type: string
-        message:
-          type: string
-        log_id:
-          type: string
+        data:
+          type: object
+          properties:
+            videos:
+              type: array
+              items:
+                $ref: '#/components/schemas/ResearchVideo'
+            cursor:
+              type: integer
+            has_more:
+              type: boolean
+            search_id:
+              type: string
+        error:
+          $ref: '#/components/schemas/Error'
   securitySchemes:
     BearerAuth:
       type: http

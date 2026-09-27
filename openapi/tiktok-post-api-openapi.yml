@@ -102,6 +102,33 @@ paths:
           description: Unauthorized
 components:
   schemas:
+    InboxVideoInitRequest:
+      type: object
+      required:
+      - source_info
+      properties:
+        source_info:
+          type: object
+          properties:
+            source:
+              type: string
+              enum:
+              - FILE_UPLOAD
+              - PULL_FROM_URL
+            video_url:
+              type: string
+            chunk_size:
+              type: integer
+            total_chunk_count:
+              type: integer
+    PublishStatusRequest:
+      type: object
+      required:
+      - publish_id
+      properties:
+        publish_id:
+          type: string
+          description: The publish_id returned from the init endpoint
     PostInfo:
       type: object
       properties:
@@ -128,6 +155,37 @@ components:
         video_cover_timestamp_ms:
           type: integer
           description: Timestamp in milliseconds for video cover
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        log_id:
+          type: string
+    PublishStatusResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            status:
+              type: string
+              enum:
+              - PROCESSING_UPLOAD
+              - PROCESSING_DOWNLOAD
+              - SENDING_TO_USER_INBOX
+              - FAILED
+              - PUBLISH_COMPLETE
+              description: Current status of the publish job
+            publish_id:
+              type: string
+            uploaded_bytes:
+              type: integer
+              description: Bytes uploaded so far
+        error:
+          $ref: '#/components/schemas/Error'
     VideoInitRequest:
       type: object
       required:
@@ -154,14 +212,6 @@ components:
               description: Total number of chunks
         post_info:
           $ref: '#/components/schemas/PostInfo'
-    PublishStatusRequest:
-      type: object
-      required:
-      - publish_id
-      properties:
-        publish_id:
-          type: string
-          description: The publish_id returned from the init endpoint
     VideoInitResponse:
       type: object
       properties:
@@ -202,56 +252,6 @@ components:
               type: integer
         error:
           $ref: '#/components/schemas/Error'
-    PublishStatusResponse:
-      type: object
-      properties:
-        data:
-          type: object
-          properties:
-            status:
-              type: string
-              enum:
-              - PROCESSING_UPLOAD
-              - PROCESSING_DOWNLOAD
-              - SENDING_TO_USER_INBOX
-              - FAILED
-              - PUBLISH_COMPLETE
-              description: Current status of the publish job
-            publish_id:
-              type: string
-            uploaded_bytes:
-              type: integer
-              description: Bytes uploaded so far
-        error:
-          $ref: '#/components/schemas/Error'
-    InboxVideoInitRequest:
-      type: object
-      required:
-      - source_info
-      properties:
-        source_info:
-          type: object
-          properties:
-            source:
-              type: string
-              enum:
-              - FILE_UPLOAD
-              - PULL_FROM_URL
-            video_url:
-              type: string
-            chunk_size:
-              type: integer
-            total_chunk_count:
-              type: integer
-    Error:
-      type: object
-      properties:
-        code:
-          type: string
-        message:
-          type: string
-        log_id:
-          type: string
   securitySchemes:
     BearerAuth:
       type: http

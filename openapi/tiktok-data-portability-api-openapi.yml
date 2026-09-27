@@ -85,25 +85,6 @@ components:
               type: string
         error:
           $ref: '#/components/schemas/Error'
-    DataPortabilityTaskRequest:
-      type: object
-      required:
-      - data_types
-      properties:
-        data_types:
-          type: array
-          items:
-            type: string
-            enum:
-            - ACTIVITY
-            - VIDEOS
-            - FAVORITES
-            - FOLLOWING
-            - FOLLOWERS
-            - PROFILE
-            - DIRECT_MESSAGES
-            - COMMENTS
-          description: Data categories to export
     TaskStatusResponse:
       type: object
       properties:
@@ -126,6 +107,25 @@ components:
               description: Download URLs when status is READY
         error:
           $ref: '#/components/schemas/Error'
+    DataPortabilityTaskRequest:
+      type: object
+      required:
+      - data_types
+      properties:
+        data_types:
+          type: array
+          items:
+            type: string
+            enum:
+            - ACTIVITY
+            - VIDEOS
+            - FAVORITES
+            - FOLLOWING
+            - FOLLOWERS
+            - PROFILE
+            - DIRECT_MESSAGES
+            - COMMENTS
+          description: Data categories to export
   securitySchemes:
     BearerAuth:
       type: http

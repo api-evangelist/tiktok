@@ -3,7 +3,15 @@
   "sources": [
     "_original/tiktok-business-openapi.yml",
     "_original/tiktok-data-portability-openapi.yml",
-    "_original/tiktok-shop-openapi.yml"
+    "_original/tiktok-shop-openapi.yml",
+    "tiktok-for-developers-oauth-api-openapi.yml",
+    "tiktok-for-developers-post-api-openapi.yml",
+    "tiktok-for-developers-research-comments-api-openapi.yml",
+    "tiktok-for-developers-research-social-api-openapi.yml",
+    "tiktok-for-developers-research-users-api-openapi.yml",
+    "tiktok-for-developers-research-videos-api-openapi.yml",
+    "tiktok-for-developers-user-api-openapi.yml",
+    "tiktok-for-developers-video-api-openapi.yml"
   ],
   "outputs": [
     "tiktok-ad-groups-api-openapi.yml",
@@ -15,17 +23,37 @@
     "tiktok-finance-api-openapi.yml",
     "tiktok-logistics-api-openapi.yml",
     "tiktok-orders-api-openapi.yml",
-    "tiktok-products-api-openapi.yml"
+    "tiktok-products-api-openapi.yml",
+    "tiktok-oauth-api-openapi.yml",
+    "tiktok-post-api-openapi.yml",
+    "tiktok-research-comments-api-openapi.yml",
+    "tiktok-research-social-api-openapi.yml",
+    "tiktok-research-users-api-openapi.yml",
+    "tiktok-research-videos-api-openapi.yml",
+    "tiktok-user-api-openapi.yml",
+    "tiktok-video-api-openapi.yml"
   ],
-  "archived": [],
+  "archived": [
+    "deleted 8 superseded output(s) from the previous generation"
+  ],
   "errors": [],
-  "warnings": [],
+  "warnings": [
+    "tiktok-for-developers-oauth-api-openapi.yml: previously refined output kept for 3 operation(s) no archived document covers (e.g. /v2/oauth/revoke/ post, /v2/oauth/token/ post, /v2/oauth/token/refresh/ post); its other 0 operation(s) came from the archive and were dropped from it. The archive is incomplete for this provider \u2014 re-harvest to restore _original/ as the full source of truth.",
+    "tiktok-for-developers-post-api-openapi.yml: previously refined output kept for 4 operation(s) no archived document covers (e.g. /v2/post/publish/creator_info/query/ post, /v2/post/publish/inbox/video/init/ post, /v2/post/publish/status/fetch/ post); its other 0 operation(s) came from the archive and were dropped from it. The archive is incomplete for this provider \u2014 re-harvest to restore _original/ as the full source of truth.",
+    "tiktok-for-developers-research-comments-api-openapi.yml: previously refined output kept for 1 operation(s) no archived document covers (e.g. /v2/research/video/comment/list/ post); its other 0 operation(s) came from the archive and were dropped from it. The archive is incomplete for this provider \u2014 re-harvest to restore _original/ as the full source of truth.",
+    "tiktok-for-developers-research-social-api-openapi.yml: previously refined output kept for 2 operation(s) no archived document covers (e.g. /v2/research/user/followers/ post, /v2/research/user/following/ post); its other 0 operation(s) came from the archive and were dropped from it. The archive is incomplete for this provider \u2014 re-harvest to restore _original/ as the full source of truth.",
+    "tiktok-for-developers-research-users-api-openapi.yml: previously refined output kept for 1 operation(s) no archived document covers (e.g. /v2/research/user/info/ post); its other 0 operation(s) came from the archive and were dropped from it. The archive is incomplete for this provider \u2014 re-harvest to restore _original/ as the full source of truth.",
+    "tiktok-for-developers-research-videos-api-openapi.yml: previously refined output kept for 4 operation(s) no archived document covers (e.g. /v2/research/user/liked_videos/ post, /v2/research/user/pinned_videos/ post, /v2/research/user/reposted_videos/ post); its other 0 operation(s) came from the archive and were dropped from it. The archive is incomplete for this provider \u2014 re-harvest to restore _original/ as the full source of truth.",
+    "tiktok-for-developers-user-api-openapi.yml: previously refined output kept for 1 operation(s) no archived document covers (e.g. /v2/user/info/ get); its other 0 operation(s) came from the archive and were dropped from it. The archive is incomplete for this provider \u2014 re-harvest to restore _original/ as the full source of truth.",
+    "tiktok-for-developers-video-api-openapi.yml: previously refined output kept for 2 operation(s) no archived document covers (e.g. /v2/video/list/ post, /v2/video/query/ post); its other 0 operation(s) came from the archive and were dropped from it. The archive is incomplete for this provider \u2014 re-harvest to restore _original/ as the full source of truth."
+  ],
   "notes": [
     "sourced from openapi/_original/ (3 archived document(s)); previously refined output at the top level was skipped rather than re-split",
     "tiktok-business-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
     "tiktok-data-portability-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
     "tiktok-shop-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "apis.yml register: already-registered"
+    "superseded outputs removed: tiktok-for-developers-oauth-api-openapi.yml, tiktok-for-developers-post-api-openapi.yml, tiktok-for-developers-research-comments-api-openapi.yml, tiktok-for-developers-research-social-api-openapi.yml, tiktok-for-developers-research-users-api-openapi.yml \u2026",
+    "apis.yml register: written (+8 apis, 18 total)"
   ],
   "skipped": [
     "tiktok-ad-groups-api-openapi.yml: previously refined output, superseded by openapi/_original/",

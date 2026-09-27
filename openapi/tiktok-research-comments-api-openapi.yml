@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: TikTok Research Research Social API
+  title: TikTok Research Research Comments API
   description: The TikTok Research API provides academic and institutional researchers access to TikTok public data. Supports querying videos, user information, comments, followers, following lists, liked videos, and reposted videos.
   version: v2
   contact:
@@ -13,16 +13,16 @@ servers:
 security:
 - BearerAuth: []
 tags:
-- name: Research Social
-  description: Social graph data
+- name: Research Comments
+  description: Comment data operations
 paths:
-  /v2/research/user/followers/:
+  /v2/research/video/comment/list/:
     post:
-      operationId: listUserFollowers
-      summary: List User Followers
-      description: Retrieves the list of followers for a specified TikTok user.
+      operationId: listVideoComments
+      summary: List Video Comments
+      description: Retrieves all comments on a specific TikTok video, including comment text, author information, create time, and like count.
       tags:
-      - Research Social
+      - Research Comments
       parameters:
       - name: fields
         in: query
@@ -34,46 +34,50 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/SocialListRequest'
+              $ref: '#/components/schemas/CommentListRequest'
       responses:
         '200':
-          description: Followers list returned successfully
+          description: Comments returned successfully
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/SocialListResponse'
-        '401':
-          description: Unauthorized
-  /v2/research/user/following/:
-    post:
-      operationId: listUserFollowing
-      summary: List User Following
-      description: Retrieves the list of accounts that a specified TikTok user follows.
-      tags:
-      - Research Social
-      parameters:
-      - name: fields
-        in: query
-        required: true
-        schema:
-          type: string
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/SocialListRequest'
-      responses:
-        '200':
-          description: Following list returned successfully
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/SocialListResponse'
+                $ref: '#/components/schemas/CommentListResponse'
         '401':
           description: Unauthorized
 components:
   schemas:
+    Comment:
+      type: object
+      properties:
+        id:
+          type: string
+        video_id:
+          type: string
+        text:
+          type: string
+        like_count:
+          type: integer
+        reply_count:
+          type: integer
+        parent_comment_id:
+          type: string
+        create_time:
+          type: integer
+    CommentListRequest:
+      type: object
+      required:
+      - video_id
+      - max_count
+      properties:
+        video_id:
+          type: string
+          description: TikTok video ID
+        max_count:
+          type: integer
+          minimum: 1
+          maximum: 100
+        cursor:
+          type: integer
     Error:
       type: object
       properties:
@@ -83,44 +87,22 @@ components:
           type: string
         log_id:
           type: string
-    SocialListRequest:
-      type: object
-      required:
-      - username
-      - max_count
-      properties:
-        username:
-          type: string
-          description: TikTok handle (without @)
-        max_count:
-          type: integer
-          minimum: 1
-          maximum: 100
-        cursor:
-          type: integer
-    SocialListResponse:
+    CommentListResponse:
       type: object
       properties:
         data:
           type: object
           properties:
-            user_followers:
+            comments:
               type: array
               items:
-                $ref: '#/components/schemas/SocialUser'
+                $ref: '#/components/schemas/Comment'
             cursor:
               type: integer
             has_more:
               type: boolean
         error:
           $ref: '#/components/schemas/Error'
-    SocialUser:
-      type: object
-      properties:
-        display_name:
-          type: string
-        username:
-          type: string
   securitySchemes:
     BearerAuth:
       type: http

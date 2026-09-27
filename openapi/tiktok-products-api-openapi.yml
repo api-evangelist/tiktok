@@ -135,6 +135,15 @@ paths:
                 $ref: '#/components/schemas/FileUploadResponse'
 components:
   schemas:
+    ProductDetailResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        data:
+          $ref: '#/components/schemas/Product'
     ProductUpdateRequest:
       type: object
       properties:
@@ -181,24 +190,6 @@ components:
               type: string
             url:
               type: string
-    GenericResponse:
-      type: object
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
-        data:
-          type: object
-    ProductDetailResponse:
-      type: object
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
-        data:
-          $ref: '#/components/schemas/Product'
     Product:
       type: object
       properties:
@@ -247,6 +238,15 @@ components:
                 type: string
               available_stock:
                 type: integer
+    GenericResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        data:
+          type: object
   securitySchemes:
     AccessToken:
       type: apiKey

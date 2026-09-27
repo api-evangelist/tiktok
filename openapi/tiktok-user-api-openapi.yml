@@ -43,6 +43,16 @@ paths:
           description: Bad Request
 components:
   schemas:
+    UserInfoResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            user:
+              $ref: '#/components/schemas/User'
+        error:
+          $ref: '#/components/schemas/Error'
     Error:
       type: object
       properties:
@@ -91,16 +101,6 @@ components:
         video_count:
           type: integer
           description: Total number of public videos
-    UserInfoResponse:
-      type: object
-      properties:
-        data:
-          type: object
-          properties:
-            user:
-              $ref: '#/components/schemas/User'
-        error:
-          $ref: '#/components/schemas/Error'
   securitySchemes:
     BearerAuth:
       type: http
