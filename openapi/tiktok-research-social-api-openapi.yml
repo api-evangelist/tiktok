@@ -74,6 +74,15 @@ paths:
           description: Unauthorized
 components:
   schemas:
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        log_id:
+          type: string
     SocialListRequest:
       type: object
       required:
@@ -89,15 +98,6 @@ components:
           maximum: 100
         cursor:
           type: integer
-    Error:
-      type: object
-      properties:
-        code:
-          type: string
-        message:
-          type: string
-        log_id:
-          type: string
     SocialListResponse:
       type: object
       properties:

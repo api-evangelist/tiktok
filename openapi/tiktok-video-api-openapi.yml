@@ -76,6 +76,42 @@ paths:
           description: Unauthorized
 components:
   schemas:
+    VideoQueryResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            videos:
+              type: array
+              items:
+                $ref: '#/components/schemas/Video'
+        error:
+          $ref: '#/components/schemas/Error'
+    VideoQueryRequest:
+      type: object
+      required:
+      - filters
+      properties:
+        filters:
+          type: object
+          properties:
+            video_ids:
+              type: array
+              items:
+                type: string
+              description: List of video IDs to query
+    VideoListRequest:
+      type: object
+      properties:
+        max_count:
+          type: integer
+          description: Maximum number of videos to return (1-20)
+          minimum: 1
+          maximum: 20
+        cursor:
+          type: integer
+          description: Cursor for pagination
     Video:
       type: object
       properties:
@@ -136,17 +172,6 @@ components:
         log_id:
           type: string
           description: Log identifier for debugging
-    VideoListRequest:
-      type: object
-      properties:
-        max_count:
-          type: integer
-          description: Maximum number of videos to return (1-20)
-          minimum: 1
-          maximum: 20
-        cursor:
-          type: integer
-          description: Cursor for pagination
     VideoListResponse:
       type: object
       properties:
@@ -165,31 +190,6 @@ components:
               description: Whether more results are available
         error:
           $ref: '#/components/schemas/Error'
-    VideoQueryResponse:
-      type: object
-      properties:
-        data:
-          type: object
-          properties:
-            videos:
-              type: array
-              items:
-                $ref: '#/components/schemas/Video'
-        error:
-          $ref: '#/components/schemas/Error'
-    VideoQueryRequest:
-      type: object
-      required:
-      - filters
-      properties:
-        filters:
-          type: object
-          properties:
-            video_ids:
-              type: array
-              items:
-                type: string
-              description: List of video IDs to query
   securitySchemes:
     BearerAuth:
       type: http

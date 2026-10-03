@@ -102,31 +102,6 @@ paths:
                 $ref: '#/components/schemas/GenericResponse'
 components:
   schemas:
-    GenericResponse:
-      type: object
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
-        data:
-          type: object
-    CampaignListResponse:
-      type: object
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
-        data:
-          type: object
-          properties:
-            list:
-              type: array
-              items:
-                $ref: '#/components/schemas/Campaign'
-            page_info:
-              $ref: '#/components/schemas/PageInfo'
     CampaignCreateResponse:
       type: object
       properties:
@@ -187,22 +162,22 @@ components:
           type: integer
         total_page:
           type: integer
-    CampaignUpdateRequest:
+    CampaignListResponse:
       type: object
-      required:
-      - advertiser_id
-      - campaign_id
       properties:
-        advertiser_id:
+        code:
+          type: integer
+        message:
           type: string
-        campaign_id:
-          type: string
-        campaign_name:
-          type: string
-        budget:
-          type: number
-        status:
-          type: string
+        data:
+          type: object
+          properties:
+            list:
+              type: array
+              items:
+                $ref: '#/components/schemas/Campaign'
+            page_info:
+              $ref: '#/components/schemas/PageInfo'
     CampaignCreateRequest:
       type: object
       required:
@@ -221,6 +196,31 @@ components:
           type: string
         budget:
           type: number
+    CampaignUpdateRequest:
+      type: object
+      required:
+      - advertiser_id
+      - campaign_id
+      properties:
+        advertiser_id:
+          type: string
+        campaign_id:
+          type: string
+        campaign_name:
+          type: string
+        budget:
+          type: number
+        status:
+          type: string
+    GenericResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        data:
+          type: object
   securitySchemes:
     AccessToken:
       type: apiKey

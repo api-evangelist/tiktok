@@ -46,6 +46,46 @@ paths:
           description: Unauthorized
 components:
   schemas:
+    CommentListRequest:
+      type: object
+      required:
+      - video_id
+      - max_count
+      properties:
+        video_id:
+          type: string
+          description: TikTok video ID
+        max_count:
+          type: integer
+          minimum: 1
+          maximum: 100
+        cursor:
+          type: integer
+    CommentListResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            comments:
+              type: array
+              items:
+                $ref: '#/components/schemas/Comment'
+            cursor:
+              type: integer
+            has_more:
+              type: boolean
+        error:
+          $ref: '#/components/schemas/Error'
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        log_id:
+          type: string
     Comment:
       type: object
       properties:
@@ -63,46 +103,6 @@ components:
           type: string
         create_time:
           type: integer
-    CommentListRequest:
-      type: object
-      required:
-      - video_id
-      - max_count
-      properties:
-        video_id:
-          type: string
-          description: TikTok video ID
-        max_count:
-          type: integer
-          minimum: 1
-          maximum: 100
-        cursor:
-          type: integer
-    Error:
-      type: object
-      properties:
-        code:
-          type: string
-        message:
-          type: string
-        log_id:
-          type: string
-    CommentListResponse:
-      type: object
-      properties:
-        data:
-          type: object
-          properties:
-            comments:
-              type: array
-              items:
-                $ref: '#/components/schemas/Comment'
-            cursor:
-              type: integer
-            has_more:
-              type: boolean
-        error:
-          $ref: '#/components/schemas/Error'
   securitySchemes:
     BearerAuth:
       type: http
