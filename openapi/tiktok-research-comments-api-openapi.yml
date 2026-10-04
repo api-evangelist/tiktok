@@ -46,21 +46,6 @@ paths:
           description: Unauthorized
 components:
   schemas:
-    CommentListRequest:
-      type: object
-      required:
-      - video_id
-      - max_count
-      properties:
-        video_id:
-          type: string
-          description: TikTok video ID
-        max_count:
-          type: integer
-          minimum: 1
-          maximum: 100
-        cursor:
-          type: integer
     CommentListResponse:
       type: object
       properties:
@@ -102,6 +87,21 @@ components:
         parent_comment_id:
           type: string
         create_time:
+          type: integer
+    CommentListRequest:
+      type: object
+      required:
+      - video_id
+      - max_count
+      properties:
+        video_id:
+          type: string
+          description: TikTok video ID
+        max_count:
+          type: integer
+          minimum: 1
+          maximum: 100
+        cursor:
           type: integer
   securitySchemes:
     BearerAuth:

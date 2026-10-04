@@ -135,91 +135,6 @@ paths:
                 $ref: '#/components/schemas/FileUploadResponse'
 components:
   schemas:
-    ProductDetailResponse:
-      type: object
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
-        data:
-          $ref: '#/components/schemas/Product'
-    Product:
-      type: object
-      properties:
-        product_id:
-          type: string
-        product_name:
-          type: string
-        status:
-          type: string
-        create_time:
-          type: integer
-        update_time:
-          type: integer
-        category_id:
-          type: string
-        brand_id:
-          type: string
-        price:
-          $ref: '#/components/schemas/Price'
-        skus:
-          type: array
-          items:
-            $ref: '#/components/schemas/SKU'
-    Price:
-      type: object
-      properties:
-        amount:
-          type: string
-        currency:
-          type: string
-    FileUploadResponse:
-      type: object
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
-        data:
-          type: object
-          properties:
-            uri:
-              type: string
-            url:
-              type: string
-    ProductUpdateRequest:
-      type: object
-      properties:
-        product_name:
-          type: string
-        description:
-          type: string
-        main_images:
-          type: array
-          items:
-            type: object
-            properties:
-              uri:
-                type: string
-    ProductListResponse:
-      type: object
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
-        data:
-          type: object
-          properties:
-            products:
-              type: array
-              items:
-                $ref: '#/components/schemas/Product'
-            next_page_token:
-              type: string
-            total_count:
-              type: integer
     SKU:
       type: object
       properties:
@@ -247,6 +162,91 @@ components:
           type: string
         data:
           type: object
+    ProductListResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        data:
+          type: object
+          properties:
+            products:
+              type: array
+              items:
+                $ref: '#/components/schemas/Product'
+            next_page_token:
+              type: string
+            total_count:
+              type: integer
+    ProductDetailResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        data:
+          $ref: '#/components/schemas/Product'
+    Price:
+      type: object
+      properties:
+        amount:
+          type: string
+        currency:
+          type: string
+    ProductUpdateRequest:
+      type: object
+      properties:
+        product_name:
+          type: string
+        description:
+          type: string
+        main_images:
+          type: array
+          items:
+            type: object
+            properties:
+              uri:
+                type: string
+    FileUploadResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        data:
+          type: object
+          properties:
+            uri:
+              type: string
+            url:
+              type: string
+    Product:
+      type: object
+      properties:
+        product_id:
+          type: string
+        product_name:
+          type: string
+        status:
+          type: string
+        create_time:
+          type: integer
+        update_time:
+          type: integer
+        category_id:
+          type: string
+        brand_id:
+          type: string
+        price:
+          $ref: '#/components/schemas/Price'
+        skus:
+          type: array
+          items:
+            $ref: '#/components/schemas/SKU'
   securitySchemes:
     AccessToken:
       type: apiKey

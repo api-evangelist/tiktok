@@ -66,6 +66,15 @@ paths:
                 $ref: '#/components/schemas/TaskStatusResponse'
 components:
   schemas:
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        log_id:
+          type: string
     TaskStatusResponse:
       type: object
       properties:
@@ -88,15 +97,6 @@ components:
               description: Download URLs when status is READY
         error:
           $ref: '#/components/schemas/Error'
-    Error:
-      type: object
-      properties:
-        code:
-          type: string
-        message:
-          type: string
-        log_id:
-          type: string
     DataPortabilityTaskResponse:
       type: object
       properties:

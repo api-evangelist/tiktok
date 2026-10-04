@@ -76,18 +76,6 @@ paths:
           description: Unauthorized
 components:
   schemas:
-    VideoQueryResponse:
-      type: object
-      properties:
-        data:
-          type: object
-          properties:
-            videos:
-              type: array
-              items:
-                $ref: '#/components/schemas/Video'
-        error:
-          $ref: '#/components/schemas/Error'
     VideoQueryRequest:
       type: object
       required:
@@ -112,6 +100,36 @@ components:
         cursor:
           type: integer
           description: Cursor for pagination
+    VideoListResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            videos:
+              type: array
+              items:
+                $ref: '#/components/schemas/Video'
+            cursor:
+              type: integer
+              description: Cursor for next page
+            has_more:
+              type: boolean
+              description: Whether more results are available
+        error:
+          $ref: '#/components/schemas/Error'
+    VideoQueryResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            videos:
+              type: array
+              items:
+                $ref: '#/components/schemas/Video'
+        error:
+          $ref: '#/components/schemas/Error'
     Video:
       type: object
       properties:
@@ -172,24 +190,6 @@ components:
         log_id:
           type: string
           description: Log identifier for debugging
-    VideoListResponse:
-      type: object
-      properties:
-        data:
-          type: object
-          properties:
-            videos:
-              type: array
-              items:
-                $ref: '#/components/schemas/Video'
-            cursor:
-              type: integer
-              description: Cursor for next page
-            has_more:
-              type: boolean
-              description: Whether more results are available
-        error:
-          $ref: '#/components/schemas/Error'
   securitySchemes:
     BearerAuth:
       type: http

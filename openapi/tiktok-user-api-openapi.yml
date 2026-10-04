@@ -43,18 +43,6 @@ paths:
           description: Bad Request
 components:
   schemas:
-    Error:
-      type: object
-      properties:
-        code:
-          type: string
-          description: Error code
-        message:
-          type: string
-          description: Human-readable error message
-        log_id:
-          type: string
-          description: Log identifier for debugging
     User:
       type: object
       properties:
@@ -101,6 +89,18 @@ components:
               $ref: '#/components/schemas/User'
         error:
           $ref: '#/components/schemas/Error'
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+          description: Error code
+        message:
+          type: string
+          description: Human-readable error message
+        log_id:
+          type: string
+          description: Log identifier for debugging
   securitySchemes:
     BearerAuth:
       type: http

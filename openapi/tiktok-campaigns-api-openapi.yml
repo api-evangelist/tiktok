@@ -102,7 +102,25 @@ paths:
                 $ref: '#/components/schemas/GenericResponse'
 components:
   schemas:
-    CampaignCreateResponse:
+    CampaignCreateRequest:
+      type: object
+      required:
+      - advertiser_id
+      - campaign_name
+      - objective_type
+      - budget_mode
+      properties:
+        advertiser_id:
+          type: string
+        campaign_name:
+          type: string
+        objective_type:
+          type: string
+        budget_mode:
+          type: string
+        budget:
+          type: number
+    CampaignListResponse:
       type: object
       properties:
         code:
@@ -112,8 +130,12 @@ components:
         data:
           type: object
           properties:
-            campaign_id:
-              type: string
+            list:
+              type: array
+              items:
+                $ref: '#/components/schemas/Campaign'
+            page_info:
+              $ref: '#/components/schemas/PageInfo'
     Campaign:
       type: object
       properties:
@@ -151,6 +173,18 @@ components:
           type: string
         modify_time:
           type: string
+    CampaignCreateResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        data:
+          type: object
+          properties:
+            campaign_id:
+              type: string
     PageInfo:
       type: object
       properties:
@@ -162,40 +196,6 @@ components:
           type: integer
         total_page:
           type: integer
-    CampaignListResponse:
-      type: object
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
-        data:
-          type: object
-          properties:
-            list:
-              type: array
-              items:
-                $ref: '#/components/schemas/Campaign'
-            page_info:
-              $ref: '#/components/schemas/PageInfo'
-    CampaignCreateRequest:
-      type: object
-      required:
-      - advertiser_id
-      - campaign_name
-      - objective_type
-      - budget_mode
-      properties:
-        advertiser_id:
-          type: string
-        campaign_name:
-          type: string
-        objective_type:
-          type: string
-        budget_mode:
-          type: string
-        budget:
-          type: number
     CampaignUpdateRequest:
       type: object
       required:

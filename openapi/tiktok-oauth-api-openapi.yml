@@ -84,48 +84,6 @@ paths:
           description: Bad Request
 components:
   schemas:
-    RevokeTokenResponse:
-      type: object
-      properties:
-        error:
-          type: string
-        error_description:
-          type: string
-        message:
-          type: string
-    RefreshTokenRequest:
-      type: object
-      required:
-      - client_key
-      - client_secret
-      - grant_type
-      - refresh_token
-      properties:
-        client_key:
-          type: string
-        client_secret:
-          type: string
-        grant_type:
-          type: string
-          enum:
-          - refresh_token
-        refresh_token:
-          type: string
-          description: The refresh token to use
-    RevokeTokenRequest:
-      type: object
-      required:
-      - client_key
-      - client_secret
-      - token
-      properties:
-        client_key:
-          type: string
-        client_secret:
-          type: string
-        token:
-          type: string
-          description: The access token to revoke
     TokenResponse:
       type: object
       properties:
@@ -176,3 +134,45 @@ components:
         redirect_uri:
           type: string
           description: Redirect URI registered for your app
+    RevokeTokenRequest:
+      type: object
+      required:
+      - client_key
+      - client_secret
+      - token
+      properties:
+        client_key:
+          type: string
+        client_secret:
+          type: string
+        token:
+          type: string
+          description: The access token to revoke
+    RevokeTokenResponse:
+      type: object
+      properties:
+        error:
+          type: string
+        error_description:
+          type: string
+        message:
+          type: string
+    RefreshTokenRequest:
+      type: object
+      required:
+      - client_key
+      - client_secret
+      - grant_type
+      - refresh_token
+      properties:
+        client_key:
+          type: string
+        client_secret:
+          type: string
+        grant_type:
+          type: string
+          enum:
+          - refresh_token
+        refresh_token:
+          type: string
+          description: The refresh token to use

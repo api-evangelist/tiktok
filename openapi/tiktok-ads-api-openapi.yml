@@ -72,6 +72,22 @@ paths:
                 $ref: '#/components/schemas/GenericResponse'
 components:
   schemas:
+    AdListResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        data:
+          type: object
+          properties:
+            list:
+              type: array
+              items:
+                $ref: '#/components/schemas/Ad'
+            page_info:
+              $ref: '#/components/schemas/PageInfo'
     Ad:
       type: object
       properties:
@@ -98,6 +114,15 @@ components:
           type: integer
         total_page:
           type: integer
+    GenericResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        data:
+          type: object
     AdCreateRequest:
       type: object
       required:
@@ -116,31 +141,6 @@ components:
           type: string
         landing_page_url:
           type: string
-    GenericResponse:
-      type: object
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
-        data:
-          type: object
-    AdListResponse:
-      type: object
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
-        data:
-          type: object
-          properties:
-            list:
-              type: array
-              items:
-                $ref: '#/components/schemas/Ad'
-            page_info:
-              $ref: '#/components/schemas/PageInfo'
   securitySchemes:
     AccessToken:
       type: apiKey

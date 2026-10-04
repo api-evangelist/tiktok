@@ -87,12 +87,41 @@ paths:
                 $ref: '#/components/schemas/OrderDetailResponse'
 components:
   schemas:
-    Price:
+    Order:
       type: object
       properties:
-        amount:
+        order_id:
           type: string
-        currency:
+        order_status:
+          type: string
+        create_time:
+          type: integer
+        paid_time:
+          type: integer
+        buyer_email:
+          type: string
+        recipient_address:
+          $ref: '#/components/schemas/Address'
+        line_items:
+          type: array
+          items:
+            $ref: '#/components/schemas/LineItem'
+    Address:
+      type: object
+      properties:
+        name:
+          type: string
+        phone_number:
+          type: string
+        address_line1:
+          type: string
+        city:
+          type: string
+        province_code:
+          type: string
+        postal_code:
+          type: string
+        region_code:
           type: string
     LineItem:
       type: object
@@ -125,25 +154,13 @@ components:
               type: string
             total_count:
               type: integer
-    Order:
+    Price:
       type: object
       properties:
-        order_id:
+        amount:
           type: string
-        order_status:
+        currency:
           type: string
-        create_time:
-          type: integer
-        paid_time:
-          type: integer
-        buyer_email:
-          type: string
-        recipient_address:
-          $ref: '#/components/schemas/Address'
-        line_items:
-          type: array
-          items:
-            $ref: '#/components/schemas/LineItem'
     OrderDetailResponse:
       type: object
       properties:
@@ -153,23 +170,6 @@ components:
           type: string
         data:
           $ref: '#/components/schemas/Order'
-    Address:
-      type: object
-      properties:
-        name:
-          type: string
-        phone_number:
-          type: string
-        address_line1:
-          type: string
-        city:
-          type: string
-        province_code:
-          type: string
-        postal_code:
-          type: string
-        region_code:
-          type: string
   securitySchemes:
     AccessToken:
       type: apiKey

@@ -133,24 +133,6 @@ paths:
           description: Unauthorized
 components:
   schemas:
-    VideoQueryResponse:
-      type: object
-      properties:
-        data:
-          type: object
-          properties:
-            videos:
-              type: array
-              items:
-                $ref: '#/components/schemas/ResearchVideo'
-            cursor:
-              type: integer
-            has_more:
-              type: boolean
-            search_id:
-              type: string
-        error:
-          $ref: '#/components/schemas/Error'
     VideoQueryRequest:
       type: object
       required:
@@ -234,15 +216,24 @@ components:
           maximum: 100
         cursor:
           type: integer
-    Error:
+    VideoQueryResponse:
       type: object
       properties:
-        code:
-          type: string
-        message:
-          type: string
-        log_id:
-          type: string
+        data:
+          type: object
+          properties:
+            videos:
+              type: array
+              items:
+                $ref: '#/components/schemas/ResearchVideo'
+            cursor:
+              type: integer
+            has_more:
+              type: boolean
+            search_id:
+              type: string
+        error:
+          $ref: '#/components/schemas/Error'
     QueryCondition:
       type: object
       properties:
@@ -272,6 +263,15 @@ components:
           type: array
           items:
             type: string
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        log_id:
+          type: string
   securitySchemes:
     BearerAuth:
       type: http
