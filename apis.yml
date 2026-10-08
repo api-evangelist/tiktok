@@ -369,6 +369,12 @@ apis:
   - type: Documentation
     url: https://developers.tiktok.com/doc/login-kit-web
 common:
+- type: Plans
+  url: plans/tiktok-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/tiktok-rate-limits.yml
+- type: FinOps
+  url: finops/tiktok-finops.yml
 - type: CapabilityMap
   url: capabilities/tiktok-capability-edges.yml
   name: TikTok Business Capability Map
