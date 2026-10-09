@@ -1,61 +1,27 @@
-generated: '2026-07-15'
+generated: '2026-09-23'
 method: generated
-source: openapi/tiktok-business-openapi.yml, openapi/tiktok-data-portability-openapi.yml, openapi/tiktok-shop-openapi.yml
+source: openapi/tiktok-ad-groups-api-openapi.yml, openapi/tiktok-ads-api-openapi.yml, openapi/tiktok-audiences-api-openapi.yml,
+  openapi/tiktok-campaigns-api-openapi.yml, openapi/tiktok-data-portability-api-openapi.yml,
+  openapi/tiktok-finance-api-openapi.yml, openapi/tiktok-for-developers-oauth-api-openapi.yml,
+  openapi/tiktok-for-developers-post-api-openapi.yml, openapi/tiktok-for-developers-research-comments-api-openapi.yml,
+  openapi/tiktok-for-developers-research-social-api-openapi.yml, openapi/tiktok-for-developers-research-users-api-openapi.yml,
+  openapi/tiktok-for-developers-research-videos-api-openapi.yml, openapi/tiktok-for-developers-user-api-openapi.yml,
+  openapi/tiktok-for-developers-video-api-openapi.yml, openapi/tiktok-logistics-api-openapi.yml,
+  openapi/tiktok-orders-api-openapi.yml, openapi/tiktok-products-api-openapi.yml, openapi/tiktok-reporting-api-openapi.yml
 description: Recommended x-agentic-access execution contracts, classified heuristically from
   the OpenAPI. A governance starting point for exposing this API to AI agents — review and bind
   audience per deployment. See research/curity/agentic-governance/.
 summary:
-  operations: 19
+  operations: 37
   by_action_class:
-    connected: 11
-    acting: 8
+    connected: 23
+    acting: 14
   by_consequence:
-    read: 11
-    write: 8
-  human_in_the_loop_required: 0
+    read: 23
+    write: 13
+    safety-critical: 1
+  human_in_the_loop_required: 1
 operations:
-- path: /open_api/v1.3/campaign/get/
-  method: get
-  operationId: getCampaigns
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /open_api/v1.3/campaign/create/
-  method: post
-  operationId: createCampaign
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /open_api/v1.3/campaign/update/
-  method: post
-  operationId: updateCampaign
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
 - path: /open_api/v1.3/adgroup/get/
   method: get
   operationId: getAdGroups
@@ -108,16 +74,6 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /open_api/v1.3/report/integrated/get/
-  method: get
-  operationId: getReport
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
 - path: /open_api/v1.3/dmp/custom_audience/list/
   method: get
   operationId: listCustomAudiences
@@ -128,6 +84,48 @@ operations:
     token:
       max-ttl: 3600
     audit: none
+- path: /open_api/v1.3/campaign/get/
+  method: get
+  operationId: getCampaigns
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /open_api/v1.3/campaign/create/
+  method: post
+  operationId: createCampaign
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /open_api/v1.3/campaign/update/
+  method: post
+  operationId: updateCampaign
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
 - path: /v2/data_portability/task/create/
   method: post
   operationId: createDataPortabilityTask
@@ -148,6 +146,26 @@ operations:
   method: post
   operationId: getDataPortabilityTaskStatus
   x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /finance/202309/payments
+  method: get
+  operationId: listPayments
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v2/oauth/token/
+  method: post
+  operationId: exchangeToken
+  x-agentic-access:
     action-class: acting
     consequence: write
     subject: required
@@ -160,6 +178,242 @@ operations:
       - abnormal
       - high-value
     audit: required
+- path: /v2/oauth/token/refresh/
+  method: post
+  operationId: refreshToken
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v2/oauth/revoke/
+  method: post
+  operationId: revokeToken
+  x-agentic-access:
+    action-class: acting
+    consequence: safety-critical
+    subject: required
+    audience: null
+    token:
+      max-ttl: 120
+      exchange: true
+      purpose-required: true
+      proof-of-possession: true
+    escalation:
+      human-in-the-loop: required
+    audit: required
+- path: /v2/post/publish/video/init/
+  method: post
+  operationId: initVideoPublish
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v2/post/publish/status/fetch/
+  method: post
+  operationId: getPublishStatus
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v2/post/publish/inbox/video/init/
+  method: post
+  operationId: initInboxVideoUpload
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v2/post/publish/creator_info/query/
+  method: post
+  operationId: queryCreatorInfo
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v2/research/video/comment/list/
+  method: post
+  operationId: listVideoComments
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v2/research/user/followers/
+  method: post
+  operationId: listUserFollowers
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v2/research/user/following/
+  method: post
+  operationId: listUserFollowing
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v2/research/user/info/
+  method: post
+  operationId: queryResearchUserInfo
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v2/research/video/query/
+  method: post
+  operationId: queryResearchVideos
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v2/research/user/liked_videos/
+  method: post
+  operationId: listUserLikedVideos
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v2/research/user/pinned_videos/
+  method: post
+  operationId: listUserPinnedVideos
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v2/research/user/reposted_videos/
+  method: post
+  operationId: listUserRepostedVideos
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v2/user/info/
+  method: get
+  operationId: getUserInfo
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v2/video/list/
+  method: post
+  operationId: listVideos
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v2/video/query/
+  method: post
+  operationId: queryVideos
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /logistics/202309/orders/{order_id}/shipping_documents
+  method: get
+  operationId: getShippingDocument
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /order/202309/orders
+  method: get
+  operationId: listOrders
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /order/202309/orders/{order_id}
+  method: get
+  operationId: getOrder
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
 - path: /product/202309/products
   method: get
   operationId: listProducts
@@ -212,39 +466,9 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /order/202309/orders
+- path: /open_api/v1.3/report/integrated/get/
   method: get
-  operationId: listOrders
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /order/202309/orders/{order_id}
-  method: get
-  operationId: getOrder
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /logistics/202309/orders/{order_id}/shipping_documents
-  method: get
-  operationId: getShippingDocument
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /finance/202309/payments
-  method: get
-  operationId: listPayments
+  operationId: getReport
   x-agentic-access:
     action-class: connected
     consequence: read
