@@ -1,0 +1,49 @@
+arazzo: 1.0.1
+info:
+  title: 'tiktok through pomo: estimate_influencer_pricing_endpoint_api_influencer_discovery_pricing_estimate_post
+    preconfigured with tiktok'
+  summary: Calls pomo's estimate_influencer_pricing_endpoint_api_influencer_discovery_pricing_estimate_post with
+    `tiktok` preset, the way tiktok is used inside pomo.
+  description: 'A PRECONFIGURATION, not an orchestration: tiktok is a processor-connection inside pomo, so the integration
+    is pomo''s own operation with tiktok''s enum value set. Derived from pomo''s contract (pomo-influencer-discovery-api-openapi.yml);
+    required properties are inputs.'
+  version: 1.0.0
+x-integration:
+  partner: pomo
+  relationship: processor-connection
+  preconfig: true
+  edge_evidence: https://github.com/api-evangelist/pomo/blob/main/openapi/pomo-influencer-discovery-api-openapi.yml
+  edge_type: contract
+  preset:
+    platform: tiktok
+  method: derived
+  generated: '2026-10-12'
+  generator: build-integration-preconfigs.py
+sourceDescriptions:
+- name: pomoInfluencerDiscoveryApiOpenapi
+  url: https://raw.githubusercontent.com/api-evangelist/pomo/refs/heads/main/openapi/pomo-influencer-discovery-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: tiktok-via-pomo-estimate-influencer-pricing-endpoint-api-influencer-discovery-pricing-estimate-post
+  summary: estimate_influencer_pricing_endpoint_api_influencer_discovery_pricing_estimate_post with tiktok preset
+  inputs:
+    type: object
+    required:
+    - name
+    properties:
+      name:
+        type: string
+  steps:
+  - stepId: call-with-preset
+    operationId: $sourceDescriptions.pomoInfluencerDiscoveryApiOpenapi.estimate_influencer_pricing_endpoint_api_influencer_discovery_pricing_estimate_post
+    requestBody:
+      contentType: application/json
+      payload:
+        name: $inputs.name
+        platform: tiktok
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      id: $response.body#/id
+  outputs:
+    id: $steps.call-with-preset.outputs.id

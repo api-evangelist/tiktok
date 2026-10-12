@@ -1,0 +1,142 @@
+generated: '2026-10-12'
+method: searched
+source:
+- https://composio.dev/toolkits/tiktok
+- https://monid.ai/tools/tiktok
+checked:
+- https://composio.dev/toolkits/tiktok
+- https://monid.ai/tools/tiktok
+- https://n8n.io/integrations/tiktok/
+- https://zapier.com/apps/tiktok/integrations
+summary: null
+marketplace_apps:
+- marketplace: composio
+  channel: agent-gateway
+  app: tiktok
+  url: https://composio.dev/toolkits/tiktok
+  identity: action-prefix
+  actions:
+  - key: TIKTOK_FETCH_PUBLISH_STATUS
+  - key: TIKTOK_GET_ACTION_CATEGORIES
+  - key: TIKTOK_GET_TERM
+  - key: TIKTOK_GET_USER_BASIC_INFO
+  - key: TIKTOK_GET_USER_PROFILE
+  - key: TIKTOK_GET_USER_STATS
+  - key: TIKTOK_LIST_GMV_MAX_OCCUPIED_CUSTOM_SHOP_ADS
+  - key: TIKTOK_LIST_VIDEOS
+  - key: TIKTOK_POST_PHOTO
+  - key: TIKTOK_PUBLISH_VIDEO
+  - key: TIKTOK_UPLOAD_VIDEO
+  - key: TIKTOK_UPLOAD_VIDEOS
+- marketplace: monid
+  channel: agent-gateway
+  app: tiktok
+  url: https://monid.ai/tools/tiktok
+  identity: slug
+edges:
+- partner_name: aghanim
+  partner: aghanim
+  partner_match: domain
+  type: contract
+  channel: partner-built
+  relationship: processor-connection
+  direction: partner-built
+  evidence: https://github.com/api-evangelist/aghanim/blob/main/openapi/aghanim-creators-api-openapi.yml
+  contract_reference:
+    repo: aghanim
+    spec_file: aghanim-creators-api-openapi.yml
+    value: tiktok
+    property: components.schemas.CreatorSocialPlatform
+    detected_by: detect-payment-method-edges.py
+    detected: '2026-10-12'
+- partner_name: creatoriq
+  partner: creatoriq
+  partner_match: domain
+  type: contract
+  channel: partner-built
+  relationship: network
+  direction: partner-built
+  evidence: https://github.com/api-evangelist/creatoriq/blob/main/openapi/creatoriq-general-api-openapi.yml
+  contract_reference:
+    repo: creatoriq
+    spec_file: creatoriq-general-api-openapi.yml
+    value: tiktok
+    property: publishersList.results.FlagshipSocialNetwork
+    detected_by: detect-payment-method-edges.py
+    detected: '2026-10-12'
+- partner_name: highlevel
+  partner: highlevel
+  partner_match: domain
+  type: contract
+  channel: partner-built
+  relationship: processor-connection
+  direction: partner-built
+  evidence: https://github.com/api-evangelist/highlevel/blob/main/openapi/highlevel-statistics-api-openapi.yml
+  contract_reference:
+    repo: highlevel
+    spec_file: highlevel-statistics-api-openapi.yml
+    value: tiktok
+    property: requestBody.content.platforms
+    detected_by: detect-payment-method-edges.py
+    detected: '2026-10-12'
+- partner_name: later
+  partner: later
+  partner_match: domain
+  type: contract
+  channel: partner-built
+  relationship: network
+  direction: partner-built
+  evidence: https://github.com/api-evangelist/later/blob/main/openapi/later-action-groups-api-openapi.yml
+  contract_reference:
+    repo: later
+    spec_file: later-action-groups-api-openapi.yml
+    value: tiktok
+    property: components.schemas.NetworkSlug
+    detected_by: detect-payment-method-edges.py
+    detected: '2026-10-12'
+- partner_name: mavrck
+  partner: mavrck
+  partner_match: domain
+  type: contract
+  channel: partner-built
+  relationship: network
+  direction: partner-built
+  evidence: https://github.com/api-evangelist/mavrck/blob/main/openapi/mavrck-globalusers-api-openapi.yml
+  contract_reference:
+    repo: mavrck
+    spec_file: mavrck-globalusers-api-openapi.yml
+    value: tiktok
+    property: components.schemas.NetworkSlug
+    detected_by: detect-payment-method-edges.py
+    detected: '2026-10-12'
+- partner_name: pomo
+  partner: pomo
+  partner_match: domain
+  type: contract
+  channel: partner-built
+  relationship: processor-connection
+  direction: partner-built
+  evidence: https://github.com/api-evangelist/pomo/blob/main/openapi/pomo-influencer-discovery-api-openapi.yml
+  contract_reference:
+    repo: pomo
+    spec_file: pomo-influencer-discovery-api-openapi.yml
+    value: tiktok
+    property: schemas.InfluencerPricingEstimateRequest.platform
+    detected_by: detect-payment-method-edges.py
+    detected: '2026-10-12'
+- partner_name: trend
+  partner: trend
+  partner_match: domain
+  type: contract
+  channel: partner-built
+  relationship: processor-connection
+  direction: partner-built
+  evidence: https://github.com/api-evangelist/trend/blob/main/openapi/trend-campaign-api-openapi.yml
+  contract_reference:
+    repo: trend
+    spec_file: trend-campaign-api-openapi.yml
+    value: tiktok
+    property: schemas.SubmitCampaignDto.platform
+    detected_by: detect-payment-method-edges.py
+    detected: '2026-10-12'
+templates: []
