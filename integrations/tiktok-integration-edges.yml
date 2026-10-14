@@ -5,8 +5,12 @@ source:
 - https://monid.ai/tools/tiktok
 checked:
 - https://composio.dev/toolkits/tiktok
+- https://docs.mparticle.com/integrations/tiktok/audience/
+- https://fivetran.com/docs/activations/destinations/available-destinations/tiktok
+- https://hightouch.com/docs/destinations/tiktok
 - https://monid.ai/tools/tiktok
 - https://n8n.io/integrations/tiktok/
+- https://www.twilio.com/docs/segment/connections/destinations/catalog/actions-tiktok-audiences
 - https://zapier.com/apps/tiktok/integrations
 summary: null
 marketplace_apps:
@@ -139,4 +143,104 @@ edges:
     property: schemas.SubmitCampaignDto.platform
     detected_by: detect-payment-method-edges.py
     detected: '2026-10-12'
+- partner_name: Twilio Segment
+  partner: segment
+  partner_match: aggregator
+  marketplace: coverage
+  channel: partner-built
+  direction: partner-built
+  type: coverage
+  relationship: connector-coverage
+  evidence: https://www.twilio.com/docs/segment/connections/destinations/catalog/actions-tiktok-audiences
+  coverage_role:
+  - destination
+  cdp_signals:
+    destination:
+      catalog_entries:
+      - actions-tiktok-audiences
+      - actions-tiktok-offline-conversions
+      - actions-tiktok-pixel
+      - tiktok-conversions
+      status: PUBLIC
+      partner_owned: false
+      connection_modes:
+      - cloud:server
+      - cloud:web
+      accepted_methods:
+      - Alias
+      - Group
+      - Identify
+      - Page
+      - Track
+  detected_by: sweep-cdp.py
+  first_seen: '2026-10-14'
+- partner_name: mParticle
+  partner: mparticle
+  partner_match: aggregator
+  marketplace: coverage
+  channel: partner-built
+  direction: partner-built
+  type: coverage
+  relationship: connector-coverage
+  evidence: https://docs.mparticle.com/integrations/tiktok/audience/
+  coverage_role:
+  - destination
+  cdp_signals:
+    destination:
+      catalog_entries:
+      - tiktok
+      integration_types:
+      - audience
+      - audience-deprecated
+      - event
+      - migration-guide
+  detected_by: sweep-cdp.py
+  first_seen: '2026-10-14'
+- partner_name: Hightouch
+  partner: hightouch
+  partner_match: aggregator
+  marketplace: coverage
+  channel: partner-built
+  direction: partner-built
+  type: coverage
+  relationship: connector-coverage
+  evidence: https://hightouch.com/docs/destinations/tiktok
+  coverage_role:
+  - destination
+  cdp_signals:
+    destination:
+      catalog_entries:
+      - tiktok
+      status: released
+      sync_types:
+      - App events
+      - Custom audiences
+      - Offline events
+      - Web events
+      sync_modes:
+      - add
+      - all (file upload)
+      - insert
+  detected_by: sweep-cdp.py
+  first_seen: '2026-10-14'
+- partner_name: Census
+  partner: getcensus
+  partner_match: aggregator
+  marketplace: coverage
+  channel: partner-built
+  direction: partner-built
+  type: coverage
+  relationship: connector-coverage
+  evidence: https://fivetran.com/docs/activations/destinations/available-destinations/tiktok
+  coverage_role:
+  - destination
+  cdp_signals:
+    destination:
+      catalog_entries:
+      - tiktok
+      sync_behaviours:
+      - mirror
+      - update or create
+  detected_by: sweep-cdp.py
+  first_seen: '2026-10-14'
 templates: []
