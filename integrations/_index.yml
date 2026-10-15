@@ -227,5 +227,5 @@
     builder: unknown (not in the directory record)
     other_apps:
     - tiktok-conversion
-  status: pending-generation
+  status: not-a-workflow
   arazzo: null
