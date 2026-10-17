@@ -135,6 +135,43 @@ paths:
                 $ref: '#/components/schemas/FileUploadResponse'
 components:
   schemas:
+    GenericResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        data:
+          type: object
+    FileUploadResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        data:
+          type: object
+          properties:
+            uri:
+              type: string
+            url:
+              type: string
+    ProductUpdateRequest:
+      type: object
+      properties:
+        product_name:
+          type: string
+        description:
+          type: string
+        main_images:
+          type: array
+          items:
+            type: object
+            properties:
+              uri:
+                type: string
     SKU:
       type: object
       properties:
@@ -153,42 +190,6 @@ components:
                 type: string
               available_stock:
                 type: integer
-    GenericResponse:
-      type: object
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
-        data:
-          type: object
-    ProductListResponse:
-      type: object
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
-        data:
-          type: object
-          properties:
-            products:
-              type: array
-              items:
-                $ref: '#/components/schemas/Product'
-            next_page_token:
-              type: string
-            total_count:
-              type: integer
-    ProductDetailResponse:
-      type: object
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
-        data:
-          $ref: '#/components/schemas/Product'
     Price:
       type: object
       properties:
@@ -196,34 +197,6 @@ components:
           type: string
         currency:
           type: string
-    ProductUpdateRequest:
-      type: object
-      properties:
-        product_name:
-          type: string
-        description:
-          type: string
-        main_images:
-          type: array
-          items:
-            type: object
-            properties:
-              uri:
-                type: string
-    FileUploadResponse:
-      type: object
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
-        data:
-          type: object
-          properties:
-            uri:
-              type: string
-            url:
-              type: string
     Product:
       type: object
       properties:
@@ -247,6 +220,33 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/SKU'
+    ProductDetailResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        data:
+          $ref: '#/components/schemas/Product'
+    ProductListResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        data:
+          type: object
+          properties:
+            products:
+              type: array
+              items:
+                $ref: '#/components/schemas/Product'
+            next_page_token:
+              type: string
+            total_count:
+              type: integer
   securitySchemes:
     AccessToken:
       type: apiKey

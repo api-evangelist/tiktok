@@ -84,30 +84,48 @@ paths:
           description: Bad Request
 components:
   schemas:
-    TokenResponse:
+    RevokeTokenRequest:
       type: object
+      required:
+      - client_key
+      - client_secret
+      - token
       properties:
-        access_token:
+        client_key:
           type: string
-          description: OAuth access token
-        expires_in:
-          type: integer
-          description: Access token expiration time in seconds
-        open_id:
+        client_secret:
           type: string
-          description: User's unique identifier
-        refresh_expires_in:
-          type: integer
-          description: Refresh token expiration time in seconds
+        token:
+          type: string
+          description: The access token to revoke
+    RefreshTokenRequest:
+      type: object
+      required:
+      - client_key
+      - client_secret
+      - grant_type
+      - refresh_token
+      properties:
+        client_key:
+          type: string
+        client_secret:
+          type: string
+        grant_type:
+          type: string
+          enum:
+          - refresh_token
         refresh_token:
           type: string
-          description: Refresh token
-        scope:
+          description: The refresh token to use
+    RevokeTokenResponse:
+      type: object
+      properties:
+        error:
           type: string
-          description: Granted scopes (comma-separated)
-        token_type:
+        error_description:
           type: string
-          description: Token type (Bearer)
+        message:
+          type: string
     TokenRequest:
       type: object
       required:
@@ -134,45 +152,27 @@ components:
         redirect_uri:
           type: string
           description: Redirect URI registered for your app
-    RevokeTokenRequest:
-      type: object
-      required:
-      - client_key
-      - client_secret
-      - token
-      properties:
-        client_key:
-          type: string
-        client_secret:
-          type: string
-        token:
-          type: string
-          description: The access token to revoke
-    RevokeTokenResponse:
+    TokenResponse:
       type: object
       properties:
-        error:
+        access_token:
           type: string
-        error_description:
+          description: OAuth access token
+        expires_in:
+          type: integer
+          description: Access token expiration time in seconds
+        open_id:
           type: string
-        message:
-          type: string
-    RefreshTokenRequest:
-      type: object
-      required:
-      - client_key
-      - client_secret
-      - grant_type
-      - refresh_token
-      properties:
-        client_key:
-          type: string
-        client_secret:
-          type: string
-        grant_type:
-          type: string
-          enum:
-          - refresh_token
+          description: User's unique identifier
+        refresh_expires_in:
+          type: integer
+          description: Refresh token expiration time in seconds
         refresh_token:
           type: string
-          description: The refresh token to use
+          description: Refresh token
+        scope:
+          type: string
+          description: Granted scopes (comma-separated)
+        token_type:
+          type: string
+          description: Token type (Bearer)

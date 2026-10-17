@@ -76,30 +76,6 @@ paths:
           description: Unauthorized
 components:
   schemas:
-    VideoQueryRequest:
-      type: object
-      required:
-      - filters
-      properties:
-        filters:
-          type: object
-          properties:
-            video_ids:
-              type: array
-              items:
-                type: string
-              description: List of video IDs to query
-    VideoListRequest:
-      type: object
-      properties:
-        max_count:
-          type: integer
-          description: Maximum number of videos to return (1-20)
-          minimum: 1
-          maximum: 20
-        cursor:
-          type: integer
-          description: Cursor for pagination
     VideoListResponse:
       type: object
       properties:
@@ -130,6 +106,17 @@ components:
                 $ref: '#/components/schemas/Video'
         error:
           $ref: '#/components/schemas/Error'
+    VideoListRequest:
+      type: object
+      properties:
+        max_count:
+          type: integer
+          description: Maximum number of videos to return (1-20)
+          minimum: 1
+          maximum: 20
+        cursor:
+          type: integer
+          description: Cursor for pagination
     Video:
       type: object
       properties:
@@ -190,6 +177,19 @@ components:
         log_id:
           type: string
           description: Log identifier for debugging
+    VideoQueryRequest:
+      type: object
+      required:
+      - filters
+      properties:
+        filters:
+          type: object
+          properties:
+            video_ids:
+              type: array
+              items:
+                type: string
+              description: List of video IDs to query
   securitySchemes:
     BearerAuth:
       type: http

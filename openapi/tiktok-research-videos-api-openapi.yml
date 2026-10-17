@@ -133,89 +133,6 @@ paths:
           description: Unauthorized
 components:
   schemas:
-    VideoQueryRequest:
-      type: object
-      required:
-      - query
-      - start_date
-      - end_date
-      - max_count
-      properties:
-        query:
-          type: object
-          description: Boolean query object with and/or/not operators
-          properties:
-            and:
-              type: array
-              items:
-                $ref: '#/components/schemas/QueryCondition'
-            or:
-              type: array
-              items:
-                $ref: '#/components/schemas/QueryCondition'
-            not:
-              type: array
-              items:
-                $ref: '#/components/schemas/QueryCondition'
-        start_date:
-          type: string
-          description: Start date in YYYYMMDD format
-        end_date:
-          type: string
-          description: End date in YYYYMMDD format
-        max_count:
-          type: integer
-          description: Maximum results per page (1-100)
-          minimum: 1
-          maximum: 100
-        cursor:
-          type: integer
-          description: Pagination cursor
-        search_id:
-          type: string
-          description: Search ID for pagination continuation
-    ResearchVideo:
-      type: object
-      properties:
-        id:
-          type: string
-        create_time:
-          type: integer
-        username:
-          type: string
-        region_code:
-          type: string
-        video_description:
-          type: string
-        music_id:
-          type: string
-        like_count:
-          type: integer
-        comment_count:
-          type: integer
-        share_count:
-          type: integer
-        view_count:
-          type: integer
-        hashtag_names:
-          type: array
-          items:
-            type: string
-    SocialListRequest:
-      type: object
-      required:
-      - username
-      - max_count
-      properties:
-        username:
-          type: string
-          description: TikTok handle (without @)
-        max_count:
-          type: integer
-          minimum: 1
-          maximum: 100
-        cursor:
-          type: integer
     VideoQueryResponse:
       type: object
       properties:
@@ -263,6 +180,62 @@ components:
           type: array
           items:
             type: string
+    VideoQueryRequest:
+      type: object
+      required:
+      - query
+      - start_date
+      - end_date
+      - max_count
+      properties:
+        query:
+          type: object
+          description: Boolean query object with and/or/not operators
+          properties:
+            and:
+              type: array
+              items:
+                $ref: '#/components/schemas/QueryCondition'
+            or:
+              type: array
+              items:
+                $ref: '#/components/schemas/QueryCondition'
+            not:
+              type: array
+              items:
+                $ref: '#/components/schemas/QueryCondition'
+        start_date:
+          type: string
+          description: Start date in YYYYMMDD format
+        end_date:
+          type: string
+          description: End date in YYYYMMDD format
+        max_count:
+          type: integer
+          description: Maximum results per page (1-100)
+          minimum: 1
+          maximum: 100
+        cursor:
+          type: integer
+          description: Pagination cursor
+        search_id:
+          type: string
+          description: Search ID for pagination continuation
+    SocialListRequest:
+      type: object
+      required:
+      - username
+      - max_count
+      properties:
+        username:
+          type: string
+          description: TikTok handle (without @)
+        max_count:
+          type: integer
+          minimum: 1
+          maximum: 100
+        cursor:
+          type: integer
     Error:
       type: object
       properties:
@@ -272,6 +245,33 @@ components:
           type: string
         log_id:
           type: string
+    ResearchVideo:
+      type: object
+      properties:
+        id:
+          type: string
+        create_time:
+          type: integer
+        username:
+          type: string
+        region_code:
+          type: string
+        video_description:
+          type: string
+        music_id:
+          type: string
+        like_count:
+          type: integer
+        comment_count:
+          type: integer
+        share_count:
+          type: integer
+        view_count:
+          type: integer
+        hashtag_names:
+          type: array
+          items:
+            type: string
   securitySchemes:
     BearerAuth:
       type: http

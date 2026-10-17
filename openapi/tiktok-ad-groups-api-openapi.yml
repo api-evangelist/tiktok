@@ -73,6 +73,15 @@ paths:
                 $ref: '#/components/schemas/GenericResponse'
 components:
   schemas:
+    GenericResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        data:
+          type: object
     AdGroupCreateRequest:
       type: object
       required:
@@ -107,15 +116,6 @@ components:
           type: integer
         total_page:
           type: integer
-    GenericResponse:
-      type: object
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
-        data:
-          type: object
     AdGroup:
       type: object
       properties:

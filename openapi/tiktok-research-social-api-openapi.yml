@@ -74,28 +74,6 @@ paths:
           description: Unauthorized
 components:
   schemas:
-    SocialListRequest:
-      type: object
-      required:
-      - username
-      - max_count
-      properties:
-        username:
-          type: string
-          description: TikTok handle (without @)
-        max_count:
-          type: integer
-          minimum: 1
-          maximum: 100
-        cursor:
-          type: integer
-    SocialUser:
-      type: object
-      properties:
-        display_name:
-          type: string
-        username:
-          type: string
     SocialListResponse:
       type: object
       properties:
@@ -121,6 +99,28 @@ components:
           type: string
         log_id:
           type: string
+    SocialUser:
+      type: object
+      properties:
+        display_name:
+          type: string
+        username:
+          type: string
+    SocialListRequest:
+      type: object
+      required:
+      - username
+      - max_count
+      properties:
+        username:
+          type: string
+          description: TikTok handle (without @)
+        max_count:
+          type: integer
+          minimum: 1
+          maximum: 100
+        cursor:
+          type: integer
   securitySchemes:
     BearerAuth:
       type: http

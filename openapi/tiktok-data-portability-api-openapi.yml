@@ -66,6 +66,35 @@ paths:
                 $ref: '#/components/schemas/TaskStatusResponse'
 components:
   schemas:
+    DataPortabilityTaskRequest:
+      type: object
+      required:
+      - data_types
+      properties:
+        data_types:
+          type: array
+          items:
+            type: string
+            enum:
+            - ACTIVITY
+            - VIDEOS
+            - FAVORITES
+            - FOLLOWING
+            - FOLLOWERS
+            - PROFILE
+            - DIRECT_MESSAGES
+            - COMMENTS
+          description: Data categories to export
+    DataPortabilityTaskResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            task_id:
+              type: string
+        error:
+          $ref: '#/components/schemas/Error'
     Error:
       type: object
       properties:
@@ -97,35 +126,6 @@ components:
               description: Download URLs when status is READY
         error:
           $ref: '#/components/schemas/Error'
-    DataPortabilityTaskResponse:
-      type: object
-      properties:
-        data:
-          type: object
-          properties:
-            task_id:
-              type: string
-        error:
-          $ref: '#/components/schemas/Error'
-    DataPortabilityTaskRequest:
-      type: object
-      required:
-      - data_types
-      properties:
-        data_types:
-          type: array
-          items:
-            type: string
-            enum:
-            - ACTIVITY
-            - VIDEOS
-            - FAVORITES
-            - FOLLOWING
-            - FOLLOWERS
-            - PROFILE
-            - DIRECT_MESSAGES
-            - COMMENTS
-          description: Data categories to export
   securitySchemes:
     BearerAuth:
       type: http

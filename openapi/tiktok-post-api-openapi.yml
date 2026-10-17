@@ -102,32 +102,25 @@ paths:
           description: Unauthorized
 components:
   schemas:
-    CreatorInfoResponse:
+    InboxVideoInitRequest:
       type: object
+      required:
+      - source_info
       properties:
-        data:
+        source_info:
           type: object
           properties:
-            creator_avatar_url:
+            source:
               type: string
-            creator_username:
+              enum:
+              - FILE_UPLOAD
+              - PULL_FROM_URL
+            video_url:
               type: string
-            creator_nickname:
-              type: string
-            privacy_level_options:
-              type: array
-              items:
-                type: string
-            comment_disabled:
-              type: boolean
-            duet_disabled:
-              type: boolean
-            stitch_disabled:
-              type: boolean
-            max_video_post_duration_sec:
+            chunk_size:
               type: integer
-        error:
-          $ref: '#/components/schemas/Error'
+            total_chunk_count:
+              type: integer
     VideoInitRequest:
       type: object
       required:
@@ -154,26 +147,38 @@ components:
               description: Total number of chunks
         post_info:
           $ref: '#/components/schemas/PostInfo'
-    PublishStatusResponse:
+    PublishStatusRequest:
+      type: object
+      required:
+      - publish_id
+      properties:
+        publish_id:
+          type: string
+          description: The publish_id returned from the init endpoint
+    CreatorInfoResponse:
       type: object
       properties:
         data:
           type: object
           properties:
-            status:
+            creator_avatar_url:
               type: string
-              enum:
-              - PROCESSING_UPLOAD
-              - PROCESSING_DOWNLOAD
-              - SENDING_TO_USER_INBOX
-              - FAILED
-              - PUBLISH_COMPLETE
-              description: Current status of the publish job
-            publish_id:
+            creator_username:
               type: string
-            uploaded_bytes:
+            creator_nickname:
+              type: string
+            privacy_level_options:
+              type: array
+              items:
+                type: string
+            comment_disabled:
+              type: boolean
+            duet_disabled:
+              type: boolean
+            stitch_disabled:
+              type: boolean
+            max_video_post_duration_sec:
               type: integer
-              description: Bytes uploaded so far
         error:
           $ref: '#/components/schemas/Error'
     PostInfo:
@@ -202,6 +207,15 @@ components:
         video_cover_timestamp_ms:
           type: integer
           description: Timestamp in milliseconds for video cover
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        log_id:
+          type: string
     VideoInitResponse:
       type: object
       properties:
@@ -216,42 +230,28 @@ components:
               description: URL to upload video chunks to
         error:
           $ref: '#/components/schemas/Error'
-    PublishStatusRequest:
+    PublishStatusResponse:
       type: object
-      required:
-      - publish_id
       properties:
-        publish_id:
-          type: string
-          description: The publish_id returned from the init endpoint
-    InboxVideoInitRequest:
-      type: object
-      required:
-      - source_info
-      properties:
-        source_info:
+        data:
           type: object
           properties:
-            source:
+            status:
               type: string
               enum:
-              - FILE_UPLOAD
-              - PULL_FROM_URL
-            video_url:
+              - PROCESSING_UPLOAD
+              - PROCESSING_DOWNLOAD
+              - SENDING_TO_USER_INBOX
+              - FAILED
+              - PUBLISH_COMPLETE
+              description: Current status of the publish job
+            publish_id:
               type: string
-            chunk_size:
+            uploaded_bytes:
               type: integer
-            total_chunk_count:
-              type: integer
-    Error:
-      type: object
-      properties:
-        code:
-          type: string
-        message:
-          type: string
-        log_id:
-          type: string
+              description: Bytes uploaded so far
+        error:
+          $ref: '#/components/schemas/Error'
   securitySchemes:
     BearerAuth:
       type: http

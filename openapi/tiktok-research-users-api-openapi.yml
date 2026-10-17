@@ -70,6 +70,14 @@ components:
               type: integer
         error:
           $ref: '#/components/schemas/Error'
+    UserInfoRequest:
+      type: object
+      required:
+      - username
+      properties:
+        username:
+          type: string
+          description: TikTok handle (without @)
     Error:
       type: object
       properties:
@@ -79,14 +87,6 @@ components:
           type: string
         log_id:
           type: string
-    UserInfoRequest:
-      type: object
-      required:
-      - username
-      properties:
-        username:
-          type: string
-          description: TikTok handle (without @)
   securitySchemes:
     BearerAuth:
       type: http
