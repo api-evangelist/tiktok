@@ -263,7 +263,7 @@
       type: source
       lapsed: false
       cloud: true
-  status: pending-generation
+  status: not-a-workflow
   arazzo: null
 - slug: tiktok-fivetran
   label: Fivetran
@@ -289,7 +289,7 @@
     - connectors/applications/tiktok-organic-app
     vendor_link: https://business-api.tiktok.com/portal
     builder: Fivetran
-  status: pending-generation
+  status: not-a-workflow
   arazzo: null
 - slug: tiktok-meltano
   label: Meltano
@@ -318,5 +318,5 @@
     quality:
     - silver
     builder: 'community (Meltano Hub variant maintainers: hkuffel)'
-  status: pending-partner-spec
+  status: not-a-workflow
   arazzo: null
