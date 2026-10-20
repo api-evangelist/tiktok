@@ -1,4 +1,4 @@
-generated: '2026-10-12'
+generated: '2026-10-20'
 method: searched
 source:
 - https://composio.dev/toolkits/tiktok
@@ -29,15 +29,12 @@ marketplace_apps:
   identity: action-prefix
   actions:
   - key: TIKTOK_FETCH_PUBLISH_STATUS
-  - key: TIKTOK_GET_ACTION_CATEGORIES
-  - key: TIKTOK_GET_TERM
-  - key: TIKTOK_GET_USER_BASIC_INFO
-  - key: TIKTOK_GET_USER_PROFILE
   - key: TIKTOK_GET_USER_STATS
-  - key: TIKTOK_LIST_GMV_MAX_OCCUPIED_CUSTOM_SHOP_ADS
   - key: TIKTOK_LIST_VIDEOS
   - key: TIKTOK_POST_PHOTO
   - key: TIKTOK_PUBLISH_VIDEO
+  - key: TIKTOK_QUERY_CREATOR_INFO
+  - key: TIKTOK_QUERY_VIDEOS
   - key: TIKTOK_UPLOAD_VIDEO
   - key: TIKTOK_UPLOAD_VIDEOS
 - marketplace: monid
@@ -151,6 +148,66 @@ edges:
     property: schemas.SubmitCampaignDto.platform
     detected_by: detect-payment-method-edges.py
     detected: '2026-10-12'
+- partner_name: Shopify (own)
+  partner: shopify
+  partner_match: mirror
+  mirror_match: domain+name-among-holders
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://apps.shopify.com/tiktok
+  mirror_of: shopify/integrations/shopify-integration-edges.yml
+  apps:
+  - TikTok
+  listing_count: 1
+  detected: '2026-10-15'
+  detected_by: mirror-platform-listings.py
+- partner_name: WooCommerce (own)
+  partner: woocommerce
+  partner_match: mirror
+  mirror_match: domain+name-among-holders
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://woocommerce.com/products/tiktok-for-woocommerce/
+  mirror_of: woocommerce/integrations/woocommerce-integration-edges.yml
+  apps:
+  - TikTok
+  listing_count: 1
+  detected: '2026-10-15'
+  detected_by: mirror-platform-listings.py
+  category: extension
+- partner_name: Zapier
+  partner: zapier
+  partner_match: aggregator
+  type: marketplace
+  marketplace: zapier-directory
+  channel: ipaas-listing
+  relationship: ipaas-bridge
+  direction: third-party
+  evidence: https://zapier.com/apps/tiktok-lead-generation/integrations
+  category: null
+  contract_reference:
+    register: Zapier app directory (zapier.com/api/v4/apps)
+    spec_file: null
+    role: ipaas-connector:zapier
+    registered_name: TikTok Lead Generation
+    matched_domain: tiktok.com
+    matched_by: domain+name-among-holders
+    detected_by: sweep-workflow-automation.py
+    detected: '2026-10-15'
+    signal_note: one edge per (provider, platform); actions, triggers and usage counts are context, never read
+    app_slug: tiktok-lead-generation
+    beta: false
+    builder: unknown (not in the directory record)
+    other_apps:
+    - tiktok-conversion
+  detected_by: sweep-workflow-automation.py
+  first_seen: '2026-10-15'
 - partner_name: Twilio Segment
   partner: segment
   partner_match: aggregator
@@ -251,66 +308,6 @@ edges:
       - update or create
   detected_by: sweep-cdp.py
   first_seen: '2026-10-14'
-- partner_name: Shopify (own)
-  partner: shopify
-  partner_match: mirror
-  mirror_match: domain+name-among-holders
-  type: marketplace
-  relationship: platform-app
-  direction: third-party
-  channel: partner-built
-  marketplace: own
-  evidence: https://apps.shopify.com/tiktok
-  mirror_of: shopify/integrations/shopify-integration-edges.yml
-  apps:
-  - TikTok
-  listing_count: 1
-  detected: '2026-10-15'
-  detected_by: mirror-platform-listings.py
-- partner_name: WooCommerce (own)
-  partner: woocommerce
-  partner_match: mirror
-  mirror_match: domain+name-among-holders
-  type: marketplace
-  relationship: platform-app
-  direction: third-party
-  channel: partner-built
-  marketplace: own
-  evidence: https://woocommerce.com/products/tiktok-for-woocommerce/
-  mirror_of: woocommerce/integrations/woocommerce-integration-edges.yml
-  apps:
-  - TikTok
-  listing_count: 1
-  detected: '2026-10-15'
-  detected_by: mirror-platform-listings.py
-  category: extension
-- partner_name: Zapier
-  partner: zapier
-  partner_match: aggregator
-  type: marketplace
-  marketplace: zapier-directory
-  channel: ipaas-listing
-  relationship: ipaas-bridge
-  direction: third-party
-  evidence: https://zapier.com/apps/tiktok-lead-generation/integrations
-  category: null
-  contract_reference:
-    register: Zapier app directory (zapier.com/api/v4/apps)
-    spec_file: null
-    role: ipaas-connector:zapier
-    registered_name: TikTok Lead Generation
-    matched_domain: tiktok.com
-    matched_by: domain+name-among-holders
-    detected_by: sweep-workflow-automation.py
-    detected: '2026-10-15'
-    signal_note: one edge per (provider, platform); actions, triggers and usage counts are context, never read
-    app_slug: tiktok-lead-generation
-    beta: false
-    builder: unknown (not in the directory record)
-    other_apps:
-    - tiktok-conversion
-  detected_by: sweep-workflow-automation.py
-  first_seen: '2026-10-15'
 - partner_name: Airbyte
   partner: airbyte
   partner_match: aggregator
