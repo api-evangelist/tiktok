@@ -21,6 +21,9 @@ checked:
 - shopify/integrations/shopify-integration-edges.yml
 - woocommerce/integrations/woocommerce-integration-edges.yml
 - yotpo/integrations/yotpo-integration-edges.yml
+- https://advertising.amazon.com/partners/directory
+- https://sellercentral.amazon.com/gspn
+- https://sellercentral.amazon.com/selling-partner-appstore
 summary: null
 marketplace_apps:
 - marketplace: composio
@@ -417,4 +420,19 @@ edges:
   detected: '2026-10-20'
   detected_by: mirror-platform-listings.py
   category: Reviews & UGC
+- partner_name: Amazon Selling Partner Appstore
+  partner: amazon-seller-central
+  partner_match: mirror
+  mirror_match: domain+name-among-holders
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://sellercentral.amazon.com/selling-partner-appstore/dp/amzn1.sp.solution.f3b54ba7-9a36-4004-9e79-169b36c3ddf7
+  mirror_of: amazon-seller-central/integrations/amazon-seller-central-integration-edges.yml
+  apps:
+  - TikTok for Multi-Channel Fulfillment
+  detected: '2026-10-21'
+  detected_by: sweep-amazon-sp-api-appstore.py
 templates: []
