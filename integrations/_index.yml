@@ -320,3 +320,16 @@
     builder: 'community (Meltano Hub variant maintainers: hkuffel)'
   status: not-a-workflow
   arazzo: null
+- slug: tiktok-yotpo-own
+  label: Yotpo (own)
+  partner: yotpo
+  partner_name: Yotpo (own)
+  category: Reviews & UGC
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://www.yotpo.com/integrations/tiktok-shop/
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
