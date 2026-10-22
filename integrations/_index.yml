@@ -129,31 +129,6 @@
     detected: '2026-10-12'
   arazzo: tiktok-trend-preconfig.yml
   status: arazzo
-- slug: tiktok-shopify-own
-  label: Shopify (own)
-  partner: shopify
-  partner_name: Shopify (own)
-  type: marketplace
-  marketplace: own
-  channel: partner-built
-  evidence: https://apps.shopify.com/tiktok
-  source: edge
-  relationship: platform-app
-  status: not-a-workflow
-  arazzo: null
-- slug: tiktok-woocommerce-own
-  label: WooCommerce (own)
-  partner: woocommerce
-  partner_name: WooCommerce (own)
-  category: extension
-  type: marketplace
-  marketplace: own
-  channel: partner-built
-  evidence: https://woocommerce.com/products/tiktok-for-woocommerce/
-  source: edge
-  relationship: platform-app
-  status: not-a-workflow
-  arazzo: null
 - slug: tiktok-zapier
   label: Zapier
   partner: zapier
@@ -320,6 +295,43 @@
     builder: 'community (Meltano Hub variant maintainers: hkuffel)'
   status: not-a-workflow
   arazzo: null
+- slug: tiktok-amazon-selling-partner-appstore
+  label: Amazon Selling Partner Appstore
+  partner: amazon-seller-central
+  partner_name: Amazon Selling Partner Appstore
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://sellercentral.amazon.com/selling-partner-appstore/dp/amzn1.sp.solution.f3b54ba7-9a36-4004-9e79-169b36c3ddf7
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: tiktok-shopify-own
+  label: Shopify (own)
+  partner: shopify
+  partner_name: Shopify (own)
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://apps.shopify.com/tiktok
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: tiktok-woocommerce-own
+  label: WooCommerce (own)
+  partner: woocommerce
+  partner_name: WooCommerce (own)
+  category: extension
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://woocommerce.com/products/tiktok-for-woocommerce/
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
 - slug: tiktok-yotpo-own
   label: Yotpo (own)
   partner: yotpo
@@ -333,14 +345,15 @@
   relationship: platform-app
   status: not-a-workflow
   arazzo: null
-- slug: tiktok-amazon-selling-partner-appstore
-  label: Amazon Selling Partner Appstore
-  partner: amazon-seller-central
-  partner_name: Amazon Selling Partner Appstore
+- slug: tiktok-wix-own
+  label: Wix (own)
+  partner: wix
+  partner_name: Wix (own)
+  category: Ads
   type: marketplace
   marketplace: own
   channel: partner-built
-  evidence: https://sellercentral.amazon.com/selling-partner-appstore/dp/amzn1.sp.solution.f3b54ba7-9a36-4004-9e79-169b36c3ddf7
+  evidence: https://www.wix.com/app-market/developer/tiktok-for-business
   source: edge
   relationship: platform-app
   status: not-a-workflow

@@ -24,6 +24,7 @@ checked:
 - https://advertising.amazon.com/partners/directory
 - https://sellercentral.amazon.com/gspn
 - https://sellercentral.amazon.com/selling-partner-appstore
+- wix/integrations/wix-integration-edges.yml
 summary: null
 marketplace_apps:
 - marketplace: composio
@@ -152,39 +153,6 @@ edges:
     property: schemas.SubmitCampaignDto.platform
     detected_by: detect-payment-method-edges.py
     detected: '2026-10-12'
-- partner_name: Shopify (own)
-  partner: shopify
-  partner_match: mirror
-  mirror_match: domain+name-among-holders
-  type: marketplace
-  relationship: platform-app
-  direction: third-party
-  channel: partner-built
-  marketplace: own
-  evidence: https://apps.shopify.com/tiktok
-  mirror_of: shopify/integrations/shopify-integration-edges.yml
-  apps:
-  - TikTok
-  listing_count: 1
-  detected: '2026-10-15'
-  detected_by: mirror-platform-listings.py
-- partner_name: WooCommerce (own)
-  partner: woocommerce
-  partner_match: mirror
-  mirror_match: domain+name-among-holders
-  type: marketplace
-  relationship: platform-app
-  direction: third-party
-  channel: partner-built
-  marketplace: own
-  evidence: https://woocommerce.com/products/tiktok-for-woocommerce/
-  mirror_of: woocommerce/integrations/woocommerce-integration-edges.yml
-  apps:
-  - TikTok
-  listing_count: 1
-  detected: '2026-10-15'
-  detected_by: mirror-platform-listings.py
-  category: extension
 - partner_name: Zapier
   partner: zapier
   partner_match: aggregator
@@ -403,6 +371,54 @@ edges:
     builder: 'community (Meltano Hub variant maintainers: hkuffel)'
   detected_by: sweep-data-integration.py
   first_seen: '2026-10-18'
+- partner_name: Amazon Selling Partner Appstore
+  partner: amazon-seller-central
+  partner_match: mirror
+  mirror_match: domain+name-among-holders
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://sellercentral.amazon.com/selling-partner-appstore/dp/amzn1.sp.solution.f3b54ba7-9a36-4004-9e79-169b36c3ddf7
+  mirror_of: amazon-seller-central/integrations/amazon-seller-central-integration-edges.yml
+  apps:
+  - TikTok for Multi-Channel Fulfillment
+  detected: '2026-10-21'
+  detected_by: sweep-amazon-sp-api-appstore.py
+- partner_name: Shopify (own)
+  partner: shopify
+  partner_match: mirror
+  mirror_match: domain+name-among-holders
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://apps.shopify.com/tiktok
+  mirror_of: shopify/integrations/shopify-integration-edges.yml
+  apps:
+  - TikTok
+  listing_count: 1
+  detected: '2026-10-15'
+  detected_by: mirror-platform-listings.py
+- partner_name: WooCommerce (own)
+  partner: woocommerce
+  partner_match: mirror
+  mirror_match: domain+name-among-holders
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://woocommerce.com/products/tiktok-for-woocommerce/
+  mirror_of: woocommerce/integrations/woocommerce-integration-edges.yml
+  apps:
+  - TikTok
+  listing_count: 1
+  detected: '2026-10-15'
+  detected_by: mirror-platform-listings.py
+  category: extension
 - partner_name: Yotpo (own)
   partner: yotpo
   partner_match: mirror
@@ -420,8 +436,8 @@ edges:
   detected: '2026-10-20'
   detected_by: mirror-platform-listings.py
   category: Reviews & UGC
-- partner_name: Amazon Selling Partner Appstore
-  partner: amazon-seller-central
+- partner_name: Wix (own)
+  partner: wix
   partner_match: mirror
   mirror_match: domain+name-among-holders
   type: marketplace
@@ -429,10 +445,14 @@ edges:
   direction: third-party
   channel: partner-built
   marketplace: own
-  evidence: https://sellercentral.amazon.com/selling-partner-appstore/dp/amzn1.sp.solution.f3b54ba7-9a36-4004-9e79-169b36c3ddf7
-  mirror_of: amazon-seller-central/integrations/amazon-seller-central-integration-edges.yml
+  evidence: https://www.wix.com/app-market/developer/tiktok-for-business
+  mirror_of: wix/integrations/wix-integration-edges.yml
   apps:
-  - TikTok for Multi-Channel Fulfillment
-  detected: '2026-10-21'
-  detected_by: sweep-amazon-sp-api-appstore.py
+  - TikTok Ads
+  listing_count: 1
+  detected: '2026-10-22'
+  detected_by: mirror-platform-listings.py
+  category: Ads
+  publisher_verified:
+  - Verified by Wix
 templates: []
