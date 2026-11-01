@@ -1,4 +1,4 @@
-# TikTok (tiktok)
+# TikTok
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,126 +66,206 @@
 
 TikTok is a short-form social video platform offering developers REST APIs for advertising, e-commerce, content discovery, and platform integrations. Key products include the TikTok API for Business (advertising and campaign management), TikTok Shop API (seller product and order management), and the Data Portability API.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/tiktok/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/tiktok/refs/heads/main/apis.yml)
+**Areas:** TikTok · Advertising · Commerce · Content · E-Commerce · Social Media · Video
 
-## Scope
+## TikTok on APIs.io
 
-- **Type:** Index
-- **Position:** Consumer
-- **Access:** 3rd-Party
+Everything profiled for TikTok is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/tiktok/](https://apis.io/providers/tiktok/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (18)
 
-- Advertising
-- Commerce
-- Content
-- E-Commerce
-- Social Media
-- Video
+- [TikTok Ad Groups API](https://apis.io/apis/tiktok/tiktok-ad-groups-api/) — Ad group (ad set) management
+- [TikTok Ads API](https://apis.io/apis/tiktok/tiktok-ads-api/) — Individual ad management
+- [TikTok Audiences API](https://apis.io/apis/tiktok/tiktok-audiences-api/) — Custom audience management
+- [TikTok Campaigns API](https://apis.io/apis/tiktok/tiktok-campaigns-api/) — Advertising campaign management
+- [TikTok Data Portability API](https://apis.io/apis/tiktok/tiktok-data-portability-api/) — User data export operations
+- [TikTok Finance API](https://apis.io/apis/tiktok/tiktok-finance-api/) — Settlement and financial reporting
+- [TikTok Logistics API](https://apis.io/apis/tiktok/tiktok-logistics-api/) — Shipping and logistics operations
+- [TikTok Orders API](https://apis.io/apis/tiktok/tiktok-orders-api/) — Order management and fulfillment
+- [TikTok Products API](https://apis.io/apis/tiktok/tiktok-products-api/) — Product catalog management
+- [TikTok Reporting API](https://apis.io/apis/tiktok/tiktok-reporting-api/) — Campaign performance reporting
+- [TikTok OAuth API](https://apis.io/apis/tiktok/tiktok-oauth-api/) — OAuth 2.0 authorization and token management
+- [TikTok Post API](https://apis.io/apis/tiktok/tiktok-post-api/) — Video publishing operations
+- [TikTok Research Comments API](https://apis.io/apis/tiktok/tiktok-research-comments-api/) — Comment data operations
+- [TikTok Research Social API](https://apis.io/apis/tiktok/tiktok-research-social-api/) — Social graph data
+- [TikTok Research Users API](https://apis.io/apis/tiktok/tiktok-research-users-api/) — User information for research
+- [TikTok Research Videos API](https://apis.io/apis/tiktok/tiktok-research-videos-api/) — Video search and query operations
+- [TikTok User API](https://apis.io/apis/tiktok/tiktok-user-api/) — User profile information
+- [TikTok Video API](https://apis.io/apis/tiktok/tiktok-video-api/) — Video metadata and management
 
-## Timestamps
+### Published properties
 
-- **Created:** 2025-08-14
-- **Modified:** 2026-05-19
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### GraphQL (1)
 
-### TikTok API for Business
+GraphQL schemas.
 
-TikTok's advertising API enabling developers to create and manage ad campaigns, ad groups, creatives, audiences, and reporting for global advertisers on TikTok.
+- [Moved to /providers/tiktok/](https://apis.io/graphqls/tiktok/tiktok-graphql/)
 
-- **Human URL:** [https://business-api.tiktok.com/portal/docs](https://business-api.tiktok.com/portal/docs)
-- **Base URL:** `https://business-api.tiktok.com`
+#### Agentic access (1)
 
-#### Tags
+Which operations an agent can call, which act, and which need a human in the loop.
 
-- Advertising
-- Campaigns
-- Marketing
-- Social Media
+- [Tiktok Agentic Access](https://apis.io/agentic-access/tiktok/tiktok-agentic-access/)
 
-#### Properties
+#### JSON Schema (2)
 
-- [Documentation](https://business-api.tiktok.com/portal/docs)
-- [OpenAPI](https://raw.githubusercontent.com/api-evangelist/tiktok/refs/heads/main/openapi/tiktok-business-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/tiktok-business.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/tiktok-business.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/tiktok-data-portability.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/tiktok-data-portability.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/tiktok-shop.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/tiktok-shop.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+The data models the API reads and writes.
 
-### TikTok Shop API
+- [TikTok Campaign](https://apis.io/schemas/tiktok/tiktok-campaign/)
+- [TikTok Shop Order](https://apis.io/schemas/tiktok/tiktok-order/)
 
-TikTok Shop Partner API enabling sellers and partners to manage product catalogs, process orders, handle logistics, and integrate with TikTok's commerce ecosystem.
+#### JSON Structure (1)
 
-- **Human URL:** [https://partner.tiktokshop.com/docv2/page/tts-api-concepts-overview](https://partner.tiktokshop.com/docv2/page/tts-api-concepts-overview)
-- **Base URL:** `https://open-api.tiktokglobalshop.com`
+Data models expressed in JSON Structure.
 
-#### Tags
+- [Tiktok Campaign Structure](https://apis.io/json-structure/tiktok/tiktok-campaign-structure/)
 
-- Commerce
-- E-Commerce
-- Products
-- Orders
+#### JSON-LD (1)
 
-#### Properties
+Linked-data contexts for the provider's vocabulary.
 
-- [Documentation](https://partner.tiktokshop.com/doc/page/63fd743c715d622a338c4e54)
-- [OpenAPI](https://raw.githubusercontent.com/api-evangelist/tiktok/refs/heads/main/openapi/tiktok-shop-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/tiktok-business.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/tiktok-business.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/tiktok-data-portability.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/tiktok-data-portability.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/tiktok-shop.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/tiktok-shop.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Tiktok Context](https://apis.io/jsonld/tiktok/tiktok-context/)
 
-### TikTok Data Portability API
+#### Vocabulary (1)
 
-Allows users to export their TikTok data including activity, videos, and profile information to third-party services.
+The provider's domain terms, defined.
 
-- **Human URL:** [https://developers.tiktok.com/doc/data-portability-api-get-started](https://developers.tiktok.com/doc/data-portability-api-get-started)
-- **Base URL:** `https://open.tiktokapis.com`
+- [TikTok Vocabulary](https://apis.io/vocabularies/tiktok/tiktok-vocabulary/)
 
-#### Tags
+#### Examples (2)
 
-- Data Portability
-- Privacy
-- User Data
+Example requests and responses.
 
-#### Properties
+- [Tiktok Business Getcampaigns Example](https://apis.io/examples/tiktok/tiktok-business-getCampaigns-example/)
+- [Tiktok Shop Listorders Example](https://apis.io/examples/tiktok/tiktok-shop-listOrders-example/)
 
-- [Documentation](https://developers.tiktok.com/doc/data-portability-api-get-started)
-- [OpenAPI](https://raw.githubusercontent.com/api-evangelist/tiktok/refs/heads/main/openapi/tiktok-data-portability-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/tiktok-business.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/tiktok-business.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/tiktok-data-portability.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/tiktok-data-portability.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/tiktok-shop.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/tiktok-shop.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+#### Collections (23)
 
-## Common Properties
+Postman and Open Collection request collections.
 
-- [LinkedIn](https://www.linkedin.com/company/tiktok)
+- [TikTok API for Business Ad Groups API](https://apis.io/collections/tiktok/open-tiktok-ad-groups-api/)
+- [TikTok API for Business Ad Groups Ads API](https://apis.io/collections/tiktok/open-tiktok-ads-api/)
+- [TikTok API for Business Ad Groups Audiences API](https://apis.io/collections/tiktok/open-tiktok-audiences-api/)
+- [TikTok API for Business](https://apis.io/collections/tiktok/open-tiktok-business/)
+- [TikTok API for Business Ad Groups Campaigns API](https://apis.io/collections/tiktok/open-tiktok-campaigns-api/)
+- [TikTok Data Portability API](https://apis.io/collections/tiktok/open-tiktok-data-portability/)
+- [TikTok API for Business Ad Groups Data Portability API](https://apis.io/collections/tiktok/open-tiktok-data-portability-api/)
+- [TikTok API for Business Ad Groups Finance API](https://apis.io/collections/tiktok/open-tiktok-finance-api/)
+- [TikTok API for Business Ad Groups Logistics API](https://apis.io/collections/tiktok/open-tiktok-logistics-api/)
+- [TikTok API for Business Ad Groups Orders API](https://apis.io/collections/tiktok/open-tiktok-orders-api/)
+- [TikTok API for Business Ad Groups Products API](https://apis.io/collections/tiktok/open-tiktok-products-api/)
+- [TikTok API for Business Ad Groups Reporting API](https://apis.io/collections/tiktok/open-tiktok-reporting-api/)
+- [TikTok Shop API](https://apis.io/collections/tiktok/open-tiktok-shop/)
+- [TikTok API for Business Ad Groups API](https://apis.io/collections/tiktok/postman-tiktok-ad-groups-api/)
+- [TikTok API for Business Ad Groups Ads API](https://apis.io/collections/tiktok/postman-tiktok-ads-api/)
+- [TikTok API for Business Ad Groups Audiences API](https://apis.io/collections/tiktok/postman-tiktok-audiences-api/)
+- [TikTok API for Business Ad Groups Campaigns API](https://apis.io/collections/tiktok/postman-tiktok-campaigns-api/)
+- [TikTok API for Business Ad Groups Data Portability API](https://apis.io/collections/tiktok/postman-tiktok-data-portability-api/)
+- [TikTok API for Business Ad Groups Finance API](https://apis.io/collections/tiktok/postman-tiktok-finance-api/)
+- [TikTok API for Business Ad Groups Logistics API](https://apis.io/collections/tiktok/postman-tiktok-logistics-api/)
+- [TikTok API for Business Ad Groups Orders API](https://apis.io/collections/tiktok/postman-tiktok-orders-api/)
+- [TikTok API for Business Ad Groups Products API](https://apis.io/collections/tiktok/postman-tiktok-products-api/)
+- [TikTok API for Business Ad Groups Reporting API](https://apis.io/collections/tiktok/postman-tiktok-reporting-api/)
+
+#### Governance rules (2)
+
+Spectral rulesets for the provider's contracts.
+
+- [TikTok — jsonschema rules](https://apis.io/rules/tiktok/tiktok-jsonschema-spectral-rules/)
+- [TikTok API Rules](https://apis.io/rules/tiktok/tiktok-rules/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Tiktok Authentication](https://apis.io/security/tiktok/tiktok-authentication/)
+- [Tiktok Domain Security](https://apis.io/security/tiktok/tiktok-domain-security/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Tiktok Plans Pricing](https://apis.io/plans/tiktok/tiktok-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Tiktok Rate Limits](https://apis.io/rate-limits/tiktok/tiktok-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Tiktok Finops](https://apis.io/finops/tiktok/tiktok-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
 - [Website](https://www.tiktok.com/)
-- [Portal](https://developers.tiktok.com/)
 - [Documentation](https://developers.tiktok.com/doc/overview)
-- [Getting Started](https://developers.tiktok.com/doc/overview)
-- [Business  A P I  Portal](https://business-api.tiktok.com/portal)
-- [Shop  Partner  Portal](https://partner.tiktokshop.com/)
-- [Authentication](https://developers.tiktok.com/doc/login-kit-manage-user-access-tokens)
-- [GitHub Organization](https://github.com/tiktok)
-- [SDK](https://github.com/tiktok/tiktok-business-api-sdk)
+- [Getting started](https://developers.tiktok.com/doc/overview)
 - [Changelog](https://developers.tiktok.com/doc/changelog)
 - [Blog](https://developers.tiktok.com/blog)
-- [Forum](https://developers.tiktok.com/community)
-- [Status Page](https://status.tiktok.com/)
-- [Terms of Service](https://developers.tiktok.com/doc/tiktok-api-terms-of-service)
-- [Privacy Policy](https://developers.tiktok.com/doc/tiktok-api-data-privacy)
-- [Sign Up](https://developers.tiktok.com/)
-- [Login](https://developers.tiktok.com/login)
+- [Terms of service](https://developers.tiktok.com/doc/tiktok-api-terms-of-service)
+- [Privacy policy](https://developers.tiktok.com/doc/tiktok-api-data-privacy)
+- [GitHub](https://github.com/tiktok)
+- [Status](https://status.tiktok.com/)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 41.0** — developing · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 71.4 |
+| Contract quality | 56.5 |
+| Contract governance | 13.6 |
+| Operational transparency | 34.2 |
+| Developer ergonomics | 56.0 |
+| Access clarity | 14.5 |
+
+**Agent readiness 19.6** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | na |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 16.7** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/tiktok/](https://apis.io/providers/tiktok/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for TikTok: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/tiktok/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
